@@ -1,0 +1,17 @@
+#full-bottom-button {
+    width: 100vw;
+    position: fixed;
+    bottom: 0px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 8px;
+}
+
+#full-bottom-button a {
+    width: 92vw;
+    padding: 8px;
+    background-color: lightgray;
+    color: #0A2239;
+    border-radius: 4px;
+    text-decoration: none;
+}

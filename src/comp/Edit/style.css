@@ -1,0 +1,7 @@
+.multi-input {
+    flex-direction: row !important;
+}
+
+.multi-input div {
+    flex: 1 !important;
+}

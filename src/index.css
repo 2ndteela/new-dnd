@@ -1,14 +1,89 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Open Sans' sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+h1, h2, h3, h4 {
+  font-family: 'Amaranth', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App * {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.header {
+  width: 100vw;
+  height: 58px;
+  justify-content: center;
+  background-color: #0A2239;
+  color: white;
+}
+
+.page-content {
+  min-height: calc(100vh - 58px);
+  width: 100vw;
+  padding: 16px;
+}
+
+.button-box {
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.push-end {
+  justify-content: flex-end !important;
+}
+
+button {
+  padding: 8px 24px !important;
+  background-color: #0A2239;
+  color: white;
+  font-weight: bold;
+  border: 2px solid #0A2239;
+  border-radius: 4px;
+  margin-right: 8px !important;
+  transition: .3s;
+}
+
+button:hover {
+  background-color: white;
+  border-color: white;
+  color: #0A2239;
+}
+
+.flat-button {
+  background-color: lightgrey;
+  color: #0A2239;
+  border-color: lightgray;
+}
+
+.flat-button:hover {
+  color: white !important;
+  background-color: #0A2239;
+  border-color: #0A2239;
 }
