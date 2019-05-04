@@ -55,6 +55,17 @@ h1, h2, h3, h4 {
   flex-direction: row;
 }
 
+.button-box button {
+  width: 100%;
+  margin-left: 8px !important; 
+  margin-right: 0px !important;
+}
+
+
+.button-box button:first-child {
+  margin-left: 0px !important;
+}
+
 .push-end {
   justify-content: flex-end !important;
 }
@@ -77,13 +88,27 @@ button:hover {
 }
 
 .flat-button {
-  background-color: lightgrey;
+  background-color: #ddd;
   color: #0A2239;
-  border-color: lightgray;
+  border-color: #ddd;
 }
 
 .flat-button:hover {
   color: white !important;
   background-color: #0A2239;
   border-color: #0A2239;
+}
+
+select {
+  border: none;
+  width: 100%;
+}
+
+.sub-header {
+  width: 100%;
+  text-align: left;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  padding-top: 16px;
 }

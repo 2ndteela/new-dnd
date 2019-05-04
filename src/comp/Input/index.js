@@ -12,13 +12,11 @@ class Input extends Component {
     }
 
     dec() {
-        console.log('dec start')
         const temp = this.props.val - 1
         this.props.onUpdate(temp, this.props.field)
     }
 
     inc() {
-        console.log('inc start')
         const temp = this.props.val + 1
         this.props.onUpdate(temp, this.props.field)
     }

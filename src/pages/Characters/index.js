@@ -13,13 +13,22 @@ class Characters extends Component {
     }
 
     componentDidMount() {
-        firebase.database().ref('/users/' + localStorage['firebaseKey']).once('value')
+
+        const split = firebase.auth().currentUser.email.split('@')
+
+        firebase.database().ref('/users/' + split[0] + '/characters'  ).once('value')
         .then(data => {
             const temp = data.val()
+            console.log(temp)
+            let arr =[]
+
+            for(const v in temp) {
+                arr.push(temp[v])
+            }
 
             if(temp) 
                 this.setState({
-                    characters: temp
+                    characters: arr
                 })
         })
     }

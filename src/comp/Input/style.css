@@ -42,3 +42,10 @@
 .add input {
     text-align: center;
 }
+
+.styled-input textarea {
+    border: none;
+    width: 100%;
+    height: 100px;
+    resize: none;
+}
