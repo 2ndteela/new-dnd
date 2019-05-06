@@ -28,7 +28,10 @@ class Edit extends Component {
             dex: 10,
             intelligence: 10,
             strength: 10,
-            wisdom: 10
+            wisdom: 10,
+            gold: 0,
+            silver: 0,
+            copper: 0
          }
 
         this.updateState = this.updateState.bind(this)
@@ -235,7 +238,7 @@ class Edit extends Component {
                         </div>
                         <div className="multi-input">
                             <div className="styled-input">
-                                <select value={this.state.alignment} onChange={(e) => this.updateState(e.target.value)}>
+                                <select value={this.state.alignment} onChange={(e) => this.updateState(e.target.value, 'hitDie')}>
                                     <option value="d4" >d4</option>
                                     <option value="d6" >d6</option>
                                     <option value="d8" >d8</option>
@@ -244,6 +247,7 @@ class Edit extends Component {
                                     <option value="d16" >d16</option>
                                     <option value="d20" >d20</option>
                                 </select>
+                                <span>Hit Dice</span>
                             </div>
                             <Input add={true} label="Number" val={this.state.hitDiceNum} field="hitDiceNum" onUpdate={this.updateState} />
                         </div>

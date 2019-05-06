@@ -1,5 +1,5 @@
 .styled-input {
-    border: 2px solid #0A2239;
+    border: 2px solid grey;
     border-radius: 8px;
     position: relative;
     padding: 8px;
@@ -7,6 +7,7 @@
     background-color: transparent;
     margin-bottom: 16px;
     flex-direction: row;
+    margin-bottom: 16px;
 }
 
 .styled-input input {
@@ -24,12 +25,12 @@
     padding: 0 4px;
     font-size: 12px;
     font-weight: bold;
-    color: #0A2239;
+    color: grey;
 }
 
 .styled-input button {
     background-color: white;
-    color: #0A2239;
+    color: grey;
     border: none;
     padding: 0 !important;
     margin: 0 !important;

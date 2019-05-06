@@ -47,6 +47,11 @@ h1, h2, h3, h4 {
   overflow-x: hidden;
 }
 
+.with-bottom-nav {
+  padding-bottom: 54px !important;
+}
+
+
 .button-box {
   width: 100%;
   justify-content: flex-start;

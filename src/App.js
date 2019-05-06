@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Characters from './pages/Characters'
 import Edit from './pages/New'
 import Skills from './pages/Skills'
+import Fight from './pages/Fight'
 import './App.css'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/characters" component={Characters}></Route>
           <Route path="/skills" component={Skills}></Route>
           <Route path='/new' component={Edit}></Route>
+          <Route path="/fight" component={Fight}></Route>
         </div>
       </Router>
     </div>

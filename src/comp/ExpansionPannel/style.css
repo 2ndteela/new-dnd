@@ -49,11 +49,13 @@
   .massive-pannel {
     padding-top: 8px;
     max-height: 800px !important;
+    overflow: auto;
     opacity: 1;
   }
   
   .epic-pannel {
     padding-top: 8px;
     max-height: 1500px !important;
+    overflow: auto;
     opacity: 1;
   }

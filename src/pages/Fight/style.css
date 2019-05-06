@@ -1,0 +1,50 @@
+.multi-input .slot-box {
+    flex: 1;
+}
+
+.multi-input .styled-input {
+    flex: 1;
+    margin-bottom: 0 !important;
+}
+
+.some-stat {
+   border: 2px solid grey;
+   border-radius: 8px; 
+   position: relative;
+   width: 100px;
+   height: 48px;
+   justify-content: center;
+   align-items: center;
+}
+
+.some-stat .stat-label {
+    position: absolute;
+    top: -10px;
+    background-color: white;
+    left: 12px;
+    padding: 0 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: grey;
+}
+
+.read-only-stats {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.read-only-stats div {
+    width: 31% !important;
+    height: 48px;
+    margin-bottom: 0;
+}
+
+.weapon-container {
+    width: 100%;
+    border: 2px solid grey;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+    padding: 16px;
+}

@@ -16,10 +16,6 @@
     padding: 4px 0;
 }
 
-.with-bottom-nav {
-    padding-bottom: 54px !important;
-}
-
 .class-ability {
     width: 100%;
     justify-content: flex-start;

@@ -1,14 +1,15 @@
 .multi-input {
     flex-direction: row !important;
     justify-content: space-between;
+    padding-bottom: 16px;
 }
 
-.multi-input div {
+.multi-input .styled-input {
     flex: 1 !important;
-    margin-left: 8px;
+    margin-left: 8px;;
 }
 
-.multi-input div:first-child {
+.multi-input .styled-input:first-child {
     margin-left: 0px !important;
 }
 

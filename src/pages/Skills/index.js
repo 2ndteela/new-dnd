@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StatBox from '../../comp/StatBox'
 import { NavLink } from 'react-router-dom'
+import {readInCharacter} from '../services.js'
 import './style.css'
 
 class Skills extends Component {
@@ -12,14 +13,7 @@ class Skills extends Component {
     }
 
     componentDidMount() {
-        const data = JSON.parse(localStorage['tempCharacter'])
-
-        let abils = []
-        for(let a in data.abilities) {
-            abils.push(data.abilities[a])
-        }
-        data.abilities = abils
-
+        const data = readInCharacter()
         this.setState(data, console.log(this.state))
     }
 
@@ -108,6 +102,7 @@ class Skills extends Component {
                     <NavLink to="/spells">Spells</NavLink>
                     <NavLink to="/fight">Fight</NavLink>
                     <NavLink to='/skills'>Skills</NavLink>
+                    <NavLink to='/pack'>Pack</NavLink>
                     <NavLink to='/edit'>Edit</NavLink>
                 </div>
             </div>
