@@ -1,0 +1,32 @@
+.stats-box {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 16px;
+}
+
+.skills-box {
+    width: 100%;
+}
+
+.solo-skill {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 4px 0;
+}
+
+.with-bottom-nav {
+    padding-bottom: 54px !important;
+}
+
+.class-ability {
+    width: 100%;
+    justify-content: flex-start;
+    padding-bottom: 16px;
+}
+
+.class-ability * {
+    width: 100%;
+    align-items: flex-start;
+}

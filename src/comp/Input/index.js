@@ -7,18 +7,28 @@ class Input extends Component {
         this.state = {  }
     }
 
+    componentDidMount() {
+    }
+
     handleInput(val) {
-        this.props.onUpdate(val, this.props.field)
+        if(this.props.idx !== undefined) {
+            this.props.onUpdate(val, this.props.field, this.props.idx, this.props.arr)
+        }
+        else {
+            this.props.onUpdate(val, this.props.field)
+        }
     }
 
     dec() {
         const temp = this.props.val - 1
-        this.props.onUpdate(temp, this.props.field)
+        if(this.props.idx === 0 || this.props.idx) this.props.onUpdate(temp, this.props.field, this.props.idx, this.props.arr)
+        else this.props.onUpdate(temp, this.props.field)
     }
 
     inc() {
-        const temp = this.props.val + 1
-        this.props.onUpdate(temp, this.props.field)
+        const temp = parseInt(this.props.val, 10) + 1
+        if(this.props.idx === 0 || this.props.idx) this.props.onUpdate(temp, this.props.field, this.props.idx, this.props.arr)
+        else this.props.onUpdate(temp, this.props.field)
     }
 
     render() { 

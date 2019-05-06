@@ -1,0 +1,59 @@
+.expansion-pannel-header {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .expansion-pannel-header h2 {
+    color: #0A2239;
+    margin-bottom: 8px;
+  }
+  
+  .expansion-pannel-header span {
+    position: relative;
+  }
+  
+  .expansion-pannel-body {
+    max-height: 0px;
+    transition: .3s;
+    overflow: hidden;
+    padding-top: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+    opacity: 0;
+  }
+
+  .flipped-arrow {
+    transform: rotate(180deg);
+    top: -4px;
+  }
+
+  
+.small-pannel {
+    padding-top: 8px;
+    max-height: 100px !important;
+  }
+  
+  .mid-pannel {
+    padding-top: 8px;
+    max-height: 300px !important;
+  }
+  
+  .big-pannel {
+    padding-top: 8px;
+    max-height: 500px !important;
+    overflow: auto;
+    opacity: 1;
+  }
+  
+  .massive-pannel {
+    padding-top: 8px;
+    max-height: 800px !important;
+    opacity: 1;
+  }
+  
+  .epic-pannel {
+    padding-top: 8px;
+    max-height: 1500px !important;
+    opacity: 1;
+  }

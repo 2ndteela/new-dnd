@@ -1,1 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Amaranth|Open+Sans');
 
+h1, h2, h3, h4 {
+    font-family: 'Amaranth' !important;
+}
+
+body {
+    font-family: 'Open Sans'
+}

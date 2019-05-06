@@ -3,14 +3,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Login from './pages/Login'
 import Characters from './pages/Characters'
 import Edit from './pages/New'
-
-const main = () => {
-  return (
-    <div>
-      <h2>Main App</h2>
-    </div>
-  )
-}
+import Skills from './pages/Skills'
+import './App.css'
 
 function App() {
   return (
@@ -19,7 +13,7 @@ function App() {
         <div>
           <Route exact path="/" component={Login} ></Route>
           <Route path="/characters" component={Characters}></Route>
-          <Route path="/main" component={main}></Route>
+          <Route path="/skills" component={Skills}></Route>
           <Route path='/new' component={Edit}></Route>
         </div>
       </Router>

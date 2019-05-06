@@ -11,3 +11,34 @@
 .multi-input div:first-child {
     margin-left: 0px !important;
 }
+
+.to-bottom {
+    position: fixed;
+    bottom: 0px;
+    padding: 16px;
+    padding-top: 0px;
+}
+
+.not-full {
+    min-height: 0px !important;
+    max-height: calc(100vh - 130px);
+    overflow-y: auto;
+    padding-bottom: 0px;
+}
+
+.spell-slot-div {
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 16px;
+}
+
+.spell-slot-div .styled-input {
+    margin-bottom: 0px;
+    width: 90%;
+}
+
+.spell-slot-div button {
+    margin-left: 8px;
+    margin-bottom: 0px;
+    justify-content: center;
+}

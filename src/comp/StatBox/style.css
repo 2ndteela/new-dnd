@@ -1,0 +1,33 @@
+.stat-box {
+    border-radius: 8px;
+    position: relative;
+}
+
+.stat-box h2 {
+    border: 2px solid grey;
+    height: 28vw;
+    width: 28vw;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    font-size: 18vw;
+}
+
+.stat-box .stat-name {
+    position: absolute;
+    top: 2vw;
+    background-color: white;
+    width: 72px;
+    font-size: 4vw;
+}
+
+.stat-box .stat-save {
+    position: absolute;
+    bottom: -2.5vw;
+    background-color: white;
+    width: 18vw;
+    padding: 0 8px;
+    border: 2px solid gray;
+    border-radius: 2vw;
+    font-size: 4vw;
+}

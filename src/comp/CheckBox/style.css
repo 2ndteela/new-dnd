@@ -1,0 +1,20 @@
+.outer-box {
+    border: 1px solid #0A2239;
+    justify-content: center;
+    align-items: center ;
+    height: 16px;
+    width: 16px;
+    border-radius: 4px;
+}
+
+.inner-box {
+    height: 16px;
+    width: 16px;
+    opacity: 0;
+    background-color: #0A2239;
+    border-radius: 4px;
+}
+
+.filled-box {
+    opacity: 1 !important;
+}

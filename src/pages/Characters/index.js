@@ -14,23 +14,28 @@ class Characters extends Component {
 
     componentDidMount() {
 
-        const split = firebase.auth().currentUser.email.split('@')
-
+        //const split = firebase.auth().currentUser.email.split('@')
+        const split = ['2ndteela', 'gmail']
         firebase.database().ref('/users/' + split[0] + '/characters'  ).once('value')
         .then(data => {
             const temp = data.val()
-            console.log(temp)
             let arr =[]
 
             for(const v in temp) {
+                temp[v].key = v
                 arr.push(temp[v])
             }
 
             if(temp) 
                 this.setState({
                     characters: arr
-                })
+            })
         })
+    }
+
+    goToCharacter(char) {
+        localStorage['tempCharacter'] = JSON.stringify(char)
+        this.props.history.push('/skills')
     }
 
     render() { 
@@ -38,8 +43,11 @@ class Characters extends Component {
             <div>
                 <h1 className="header">Characters</h1>
                 <div className="page-content">
-                    {this.state.characters.map( char => {
-                        return <div>{char.name}</div>
+                    {this.state.characters.map( (char, i) => {
+                        return <div className="char-card" key={"char-" + i} onClick={() => this.goToCharacter(char)} >
+                            <h3>{char.name}</h3>
+                            <div>Level {char.level} {char.race} {char.class}</div>
+                        </div>
                     })}
                 </div>
                 <div id="full-bottom-button">
