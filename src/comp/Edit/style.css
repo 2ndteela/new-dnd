@@ -43,3 +43,14 @@
     margin-bottom: 0px;
     justify-content: center;
 }
+
+.with-nav {
+    min-height: calc(100vh - 58px) !important;
+    padding-bottom: 100px;
+} 
+
+.to-bottom-nav {
+    position: fixed;
+    bottom: 58px;
+    width: 92vw;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StatBox from '../../comp/StatBox'
-import { NavLink } from 'react-router-dom'
 import {readInCharacter} from '../services.js'
+import BottomNav from '../../comp/BottomNav'
 import './style.css'
 
 class Skills extends Component {
@@ -14,7 +14,7 @@ class Skills extends Component {
 
     componentDidMount() {
         const data = readInCharacter()
-        this.setState(data, console.log(this.state))
+        this.setState(data)
     }
 
     render() { 
@@ -98,13 +98,7 @@ class Skills extends Component {
                         })}
                     </div>
                 </div>
-                <div className="bottom-nav">
-                    <NavLink to="/spells">Spells</NavLink>
-                    <NavLink to="/fight">Fight</NavLink>
-                    <NavLink to='/skills'>Skills</NavLink>
-                    <NavLink to='/pack'>Pack</NavLink>
-                    <NavLink to='/edit'>Edit</NavLink>
-                </div>
+                <BottomNav></BottomNav>
             </div>
         );
     }

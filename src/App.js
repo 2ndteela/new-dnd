@@ -5,7 +5,10 @@ import Characters from './pages/Characters'
 import Edit from './pages/New'
 import Skills from './pages/Skills'
 import Fight from './pages/Fight'
+import EditPage from './pages/Edit';
+import Spells from './pages/Spells';
 import './App.css'
+import Pack from './pages/Pack';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route path="/skills" component={Skills}></Route>
           <Route path='/new' component={Edit}></Route>
           <Route path="/fight" component={Fight}></Route>
+          <Route path='/edit' component={EditPage}></Route>
+          <Route path='/spells' component={Spells}></Route>
+          <Route path='/pack' component={Pack}></Route>
         </div>
       </Router>
     </div>

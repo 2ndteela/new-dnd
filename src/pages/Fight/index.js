@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {readInCharacter} from '../services'
 import Slot from '../../comp/Slot'
-import {NavLink} from 'react-router-dom'
 import Input from '../../comp/Input'
+import BottomNav from '../../comp/BottomNav'
 
 import './style.css'
 
@@ -57,13 +57,7 @@ class Fight extends Component {
                         )
                     })}
                 </div>
-                <div className="bottom-nav">
-                    <NavLink to="/spells">Spells</NavLink>
-                    <NavLink to="/fight">Fight</NavLink>
-                    <NavLink to='/skills'>Skills</NavLink>
-                    <NavLink to='/pack'>Pack</NavLink>
-                    <NavLink to='/edit'>Edit</NavLink>
-                </div>
+                <BottomNav></BottomNav>
             </div>
          );
     }

@@ -5,6 +5,7 @@ import firebase from '../../firebase';
 import ExpansionPannel from '../ExpansionPannel';
 import MaterialIcon from 'material-icons-react'
 import CheckBox from '../CheckBox';
+import {readInCharacter} from '../../pages/services'
 
 class Edit extends Component {
     constructor(props) {
@@ -55,7 +56,18 @@ class Edit extends Component {
     saveCharacter() {
         const split = firebase.auth().currentUser.email.split('@')
 
-        firebase.database().ref('/users/' + split[0] + '/characters').push({...this.state})
+        if(this.state.savedChar) {
+            const temp = {...this.state}
+            temp.savedChar = false
+
+            firebase.database().ref('/users/' + split[0] + '/characters/' + this.state.key).set(temp)
+            .then(() => {
+                localStorage['tempCharacter'] = JSON.stringify(this.state)
+                alert('Character saved')
+            })
+        }
+
+        else firebase.database().ref('/users/' + split[0] + '/characters').push({...this.state})
     }
     addWeapon() {
         const arr = [...this.state.weapons]
@@ -196,10 +208,17 @@ class Edit extends Component {
     }
 
     componentDidMount() {
-        if(this.props.data === undefined) {
+        const state = readInCharacter()
+        console.log(state)
+        if(!state) {
             this.fillSkills()
         }
-        else this.setState({...this.props.data})
+        else {
+            this.setState(state)
+            this.setState({
+                savedChar: true
+            })
+        }
     }
 
 
@@ -207,7 +226,7 @@ class Edit extends Component {
         return ( 
             <div>
                 <h1 className="header">{this.props.title}</h1>
-                <div className="page-content not-full">
+                <div className={this.state.savedChar !== null ? 'page-content with-nav' : 'page-content not-full' }>
                     <ExpansionPannel header="Details" model={this.state.pannelOne} size="massive" field="pannelOne" flip={this.updateState} >
                         <Input label="Name" val={this.state.name} field="name" onUpdate={this.updateState} />
                         <Input label="Race" val={this.state.race} field="race" onUpdate={this.updateState} />
@@ -451,7 +470,7 @@ class Edit extends Component {
                         })}
                         <button className="full-button" onClick={() => this.addCustom()}>Add Custom</button>
                     </ExpansionPannel>
-                    <div className="button-box to-bottom" >
+                    <div className={ this.state.savedChar === null ? "button-box to-bottom" : "button-box to-bottom-nav"} >
                         <button className="flat-button" onClick={() => this.saveCharacter()}>Save Character</button>
                     </div>
                 </div>

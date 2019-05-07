@@ -7,10 +7,6 @@ class CheckBox extends Component {
         this.state = {  }
     }
 
-    componentDidMount() {
-        console.log(this.props.model)
-    }
-
     handleClick() {
         const temp = !this.props.model
 

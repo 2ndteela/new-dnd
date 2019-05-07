@@ -134,22 +134,3 @@ select {
   margin-right: 0 !important;
   margin-bottom: 8px;
 }
-
-.bottom-nav {
-  position: fixed;
-  background-color: #0A2239;
-  height: 48px;
-  width: 100vw;
-  bottom: 0px;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0 16px;
-}
-
-.bottom-nav a {
-  color: white;
-  text-decoration: none;
-  flex: 1;
-  height: 100%;
-  justify-content: center;
-}

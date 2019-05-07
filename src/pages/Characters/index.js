@@ -13,9 +13,9 @@ class Characters extends Component {
     }
 
     componentDidMount() {
-
-        //const split = firebase.auth().currentUser.email.split('@')
-        const split = ['2ndteela', 'gmail']
+        localStorage['tempCharacter'] = null
+        const split = firebase.auth().currentUser.email.split('@')
+        //const split = ['2ndteela', 'gmail']
         firebase.database().ref('/users/' + split[0] + '/characters'  ).once('value')
         .then(data => {
             const temp = data.val()
