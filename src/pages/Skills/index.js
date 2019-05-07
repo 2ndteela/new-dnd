@@ -88,9 +88,9 @@ class Skills extends Component {
                     </div>
                     <h2 className="sub-header" style={{color: 'grey'}} >Abilities</h2>
                     <div>
-                        {this.state.abilities.map(a => {
+                        {this.state.abilities.map((a, i) => {
                             return (
-                                <div className="class-ability">
+                                <div className="class-ability" key={'abil-' + i}>
                                     <h3>{a.header}</h3>
                                     <div>{a.description}</div>
                                 </div>

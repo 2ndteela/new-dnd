@@ -12,10 +12,12 @@ class Fight extends Component {
         this.state = { 
             weapons: [],
             customAttacks: [],
-            spellSlots: []
+            spellSlots: [],
+            customFields: []
          }
 
         this.updateState = this.updateState.bind(this)
+        this.updateArrayValue = this.updateArrayValue.bind(this)
     }
 
     componentDidMount() {
@@ -27,6 +29,19 @@ class Fight extends Component {
         this.setState({
             [field]: val
         })
+
+        localStorage['tempCharater'] = JSON.stringify(this.state)
+    }
+
+    updateArrayValue(val, field, itr, arr) {
+        if(!itr) itr = 0
+
+        let temp = [...this.state[arr]]
+        temp[itr][field] = val
+
+        this.setState({[arr]: temp})
+
+        localStorage['tempCharater'] = JSON.stringify(this.state)
     }
 
     render() { 
@@ -101,7 +116,39 @@ class Fight extends Component {
 
                     <h2 className="sub-header" style={{color: 'grey'}}>{this.state.spellSlots.length > 0 ? 'Spell Slots' : ''}</h2>
                     {this.state.spellSlots.map((ss, i) =>{ 
-                        return <Slot label={"Level " + (parseInt(i, 10) + 1)} />
+                        return (
+                            <div style={{width: '100%', paddingBottom: '16px'}}>
+                                <Slot max={ss.maxSlots} val={ss.usedSlots} label={"Level " + (parseInt(i, 10) + 1)} idx={i} field="usedSlots" arr="spellSlots" onUpdate={this.updateArrayValue} />
+                            </div>
+                        )
+                    })}
+
+                    <h2 className="sub-header" style={{color: 'grey'}}>{this.state.spellSlots.length > 0 ? 'Custom Slots' : ''}</h2>
+                    {this.state.customFields.map((cs, i) => {
+                        if(cs.type === 'slot')
+                        return ( 
+                            <div style={{width: '100%', paddingBottom: '16px'}} >
+                                <Slot max={cs.maxValue} label={cs.label} val={cs.value} onUpdate={this.updateArrayValue} idx={i} field="value" arr="customFields"></Slot>
+                            </div>
+                        )
+                        if(cs.type === 'small')
+                        return(
+                            <div style={{width: '100%', paddingBottom: '16px'}} >
+                                <Input label={cs.label} val={cs.value} onUpdate={this.updateArrayValue} idx={i} field="value" arr="customFields"></Input>
+                            </div>
+                        )
+                        if(cs.type === 'big')
+                        return(
+                            <div style={{width: '100%', paddingBottom: '16px'}} >
+                                <Input textarea={true} label={cs.label} val={cs.value} onUpdate={this.updateArrayValue} idx={i} field="value" arr="customFields"></Input>
+                            </div>
+                        )
+
+                        return(
+                            <div style={{width: '100%', paddingBottom: '16px'}}>
+                                <Input add={true} label={cs.label} val={cs.value} onUpdate={this.updateArrayValue} idx={i} field="value" arr="customFields"></Input>
+                            </div>
+                        )
                     })}
                 </div>
                 <BottomNav></BottomNav>

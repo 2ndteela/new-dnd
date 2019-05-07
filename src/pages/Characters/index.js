@@ -13,25 +13,30 @@ class Characters extends Component {
     }
 
     componentDidMount() {
-        localStorage['tempCharacter'] = null
-        const split = firebase.auth().currentUser.email.split('@')
-        //const split = ['2ndteela', 'gmail']
-        firebase.database().ref('/users/' + split[0] + '/characters'  ).once('value')
-        .then(data => {
-            const temp = data.val()
-            let arr =[]
+        try {
+            localStorage['tempCharacter'] = null
+            const split = firebase.auth().currentUser.email.split('@')
+            //const split = ['2ndteela', 'gmail']
+            firebase.database().ref('/users/' + split[0] + '/characters'  ).once('value')
+            .then(data => {
+                const temp = data.val()
+                let arr =[]
 
-            for(const v in temp) {
-                temp[v].key = v
-                arr.push(temp[v])
-            }
+                for(const v in temp) {
+                    temp[v].key = v
+                    arr.push(temp[v])
+                }
 
-            if(temp) 
-                this.setState({
-                    characters: arr
+                if(temp) 
+                    this.setState({
+                        characters: arr
+                })
             })
-        })
-    }
+        }
+        catch(err) {
+            this.props.history.push('/')
+        }
+    }   
 
     goToCharacter(char) {
         localStorage['tempCharacter'] = JSON.stringify(char)
