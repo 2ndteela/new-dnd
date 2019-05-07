@@ -11,7 +11,8 @@ class Fight extends Component {
         super(props);
         this.state = { 
             weapons: [],
-            customAttacks: []
+            customAttacks: [],
+            spellSlots: []
          }
 
         this.updateState = this.updateState.bind(this)
@@ -48,13 +49,59 @@ class Fight extends Component {
                         </div>
                         <Input add={true} label="Dice left" field="hitDiceNum" val={this.state.hitDiceNum} onUpdate={this.updateState} />
                     </div>
-                    <h3 className="sub-header" style={{color: 'grey'}} >Weapons</h3>
+                    <h2 className="sub-header" style={{color: 'grey'}} >{this.state.weapons.length > 0 ? 'Weapons' : ''}</h2>
                     {this.state.weapons.map((w, i) => {
                         return (
-                        <div className="weapon-container">
-                            <h3>{w.name}</h3>
+                        <div className="weapon-container" key={'wep-' + i} >
+                            <div className="weapon-header">
+                                <h3>{w.name}</h3>
+                                <span>{w.damType}</span>
+                            </div>
+                            <div className="weapon-stats">
+                                <div className="stat-box">
+                                    <div>{w.range}</div>
+                                    <span>Range</span>
+                                </div>
+                                <div className="stat-box">
+                                    <div>{w.atkBns > 0 ? '+' + w.atkBns : w.atkBns}</div>
+                                    <span>Attack Bonus</span>
+                                </div>
+                                <div className="stat-box">
+                                    <div>{w.damage}</div>
+                                    <span>Damage</span>
+                                </div>
+                            </div>
                         </div>
                         )
+                    })}
+                    <h2 className="sub-header" style={{color: 'grey'}}>{this.state.weapons.length > 0 ? 'Custom Attacks' : ''}</h2>
+                    {this.state.customAttacks.map((ca, i) => {
+                        return (
+                        <div key={'ca-' + i} className="weapon-container">
+                            <div className="weapon-header" style={{paddingBottom: '8px'}}>
+                                <h3>{ca.name}</h3>
+                                <span>{ca.damType}</span>
+                            </div>
+                            <div className="custom-description">
+                                {ca.description}
+                            </div>
+                            <div className="weapon-stats">
+                                <div className="custom-stat-box">
+                                    <div>{ca.damage}</div>
+                                    <span>Damage</span>
+                                </div>
+                                <div className="custom-stat-box">
+                                    <div>{ca.range}</div>
+                                    <span>Range</span>
+                                </div>
+                            </div>
+                        </div>
+                        )
+                    })}
+
+                    <h2 className="sub-header" style={{color: 'grey'}}>{this.state.spellSlots.length > 0 ? 'Spell Slots' : ''}</h2>
+                    {this.state.spellSlots.map((ss, i) =>{ 
+                        return <Slot label={"Level " + (parseInt(i, 10) + 1)} />
                     })}
                 </div>
                 <BottomNav></BottomNav>
