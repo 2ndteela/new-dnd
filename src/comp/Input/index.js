@@ -34,8 +34,8 @@ class Input extends Component {
     render() { 
         if(this.props.textarea) {
             return ( 
-                <div className="styled-input" >
-                    <textarea onChange={(e) => this.handleInput(e.target.value, this.props.field)} value={this.props.val} ></textarea>
+                <div className={ this.props.fillHeight === true ? "styled-input fill-height" : "styled-input"} >
+                    <textarea onChange={(e) => this.handleInput(e.target.value, this.props.field)}  value={this.props.val} ></textarea>
                     <span>{this.props.label}</span>
                 </div>
              );

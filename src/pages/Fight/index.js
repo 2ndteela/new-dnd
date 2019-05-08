@@ -22,15 +22,12 @@ class Fight extends Component {
 
     componentDidMount() {
         this.setState(readInCharacter())
-        console.log(readInCharacter())
     }
 
     updateState(val, field) {
         this.setState({
             [field]: val
-        })
-
-        localStorage['tempCharater'] = JSON.stringify(this.state)
+        }, () => {localStorage['tempCharacter'] = JSON.stringify(this.state)})
     }
 
     updateArrayValue(val, field, itr, arr) {
@@ -41,7 +38,7 @@ class Fight extends Component {
 
         this.setState({[arr]: temp})
 
-        localStorage['tempCharater'] = JSON.stringify(this.state)
+        localStorage['tempCharacter'] = JSON.stringify(this.state)
     }
 
     render() { 
@@ -64,7 +61,7 @@ class Fight extends Component {
                         </div>
                         <Input add={true} label="Dice left" field="hitDiceNum" val={this.state.hitDiceNum} onUpdate={this.updateState} />
                     </div>
-                    <h2 className="sub-header" style={{color: 'grey'}} >{this.state.weapons.length > 0 ? 'Weapons' : ''}</h2>
+                    <h2 className={this.state.weapons.length > 0 ? 'sub-header' : ''} style={{color: 'grey'}} >{this.state.weapons.length > 0 ? 'Weapons' : ''}</h2>
                     {this.state.weapons.map((w, i) => {
                         return (
                         <div className="weapon-container" key={'wep-' + i} >
@@ -89,7 +86,7 @@ class Fight extends Component {
                         </div>
                         )
                     })}
-                    <h2 className="sub-header" style={{color: 'grey'}}>{this.state.weapons.length > 0 ? 'Custom Attacks' : ''}</h2>
+                    <h2 className={this.state.customAttacks.length > 0 ? 'sub-header' : ''} style={{color: 'grey'}}>{this.state.customAttacks.length > 0 ? 'Custom Attacks' : ''}</h2>
                     {this.state.customAttacks.map((ca, i) => {
                         return (
                         <div key={'ca-' + i} className="weapon-container">
@@ -114,7 +111,7 @@ class Fight extends Component {
                         )
                     })}
 
-                    <h2 className="sub-header" style={{color: 'grey'}}>{this.state.spellSlots.length > 0 ? 'Spell Slots' : ''}</h2>
+                    <h2 className={this.state.spellSlots.length > 0 ? 'sub-header' : ''} style={{color: 'grey'}}>{this.state.spellSlots.length > 0 ? 'Spell Slots' : ''}</h2>
                     {this.state.spellSlots.map((ss, i) =>{ 
                         return (
                             <div style={{width: '100%', paddingBottom: '16px'}}>
@@ -123,7 +120,7 @@ class Fight extends Component {
                         )
                     })}
 
-                    <h2 className="sub-header" style={{color: 'grey'}}>{this.state.spellSlots.length > 0 ? 'Custom Slots' : ''}</h2>
+                    <h2 className="sub-header" style={{color: 'grey'}}>{this.state.customFields.length > 0 ? 'Custom Slots' : ''}</h2>
                     {this.state.customFields.map((cs, i) => {
                         if(cs.type === 'slot')
                         return ( 
