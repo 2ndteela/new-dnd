@@ -43,6 +43,7 @@ class Edit extends Component {
         this.setState({
             [field]: value
         })
+        localStorage['tempCharater'] = JSON.stringify(this.state)
     }
 
     addAbility() {
@@ -55,19 +56,27 @@ class Edit extends Component {
 
     saveCharacter() {
         const split = firebase.auth().currentUser.email.split('@')
+        let temp = {...this.state}
+        temp.savedChar = false
+
+        for(let key in temp) {
+
+            if(key.includes('pannel')) {
+                console.log(key)
+                temp[key] = false
+            } 
+        }
 
         if(this.state.savedChar) {
-            const temp = {...this.state}
-            temp.savedChar = false
 
             firebase.database().ref('/users/' + split[0] + '/characters/' + this.state.key).set(temp)
             .then(() => {
-                localStorage['tempCharacter'] = JSON.stringify(this.state)
+                localStorage['tempCharacter'] = JSON.stringify(temp)
                 alert('Character saved')
             })
         }
 
-        else firebase.database().ref('/users/' + split[0] + '/characters').push({...this.state})
+        else firebase.database().ref('/users/' + split[0] + '/characters').push(temp)
     }
     addWeapon() {
         const arr = [...this.state.weapons]
@@ -127,8 +136,8 @@ class Edit extends Component {
         arr.push({
             type: 'small',
             label: '',
-            maxValue: '',
-            value:'',
+            maxValue: 0,
+            value: 0,
         })
 
         this.setState({customFields: arr})
@@ -141,6 +150,8 @@ class Edit extends Component {
         temp[itr][field] = val
 
         this.setState({[arr]: temp})
+
+        localStorage['tempCharater'] = JSON.stringify(this.state)
     }
 
     removeArrayValue(arr, itr) {
@@ -152,6 +163,8 @@ class Edit extends Component {
         })
         
         this.setState({[arr]: newArr})
+
+        localStorage['tempCharater'] = JSON.stringify(this.state)
     }
 
     makeCustom(cf, idx) {
@@ -208,8 +221,16 @@ class Edit extends Component {
     }
 
     componentDidMount() {
+<<<<<<< HEAD
         try {
             const state = readInCharacter()
+=======
+        const state = readInCharacter()
+        if(!state) {
+            this.fillSkills()
+        }
+        else {
+>>>>>>> aa9bfc06208bd73960caae6b56e0b97e48b87243
             this.setState(state)
             this.setState({
                 savedChar: true
@@ -373,7 +394,7 @@ class Edit extends Component {
                     <ExpansionPannel header="Abilities" size="big" model={this.state.pannelFour} field="pannelFour" flip={this.updateState} >
                         {this.state.abilities.map((a, itr) => {
                             return (
-                                <div style={{width: '100%', alignItems: 'flex-end'}} >
+                                <div style={{width: '100%', alignItems: 'flex-end'}} key={'abilty-' + itr} >
                                     <button className="icon-button" onClick={() => this.removeArrayValue('abilities', itr)} >
                                         <MaterialIcon icon="close" size="tiny" />
                                     </button>
@@ -405,17 +426,9 @@ class Edit extends Component {
                         })}
                         <br></br>
                         {this.state.spellSlots.map((ss, itr) => {
-                            if(itr === 0) return(
-                                <div className="spell-slot-div" key={"slot-" + itr}>
-                                    <Input add={true} label="Cantrips" idx={itr} arr="spellSlots" field="maxSlots" val={ss.maxSlots} onUpdate={this.updateArrayValue} />
-                                    <button className="icon-button" onClick={() => this.removeArrayValue('spellSlots', itr)} >
-                                        <MaterialIcon icon="close" size="tiny" />
-                                    </button>
-                                </div>
-                            )
                             return(                              
                                 <div className="spell-slot-div" key={"slot-" + itr} >
-                                    <Input add={true} label={"Level " + itr} idx={itr} arr="spellSlots" field="maxSlots" val={ss.maxSlots} onUpdate={this.updateArrayValue} />
+                                    <Input add={true} label={"Level " + (itr + 1)} idx={itr} arr="spellSlots" field="maxSlots" val={ss.maxSlots} onUpdate={this.updateArrayValue} />
                                     <button className="icon-button" onClick={() => this.removeArrayValue('spellSlots', itr)} >
                                         <MaterialIcon icon="close" size="tiny" />
                                     </button>
@@ -449,7 +462,7 @@ class Edit extends Component {
                     <ExpansionPannel header="Custom Fields" size="big" model={this.state.pannelSeven} field="pannelSeven" flip={this.updateState} >
                     {this.state.customFields.map((cf, i) => {
                             return (
-                                <div style={{width: '100%', alignItems: 'flex-end'}}>
+                                <div style={{width: '100%', alignItems: 'flex-end'}} key={'cf-' + i}>
                                     <button className="icon-button" onClick={() => this.removeArrayValue("customFields", i)} >
                                         <MaterialIcon icon="close" size="tiny" />
                                     </button>

@@ -11,6 +11,10 @@ class Login extends Component {
         this.updateState = this.updateState.bind(this)
     }
 
+    componentDidMount() {
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    }
+
     updateState(value, feild) {
         this.setState({
             [feild]: value
