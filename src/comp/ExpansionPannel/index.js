@@ -23,7 +23,7 @@ class ExpansionPannel extends Component {
                 <div onClick={() => this.clickIt()} className="expansion-pannel-header" >
                     <h2>{this.props.header}</h2>
                     <span className={this.props.model === true ? 'flipped-arrow' : ''}>
-                        <MaterialIcon icon="keyboard_arrow_down" />
+                        ^
                     </span>
                 </div>
                 <div className={this.props.model === true ? 'expansion-pannel-body ' + this.props.size + '-pannel' : 'expansion-pannel-body' } >

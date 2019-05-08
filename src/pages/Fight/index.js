@@ -3,6 +3,7 @@ import {readInCharacter} from '../services'
 import Slot from '../../comp/Slot'
 import Input from '../../comp/Input'
 import BottomNav from '../../comp/BottomNav'
+import firebase from '../../firebase'
 
 import './style.css'
 
@@ -22,6 +23,17 @@ class Fight extends Component {
 
     componentDidMount() {
         this.setState(readInCharacter())
+    }
+
+    componentWillUnmount(){
+        const split = firebase.auth().currentUser.email.split('@')
+        const temp = {...this.state}
+        temp.savedChar = false
+
+        firebase.database().ref('/users/' + split[0] + '/characters/' + this.state.key).set(temp)
+        .then(() => {
+            localStorage['tempCharacter'] = JSON.stringify(this.state)
+        })
     }
 
     updateState(val, field) {

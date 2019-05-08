@@ -7,3 +7,5 @@ self.addEventListener('install', event => {
   self.addEventListener('activate', event => {
     console.log('activate')
   })
+
+  workbox.precaching.precacheAndRoute(self.__precacheManifest || [])
