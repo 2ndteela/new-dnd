@@ -208,16 +208,15 @@ class Edit extends Component {
     }
 
     componentDidMount() {
-        const state = readInCharacter()
-        console.log(state)
-        if(!state) {
-            this.fillSkills()
-        }
-        else {
+        try {
+            const state = readInCharacter()
             this.setState(state)
             this.setState({
                 savedChar: true
             })
+        }
+        catch(err) {
+            this.fillSkills()
         }
     }
 
