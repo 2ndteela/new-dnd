@@ -47,14 +47,11 @@
 .styled-input textarea {
     border: none;
     width: 100%;
-    height: 100px;
+    min-height: 100px;
+    height: 100%;
     resize: none;
 }
 
 .fill-height {
     height: 100% !important;
 }
-
-/* .fill-height textarea {
-    height: 100%;
-} */

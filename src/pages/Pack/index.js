@@ -31,7 +31,9 @@ class Pack extends Component {
                         <Input add={true} label="Silver" val={this.state.silver} field="silver" onUpdate={this.updateState}></Input>
                         <Input add={true} label="Copper" val={this.state.copper} field="copper" onUpdate={this.updateState}></Input>
                     </div>
-                    <Input label="Pack" textarea={true} field="pack" fillHeight={true} val={this.state.pack} onUpdate={this.updateState} />
+                    <div className="pack-height">
+                        <Input label="Pack" textarea={true} field="pack" fillHeight={true} val={this.state.pack} onUpdate={this.updateState} />
+                    </div>
                 </div>
                 <BottomNav></BottomNav>
             </div>

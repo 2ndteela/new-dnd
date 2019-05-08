@@ -12,3 +12,12 @@
 .multi-input .styled-input:first-child {
     margin-left: 0px !important;
 }
+
+.pack-height {
+    height: 70vh;
+    width: 100%;
+}
+
+.pack-height input {
+    height: 100%;
+}
