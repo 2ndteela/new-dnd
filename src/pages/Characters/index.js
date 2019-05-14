@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../../firebase'
 import {NavLink} from 'react-router-dom';
+import Header from '../../comp/Header' 
 import './style.css'
 
 
@@ -46,7 +47,9 @@ class Characters extends Component {
     render() { 
         return ( 
             <div>
-                <h1 className="header">Characters</h1>
+                <Header label="Charaters">
+                    <NavLink to='/' >Logout</NavLink>
+                </Header>
                 <div className="page-content">
                     {this.state.characters.map( (char, i) => {
                         return <div className="char-card" key={"char-" + i} onClick={() => this.goToCharacter(char)} >

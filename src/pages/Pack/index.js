@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import BottomNav from '../../comp/BottomNav'
 import {readInCharacter} from '../services'
 import Input from '../../comp/Input'
+import Header from '../../comp/Header'
+import {NavLink} from 'react-router-dom'
 
 import './style.css'
 
@@ -24,7 +26,10 @@ class Pack extends Component {
     render() { 
         return ( 
             <div>
-                <h1 className="header">Backpack</h1>
+                <Header label="Pack">
+                    <NavLink to='/characters' >Charaters</NavLink>
+                    <NavLink to='/' >Logout</NavLink>
+                </Header>
                 <div className="page-content with-bottom-nav">
                     <div className="multi-input">
                         <Input add={true} label="Gold" val={this.state.gold} field="gold" onUpdate={this.updateState}></Input>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import StatBox from '../../comp/StatBox'
 import {readInCharacter} from '../services.js'
 import BottomNav from '../../comp/BottomNav'
+import Header from '../../comp/Header'
+import {NavLink} from 'react-router-dom'
 import './style.css'
 
 class Skills extends Component {
@@ -20,7 +22,10 @@ class Skills extends Component {
     render() { 
         return ( 
             <div>
-                <h1 className="header">Skills</h1>
+                <Header label="Skills">
+                    <NavLink to='/characters' >Charaters</NavLink>
+                    <NavLink to='/' >Logout</NavLink>
+                </Header>
                 <div className="page-content with-bottom-nav">
                     <div className="stats-box" >
                         <StatBox name="Charisma" save={this.state.charSave} main={this.state.charisma}></StatBox>

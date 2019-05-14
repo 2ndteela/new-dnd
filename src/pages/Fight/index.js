@@ -4,6 +4,8 @@ import Slot from '../../comp/Slot'
 import Input from '../../comp/Input'
 import BottomNav from '../../comp/BottomNav'
 import firebase from '../../firebase'
+import Header from '../../comp/Header'
+import {NavLink} from 'react-router-dom'
 
 import './style.css'
 
@@ -56,7 +58,10 @@ class Fight extends Component {
     render() { 
         return ( 
             <div>
-                <h1 className="header">Fight</h1>
+                <Header label="Fight">
+                    <NavLink to='/characters' >Charaters</NavLink>
+                    <NavLink to='/' >Logout</NavLink>
+                </Header>
                 <div className="page-content with-bottom-nav">
                     <div className="multi-input" style={{paddingBottom: '16px'}}>
                         <Slot label="Health" max={this.state.health} val={this.state.currentHealth} field="currentHealth" onUpdate={this.updateState} ></Slot>

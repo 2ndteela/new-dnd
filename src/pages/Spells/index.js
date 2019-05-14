@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import BottomNav from '../../comp/BottomNav';
 import {readInCharacter} from '../services'
 import Input from '../../comp/Input'
+import Header from '../../comp/Header'
+import {NavLink} from 'react-router-dom'
 
 import './style.css'
 
@@ -60,7 +62,10 @@ class Spells extends Component {
     render() { 
         return ( 
             <div>
-                <h1 className="header">SpellBook</h1>
+                <Header label="Spells">
+                    <NavLink to='/characters' >Charaters</NavLink>
+                    <NavLink to='/' >Logout</NavLink>
+                </Header>
                 <div className="page-content with-bottom-nav">
                 <div className="styled-input">
                     <select value={this.state.filterTerm} onChange={(e) => this.updateState(e.target.value, 'filterTerm')} >

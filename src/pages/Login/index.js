@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Input from '../../comp/Input';
 import './style.css'
 import firebase from '../../firebase'
+import Header from '../../comp/Header'
 
 class Login extends Component {
     constructor(props) {
@@ -43,7 +44,7 @@ class Login extends Component {
     render() { 
         return ( 
             <div>
-                <h1 className="header">Login</h1>
+                <Header noActions={true} label="Login"></Header>
                 <div className="page-content" style={{justifyContent: 'center'}}>
                     <Input label="Email" field="email" val={this.state.email} onUpdate={this.updateState} />
                     <Input label="Password" field="password" val={this.state.password} hidden={true} onUpdate={this.updateState} />

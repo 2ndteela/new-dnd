@@ -6,6 +6,8 @@ import ExpansionPannel from '../ExpansionPannel';
 import {CloseOutlined} from '@material-ui/icons'
 import CheckBox from '../CheckBox';
 import {readInCharacter} from '../../pages/services'
+import Header from '../../comp/Header'
+import {NavLink} from 'react-router-dom'
 
 class Edit extends Component {
     constructor(props) {
@@ -230,7 +232,10 @@ class Edit extends Component {
     render() { 
         return ( 
             <div>
-                <h1 className="header">{this.props.title}</h1>
+                <Header label={this.props.title}>
+                    <NavLink to='/characters' >Charaters</NavLink>
+                    <NavLink to='/' >Logout</NavLink>
+                </Header>
                 <div className={this.state.savedChar !== null ? 'page-content with-nav' : 'page-content not-full' }>
                     <ExpansionPannel header="Details" model={this.state.pannelOne} size="massive" field="pannelOne" flip={this.updateState} >
                         <Input label="Name" val={this.state.name} field="name" onUpdate={this.updateState} />
