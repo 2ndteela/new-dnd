@@ -1,3 +1,7 @@
+.multi-input {
+    width: 100%;
+}
+
 .multi-input .slot-box {
     flex: 1;
 }
@@ -96,4 +100,20 @@
 
 .custom-stat-box span {
     color: gray;
+}
+
+#all-weapons {
+    width: 100%;
+}
+
+@media screen and (min-width: 767px) {
+    #all-weapons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    #all-weapons .weapon-container {
+        width: 316px;
+    }
 }

@@ -267,7 +267,7 @@ class Edit extends Component {
                         </div>
                         <div className="multi-input">
                             <div className="styled-input">
-                                <select value={this.state.alignment} onChange={(e) => this.updateState(e.target.value, 'hitDie')}>
+                                <select value={this.state.hitDie} onChange={(e) => this.updateState(e.target.value, 'hitDie')}>
                                     <option value="d4" >d4</option>
                                     <option value="d6" >d6</option>
                                     <option value="d8" >d8</option>

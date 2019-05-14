@@ -31,3 +31,35 @@
     border-radius: 2vw;
     font-size: 4vw;
 }
+
+@media screen and (min-width: 767px) {
+
+    .stat-box h2 {
+        font-size: 104px;
+        height: 180px;
+        width: 180px;
+    }
+
+    .stat-box .stat-name {
+        position: absolute;
+        top: 12px;
+        background-color: white;
+        width: 72px;
+        font-size: 24px;
+    }
+
+    .stat-box .stat-save {
+        position: absolute;
+        bottom: -2px;
+        background-color: white;
+        width: 96px;
+        padding: 0 8px;
+        border: 2px solid gray;
+        border-radius: 8px;
+        font-size: 24px;
+    }
+
+    .stat-box {
+        padding-bottom: 16px;
+    }
+}

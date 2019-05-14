@@ -79,30 +79,32 @@ class Fight extends Component {
                         <Input add={true} label="Dice left" field="hitDiceNum" val={this.state.hitDiceNum} onUpdate={this.updateState} />
                     </div>
                     <h2 className={this.state.weapons.length > 0 ? 'sub-header' : ''} style={{color: 'grey'}} >{this.state.weapons.length > 0 ? 'Weapons' : ''}</h2>
-                    {this.state.weapons.map((w, i) => {
-                        return (
-                        <div className="weapon-container" key={'wep-' + i} >
-                            <div className="weapon-header">
-                                <h3>{w.name}</h3>
-                                <span>{w.damType}</span>
+                    <div id="all-weapons">
+                        {this.state.weapons.map((w, i) => {
+                            return (
+                            <div className="weapon-container" key={'wep-' + i} >
+                                <div className="weapon-header">
+                                    <h3>{w.name}</h3>
+                                    <span>{w.damType}</span>
+                                </div>
+                                <div className="weapon-stats">
+                                    <div className="stat-box">
+                                        <div>{w.range}</div>
+                                        <span>Range</span>
+                                    </div>
+                                    <div className="stat-box">
+                                        <div>{w.atkBns > 0 ? '+' + w.atkBns : w.atkBns}</div>
+                                        <span>Attack Bonus</span>
+                                    </div>
+                                    <div className="stat-box">
+                                        <div>{w.damage}</div>
+                                        <span>Damage</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="weapon-stats">
-                                <div className="stat-box">
-                                    <div>{w.range}</div>
-                                    <span>Range</span>
-                                </div>
-                                <div className="stat-box">
-                                    <div>{w.atkBns > 0 ? '+' + w.atkBns : w.atkBns}</div>
-                                    <span>Attack Bonus</span>
-                                </div>
-                                <div className="stat-box">
-                                    <div>{w.damage}</div>
-                                    <span>Damage</span>
-                                </div>
-                            </div>
-                        </div>
-                        )
-                    })}
+                            )
+                        })}
+                    </div>
                     <h2 className={this.state.customAttacks.length > 0 ? 'sub-header' : ''} style={{color: 'grey'}}>{this.state.customAttacks.length > 0 ? 'Custom Attacks' : ''}</h2>
                     {this.state.customAttacks.map((ca, i) => {
                         return (

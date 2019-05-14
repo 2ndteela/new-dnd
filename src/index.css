@@ -45,6 +45,7 @@ h1, h2, h3, h4 {
   width: 100vw;
   padding: 16px;
   overflow-x: hidden;
+  max-width: 680px;
 }
 
 .with-bottom-nav {
@@ -135,4 +136,7 @@ select {
   margin-bottom: 8px;
   color: #333;
   font-size: 12px;
+}
+@media screen and (max-width: 680px) {
+
 }

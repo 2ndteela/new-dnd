@@ -11,6 +11,8 @@ class Pack extends Component {
     constructor(props) {
         super(props);
         this.state = {  }
+
+        this.updateState = this.updateState.bind(this)
     }
 
     componentDidMount() {
