@@ -31,35 +31,29 @@ class Spells extends Component {
     filterSpells() {
         let arr = []
         let temp =[...this.state.spells]
-        temp.forEach((s, i) => {
-            let add = false
-
-            if(this.state.filterTerm === 'lowest') temp.sort((a, b) => {
-                if(a.level === 'Cantrip' && b.level !== 'Cantrip') return -1
-                if(b.level === 'Cantrip' && a.level !== 'Cantrip') return 1 
-                if(a.level === b.level) return a.name - b.name
-                return a.level - b.level
-            })
-            else if (this.state.filterTerm === 'highest') temp.sort((a, b) => (b.level - a.level))
-            
-            else if (this.state.filterTerm === 'alpha') {
-
-            }
-
-            else if (this.state.filterTerm === 'con') {
-
-            }
-            else {
-
-            }
-
-            if(s.name.includes(this.state.searchTerm) || s.name.includes(this.state.description)) add = true
+        temp.forEach(s => {
+            if(s.name.toUpperCase().includes(this.state.searchTerm.toUpperCase()) || s.description.toUpperCase().includes(this.state.searchTerm.toUpperCase())) arr.push(s)
         })
 
-        console.log('filtered')
+        if(this.state.filterTerm === 'lowest') arr.sort((a, b) => {
+            if(a.level === 'Cantrip' && b.level !== 'Cantrip') return -1
+            if(b.level === 'Cantrip' && a.level !== 'Cantrip') return 1 
+            if(a.level === b.level) return a.name - b.name
+            return a.level - b.level
+        })
+        else if (this.state.filterTerm === 'highest') arr.sort((a, b) => {
+            if(a.level === 'Cantrip' && b.level !== 'Cantrip') return 1
+            if(b.level === 'Cantrip' && a.level !== 'Cantrip') return -1 
+            if(a.level === b.level) return a.name - b.name
+            return b.level - a.level
+            
+        })
+        
+        else arr.sort((a, b) => (a.name - b.name))
+
 
         this.setState({
-            filteredSpells: temp
+            filteredSpells: arr
         })
     }
 
@@ -73,8 +67,6 @@ class Spells extends Component {
                         <option value="lowest" >Lowest Level</option>
                         <option value="highest" >Highest Level</option>
                         <option value="alpha" >Alphabetical</option>
-                        <option value="con" >Concentration</option>
-                        <option value="non-con" >Non-Concentration</option>
                     </select>
                     <span>Filter</span>
                 </div>

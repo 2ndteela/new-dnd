@@ -51,6 +51,8 @@
 
 .to-bottom-nav {
     position: fixed;
-    bottom: 58px;
-    width: 92vw;
+    bottom: 48px;
+    width: 100vw;
+    padding: 16px;
+    background-color: white;
 }
