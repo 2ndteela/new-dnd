@@ -29,7 +29,7 @@ class Pack extends Component {
         return ( 
             <div>
                 <Header label="Pack">
-                    <NavLink to='/characters' >Charaters</NavLink>
+                    <NavLink to='/characters' >Characters</NavLink>
                     <NavLink to='/' >Logout</NavLink>
                 </Header>
                 <div className="page-content with-bottom-nav">

@@ -59,7 +59,7 @@ class Fight extends Component {
         return ( 
             <div>
                 <Header label="Fight">
-                    <NavLink to='/characters' >Charaters</NavLink>
+                    <NavLink to='/characters' >Characters</NavLink>
                     <NavLink to='/' >Logout</NavLink>
                 </Header>
                 <div className="page-content with-bottom-nav">

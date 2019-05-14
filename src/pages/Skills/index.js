@@ -23,7 +23,7 @@ class Skills extends Component {
         return ( 
             <div>
                 <Header label="Skills">
-                    <NavLink to='/characters' >Charaters</NavLink>
+                    <NavLink to='/characters' >Characters</NavLink>
                     <NavLink to='/' >Logout</NavLink>
                 </Header>
                 <div className="page-content with-bottom-nav">

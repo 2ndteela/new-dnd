@@ -47,7 +47,7 @@ class Characters extends Component {
     render() { 
         return ( 
             <div>
-                <Header label="Charaters">
+                <Header label="Characters">
                     <NavLink to='/' >Logout</NavLink>
                 </Header>
                 <div className="page-content">
