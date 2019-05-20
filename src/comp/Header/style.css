@@ -25,6 +25,12 @@
     width: 100%;
     background-color: white;
     z-index: 10;
+    transition: .3s;
+}
+
+#nomal-bar {
+    position: relative;
+    top: 0;
 }
 
 #hamberger-drawer {
@@ -54,4 +60,17 @@
 
 .show-menu {
     max-height: 100px !important;
+}
+
+.make-ex #flippy-bar {
+    transform: rotate(-45deg);
+}
+
+.make-ex #nomal-bar {
+    transform: rotate(45deg);
+    top: 8px;
+}
+
+.make-ex #go-away-bar {
+    opacity: 0;
 }

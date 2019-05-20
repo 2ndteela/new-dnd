@@ -24,11 +24,11 @@ class Header extends Component {
 
         return ( 
             <div className="header-container">
-                <h1>{this.props.label}</h1>
-                <div className={"hamberger-icon " + this.state.showMenu === true ? 'compress-menu' : ''} onClick={() => this.toggleHamberger()}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <h1>{this.props.label} {this.state.showMenu}</h1>
+                <div className={this.state.showMenu === true ? 'make-ex hamberger-icon': 'hamberger-icon'  } onClick={() => this.toggleHamberger()}>
+                    <span id="nomal-bar" ></span>
+                    <span id="flippy-bar"></span>
+                    <span id='go-away-bar'></span>
                 </div>
                 <div id="hamberger-drawer" className={this.state.showMenu === true ? 'show-menu' : ''}>
                     {this.props.children}

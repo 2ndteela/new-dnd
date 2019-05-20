@@ -14,10 +14,15 @@
 }
 
 .pack-height {
-    height: 70vh;
+    height: 35vh;
     width: 100%;
 }
 
 .pack-height input {
     height: 100%;
+}
+
+.note-height {
+    height: 35vh;
+    width: 100%;
 }

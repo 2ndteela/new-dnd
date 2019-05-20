@@ -41,6 +41,9 @@ class Pack extends Component {
                     <div className="pack-height">
                         <Input label="Pack" textarea={true} field="pack" fillHeight={true} val={this.state.pack} onUpdate={this.updateState} />
                     </div>
+                    <div className="note-height">
+                        <Input label="Notes" textarea={true} field="notes" fillHeight={true} val={this.state.notes} onUpdate={this.updateState} />
+                    </div>
                 </div>
                 <BottomNav></BottomNav>
             </div>
