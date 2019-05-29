@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom'
+import {readInCharacter} from '../../pages/services.js'
 
 import './style.css'
 
@@ -31,15 +32,23 @@ class BottomNav extends Component {
         else this.setState({inEdit: true})
     }
 
+    checkSpells() {
+        const char = readInCharacter()
+
+        if(char.spells) return <NavLink to="/spells" className={this.state.inSpells === true ? 'match' : ''} >Spells</NavLink>
+        return null
+    }
+
     render() { 
     return (
-
         <div className="bottom-nav">
-            <NavLink to="/spells" className={this.state.inSpells === true ? 'match' : ''} >Spells</NavLink>
-            <NavLink to="/fight" className={this.state.inFight === true ? 'match' : ''}>Fight</NavLink>
-            <NavLink to='/skills' className={this.state.inSkills === true ? 'match' : ''} >Skills</NavLink>
-            <NavLink to='/pack' className={this.state.inPack === true ? 'match' : ''} >Pack</NavLink>
-            <NavLink to='/edit' className={this.state.inEdit === true ? 'match' : ''}>Edit</NavLink>
+            <div className="nav-container">
+                {this.checkSpells()}
+                <NavLink to="/fight" className={this.state.inFight === true ? 'match' : ''}>Fight</NavLink>
+                <NavLink to='/skills' className={this.state.inSkills === true ? 'match' : ''} >Skills</NavLink>
+                <NavLink to='/pack' className={this.state.inPack === true ? 'match' : ''} >Pack</NavLink>
+                <NavLink to='/edit' className={this.state.inEdit === true ? 'match' : ''}>Edit</NavLink>
+            </div>
         </div>
     )
     }

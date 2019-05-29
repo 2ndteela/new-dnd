@@ -90,6 +90,9 @@ class Skills extends Component {
                         <div className="solo-skill">
                             <h3>Sealth</h3><span>{this.state.stealth}</span>
                         </div>
+                        <div className="solo-skill">
+                            <h3>Survival</h3><span>{this.state.survival}</span>
+                        </div>
                     </div>
                     <h2 className="sub-header" style={{color: 'grey'}} >Abilities</h2>
                     <div>
