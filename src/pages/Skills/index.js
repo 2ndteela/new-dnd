@@ -104,6 +104,9 @@ class Skills extends Component {
                         <div className={ this.state.selectedSkill === 16 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(16)}>
                             <h3>Sealth</h3><span>{this.state.stealth}</span>
                         </div>
+                        <div className="solo-skill">
+                            <h3>Survival</h3><span>{this.state.survival}</span>
+                        </div>
                     </div>
                     <h2 className="sub-header" style={{color: 'grey'}} >Abilities</h2>
                     <div>

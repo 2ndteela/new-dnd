@@ -58,6 +58,17 @@ class Edit extends Component {
     saveCharacter() {
         const split = firebase.auth().currentUser.email.split('@')
 
+        this.setState({
+            pannelOne: false,
+            pannelTwo: false,
+            pannelThree: false,
+            pannelFour: false,
+            pannelFive: false,
+            pannelSix: false,
+            pannelSeven: false
+        })
+
+
         if(this.state.savedChar) {
             const temp = {...this.state}
             temp.savedChar = false
@@ -220,7 +231,14 @@ class Edit extends Component {
             const state = readInCharacter()
             this.setState(state)
             this.setState({
-                savedChar: true
+                savedChar: true,
+                pannelOne: false,
+                pannelTwo: false,
+                pannelThree: false,
+                pannelFour: false,
+                pannelFive: false,
+                pannelSix: false,
+                pannelSeven: false
             })
         }
         catch(err) {
