@@ -55,6 +55,34 @@ class Fight extends Component {
         localStorage['tempCharacter'] = JSON.stringify(this.state)
     }
 
+    longRest() {
+        const slots =  [...this.state.spellSlots]
+        slots.forEach(s => {
+            s.usedSlots = 0
+        })
+
+        const customs = [...this.state.customFields]
+        customs.forEach(c => {
+            if(!!c.maxValue) c.value = 0
+        })
+
+        const dice = parseInt(this.state.hitDiceNum, 10)
+        const lvl = parseInt(this.state.level, 10) 
+        let moreDice = lvl
+
+        if(dice < lvl) {
+            const diff = lvl - dice
+            moreDice = Math.ceil(diff / 2) + dice
+        }
+
+        this.setState({
+            currentHealth:  parseInt(this.state.health, 10),
+            spellSlots: slots,
+            customFields: customs,
+            hitDiceNum: moreDice
+        }, () => {localStorage['tempCharacter'] = JSON.stringify(this.state)})
+    }
+
     render() { 
         return ( 
             <div>
@@ -166,6 +194,8 @@ class Fight extends Component {
                             </div>
                         )
                     })}
+                    <button className="full-button" onClick={() => this.longRest()} >Long Rest</button>
+                    <br></br>
                 </div>
                 <BottomNav></BottomNav>
             </div>

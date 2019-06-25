@@ -104,7 +104,7 @@ class Skills extends Component {
                         <div className={ this.state.selectedSkill === 16 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(16)}>
                             <h3>Sealth</h3><span>{this.state.stealth}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 17 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(17)}>
                             <h3>Survival</h3><span>{this.state.survival}</span>
                         </div>
                     </div>

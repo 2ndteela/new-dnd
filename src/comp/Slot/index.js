@@ -8,14 +8,14 @@ class Slot extends Component {
     }
 
     inc() {
-        const temp = this.props.val + 1
+        const temp = parseInt(this.props.val, 10) + 1
         if(temp <= this.props.max) 
             if(this.props.arr) this.handleUpdate(temp, this.props.field, this.props.idx, this.props.arr)
             else this.handleUpdate(temp)
     }
 
     dec() {
-        const temp = this.props.val - 1
+        const temp = parseInt(this.props.val, 10) - 1
         if(temp > -1) 
             if(this.props.arr) this.handleUpdate(temp, this.props.field, this.props.idx, this.props.arr)
             else this.handleUpdate(temp)
