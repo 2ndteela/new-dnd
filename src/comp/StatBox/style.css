@@ -10,7 +10,7 @@
     border-radius: 8px;
     align-items: center;
     justify-content: center;
-    font-size: 18vw;
+    font-size: 14vw;
 }
 
 .stat-box .stat-name {
@@ -35,7 +35,7 @@
 @media screen and (min-width: 767px) {
 
     .stat-box h2 {
-        font-size: 104px;
+        font-size: 96px;
         height: 180px;
         width: 180px;
     }

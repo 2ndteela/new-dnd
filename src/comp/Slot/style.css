@@ -71,3 +71,22 @@
     width: 100%;
     position: relative;
 }
+
+.slot-background {
+    background-color: red;
+    opacity: .15;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition: .2s;
+    max-width: 100%;
+}
+
+.green-back {
+    background-color: green !important;
+}
+
+.yellow-back {
+    background-color: goldenrod !important;
+}

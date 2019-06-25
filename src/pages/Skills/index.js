@@ -109,7 +109,7 @@ class Skills extends Component {
                         </div>
                     </div>
                     <h2 className="sub-header" style={{color: 'grey'}} >Abilities</h2>
-                    <div>
+                    <div style={{width: '100%'}}>
                         {this.state.abilities.map((a, i) => {
                             return (
                                 <div 

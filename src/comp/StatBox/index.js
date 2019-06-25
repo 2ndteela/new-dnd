@@ -11,8 +11,8 @@ class StatBox extends Component {
         return ( 
             <div className="stat-box">
                 <span className="stat-name" >{this.props.name}</span>
-                <h2>{this.props.main}</h2>
-                <span className="stat-save">{this.props.save > 0 ? '+' + this.props.save : this.props.save}</span>
+                <h2> {this.props.save > 0 ? '+' + this.props.save : this.props.save}</h2>
+                <span className="stat-save">{this.props.main}</span>
             </div>
          );
     }

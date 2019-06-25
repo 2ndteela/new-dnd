@@ -23,8 +23,26 @@ class Slot extends Component {
 
 
     handleUpdate(val, idx, arr) {
+        console.log(val, this.props.max)
+        if(parseInt(val, 10) > parseInt(this.state.max)) val = parseInt(this.props.max, 10) 
         if(this.props.arr) this.props.onUpdate(val, this.props.field, this.props.idx, this.props.arr)
         else this.props.onUpdate(val, this.props.field)
+    }
+
+    makeBackground() {
+        const percent = (parseInt(this.props.val, 10) / parseInt(this.props.max, 10)) * 100
+
+        if(this.props.reverse) {
+            if(percent > 75) return <div className='slot-background' style={{width: percent + '%'}}></div>
+            else if (percent > 50) return <div className='slot-background yellow-back' style={{width: percent + '%'}}></div>
+    
+            return <div className='slot-background green-back' style={{width: percent + '%'}}></div>
+        }
+
+        if(percent > 50) return <div className='slot-background green-back' style={{width: percent + '%'}}></div>
+        else if (percent > 25) return <div className='slot-background yellow-back' style={{width: percent + '%'}}></div>
+
+        return <div className='slot-background' style={{width: percent + '%'}}></div>
     }
 
     render() { 
@@ -38,6 +56,7 @@ class Slot extends Component {
                         <div className="slot-max-number" >/ {this.props.max}</div>
                     </div>
                     <button onClick={() => this.inc()} >+</button>
+                    {this.makeBackground()}
                 </div>
             </div>
          );

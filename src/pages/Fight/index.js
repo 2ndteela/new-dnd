@@ -162,7 +162,7 @@ class Fight extends Component {
                     {this.state.spellSlots.map((ss, i) =>{ 
                         return (
                             <div style={{width: '100%', paddingBottom: '16px'}}>
-                                <Slot max={ss.maxSlots} val={ss.usedSlots} label={"Level " + (parseInt(i, 10) + 1)} idx={i} field="usedSlots" arr="spellSlots" onUpdate={this.updateArrayValue} />
+                                <Slot max={ss.maxSlots} val={ss.usedSlots} label={"Level " + (parseInt(i, 10) + 1)} idx={i} field="usedSlots" arr="spellSlots" reverse={true} onUpdate={this.updateArrayValue} />
                             </div>
                         )
                     })}
