@@ -20,9 +20,14 @@
     width: 100%;
     justify-content: flex-start;
     padding-bottom: 16px;
+    translate: .2s;
 }
 
 .class-ability * {
     width: 100%;
     align-items: flex-start;
+}
+
+.selected-skill {
+    color: deepskyblue !important;
 }

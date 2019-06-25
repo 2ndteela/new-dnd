@@ -19,6 +19,12 @@ class Skills extends Component {
         this.setState(data)
     }
 
+    setSelectedSkill(idx) {
+        this.setState({
+            selectedSkill: idx
+        })
+    }
+
     render() { 
         return ( 
             <div>
@@ -39,55 +45,63 @@ class Skills extends Component {
                     </div>
                     <h2 className="sub-header" style={{color: 'grey'}} >Skill Checks</h2>
                     <div className="skills-box" >
-                        <div className="solo-skill">
+                        <div 
+                        className={ this.state.selectedSkill === 0 ? "solo-skill selected-skill" : 'solo-skill'} 
+                        onClick={() => this.setSelectedSkill(0)}>
                             <h3>Acrobatics</h3><span>{this.state.acrobatics}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div 
+                        className={ this.state.selectedSkill === 1 ? "solo-skill selected-skill" : 'solo-skill'}
+                        onClick={() => this.setSelectedSkill(1)}>
                             <h3>Animal Handling</h3><span>{this.state.aniHand}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div 
+                        className={ this.state.selectedSkill === 2 ? "solo-skill selected-skill" : 'solo-skill'}
+                        onClick={() => this.setSelectedSkill(2)}>
                             <h3>Arcana</h3><span>{this.state.arcana}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div 
+                        className={ this.state.selectedSkill === 3 ? "solo-skill selected-skill" : 'solo-skill'} 
+                        onClick={() => this.setSelectedSkill(3)}>
                             <h3>Athletics</h3><span>{this.state.athletics}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 4 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(4)}>
                             <h3>Deception</h3><span>{this.state.deception}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 5 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(5)}>
                             <h3>History</h3><span>{this.state.history}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 6 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(6)}>
                             <h3>Insight</h3><span>{this.state.insight}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 7 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(7)}>
                             <h3>Initimidation</h3><span>{this.state.intim}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 8 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(8)}>
                             <h3>Invesitgation</h3><span>{this.state.invest}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 9 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(9)}>
                             <h3>Medicine</h3><span>{this.state.med}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 10 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(10)}>
                             <h3>Nature</h3><span>{this.state.nature}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 11 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(11)}>
                             <h3>Perception</h3><span>{this.state.perception}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 12 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(12)}>
                             <h3>Performance</h3><span>{this.state.perform}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 13 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(13)}>
                             <h3>Persuasion</h3><span>{this.state.persuasion}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 14 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(14)}>
                             <h3>Religion</h3><span>{this.state.religion}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 15 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(15)}>
                             <h3>Slight of Hand</h3><span>{this.state.soh}</span>
                         </div>
-                        <div className="solo-skill">
+                        <div className={ this.state.selectedSkill === 16 ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => this.setSelectedSkill(16)}>
                             <h3>Sealth</h3><span>{this.state.stealth}</span>
                         </div>
                     </div>
@@ -95,7 +109,10 @@ class Skills extends Component {
                     <div>
                         {this.state.abilities.map((a, i) => {
                             return (
-                                <div className="class-ability" key={'abil-' + i}>
+                                <div 
+                                className='class-ability' 
+                                key={'abil-' + i}
+                                >
                                     <h3>{a.header}</h3>
                                     <div>{a.description}</div>
                                 </div>
