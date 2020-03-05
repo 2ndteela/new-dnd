@@ -7,9 +7,6 @@ class Input extends Component {
         this.state = {  }
     }
 
-    componentDidMount() {
-    }
-
     handleInput(val) {
         if(this.props.idx !== undefined) {
             this.props.onUpdate(val, this.props.field, this.props.idx, this.props.arr)
