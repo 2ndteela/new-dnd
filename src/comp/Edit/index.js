@@ -375,7 +375,7 @@ class Edit extends Component {
                             return (
                             <div key={"weap-" + itr} style={{width: '100%', alignItems: 'flex-end'}} >
                                 <button className="icon-button" onClick={() => this.removeArrayValue('weapons' ,itr)} >
-                                    <CloseOutlined color="black" />
+                                    <CloseOutlined fontSize="small" color="black" />
                                 </button>
                                 <div className="multi-input">
                                     <Input label="Weapon Name" val={w.name} field="name" arr="weapons" idx={itr} onUpdate={this.updateArrayValue}/>
@@ -404,7 +404,7 @@ class Edit extends Component {
                             return (
                                 <div style={{width: '100%', alignItems: 'flex-end'}} >
                                     <button className="icon-button" onClick={() => this.removeArrayValue('abilities', itr)} >
-                                        <CloseOutlined />
+                                        <CloseOutlined fontSize="small" />
                                     </button>
                                     <Input label="Header" val={a.header} field="header" idx={itr} arr="abilities" onUpdate={this.updateArrayValue} />
                                     <Input textarea={true} label="Description" val={a.description} arr="abilities" idx={itr} field="description" onUpdate={this.updateArrayValue} />
@@ -419,7 +419,7 @@ class Edit extends Component {
                             return(
                                 <div key={"spl-" + itr} style={{width: '100%', alignItems: 'flex-end'}}>
                                     <button className="icon-button" onClick={() => this.removeArrayValue('spells' ,itr)} >
-                                        <CloseOutlined />
+                                        <CloseOutlined fontSize="small" />
                                     </button>
                                     <Input label="Name" val={s.name} field="name" idx={itr} arr="spells" onUpdate={this.updateArrayValue}/>
                                     <div className="multi-input">
@@ -438,7 +438,7 @@ class Edit extends Component {
                                 <div className="spell-slot-div" key={"slot-" + itr}>
                                     <Input add={true} label="Cantrips" idx={itr} arr="spellSlots" field="maxSlots" val={ss.maxSlots} onUpdate={this.updateArrayValue} />
                                     <button className="icon-button" onClick={() => this.removeArrayValue('spellSlots', itr)} >
-                                        <CloseOutlined />
+                                        <CloseOutlined fontSize="small" />
                                     </button>
                                 </div>
                             )
@@ -446,7 +446,7 @@ class Edit extends Component {
                                 <div className="spell-slot-div" key={"slot-" + itr} >
                                     <Input add={true} label={"Level " + itr} idx={itr} arr="spellSlots" field="maxSlots" val={ss.maxSlots} onUpdate={this.updateArrayValue} />
                                     <button className="icon-button" onClick={() => this.removeArrayValue('spellSlots', itr)} >
-                                        <CloseOutlined />
+                                        <CloseOutlined fontSize="small" />
                                     </button>
                                 </div>
                             )
@@ -461,7 +461,7 @@ class Edit extends Component {
                            return( 
                            <div style={{width: '100%', alignItems: 'flex-end'}} key={"ca-" + i} >
                                 <button className="icon-button" onClick={() => this.removeArrayValue('customAttacks', i)} >
-                                    <CloseOutlined />
+                                    <CloseOutlined fontSize="small" />
                                 </button>
                                 <Input label="Name" key={'ca-' + i} idx={i} field="name" val={ca.name} arr="customAttacks" onUpdate={this.updateArrayValue}></Input>
                                 <div className="multi-input">
@@ -480,7 +480,7 @@ class Edit extends Component {
                             return (
                                 <div style={{width: '100%', alignItems: 'flex-end'}}>
                                     <button className="icon-button" onClick={() => this.removeArrayValue("customFields", i)} >
-                                        <CloseOutlined />
+                                        <CloseOutlined fontSize="small" />
                                     </button>
                                     <div className="styled-input">
                                         <select value={cf.type} onChange={(e) => this.updateArrayValue(e.target.value, 'type', i, 'customFields') } >

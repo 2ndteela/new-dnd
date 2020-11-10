@@ -1,4 +1,3 @@
-console.log('got eeeemmm')
 workbox.precaching.precacheAndRoute(self.__precacheManifest || [])
 
 self.addEventListener('install', event => {

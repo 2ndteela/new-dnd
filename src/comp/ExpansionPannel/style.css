@@ -30,16 +30,19 @@
 
   
 .small-pannel {
+    padding: 16px;
     padding-top: 8px;
     max-height: 100px !important;
   }
   
   .mid-pannel {
+    padding: 16px;
     padding-top: 8px;
     max-height: 300px !important;
   }
   
   .big-pannel {
+    padding: 16px;
     padding-top: 8px;
     max-height: 500px !important;
     overflow: auto;
@@ -47,6 +50,7 @@
   }
   
   .massive-pannel {
+    padding: 16px;
     padding-top: 8px;
     max-height: 800px !important;
     overflow: auto;
@@ -54,6 +58,7 @@
   }
   
   .epic-pannel {
+    padding: 16px;
     padding-top: 8px;
     max-height: 1500px !important;
     overflow: auto;

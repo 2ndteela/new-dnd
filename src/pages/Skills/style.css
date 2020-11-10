@@ -13,8 +13,18 @@
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    padding: 4px 0;
     transition: .2s;
+    margin-bottom: 4px;
+}
+
+.solo-skill span {
+    height: 24px;
+    width: 24px;
+}
+
+.selected-skill span {
+    background-color: #0A2239;
+    color: white;
 }
 
 .class-ability {
@@ -29,5 +39,7 @@
 }
 
 .selected-skill {
-    color: deepskyblue !important;
+    border-left: 4px solid #0A2239;
+    padding-left: 8px;
+    background-color: #eee;
 }

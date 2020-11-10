@@ -1,8 +1,32 @@
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0A2239;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0A2239; 
+}
+
 body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
 }
 
 h1, h2, h3, h4 {
@@ -30,6 +54,7 @@ h1, h2, h3, h4 {
   padding: 0;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
+  outline: none;
 }
 
 .header {
@@ -138,6 +163,15 @@ select {
   color: #333;
   font-size: 12px;
 }
+
+
+
 @media screen and (max-width: 680px) {
 
+}
+
+@media screen and (min-width: 1200px) {
+  body {
+    overflow-x: hidden;
+  }
 }

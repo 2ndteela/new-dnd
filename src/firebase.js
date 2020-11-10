@@ -1,4 +1,5 @@
-import firebase from 'firebase' 
+import firebase from 'firebase'
+
 var config = {
   apiKey: "AIzaSyBPB4XiRrEAbU-WXM999w8SiBch0GqVzZU",
   authDomain: "dee-and-dee.firebaseapp.com",
@@ -7,6 +8,7 @@ var config = {
   storageBucket: "dee-and-dee.appspot.com",
   messagingSenderId: "412223361454"
 };
+
   firebase.initializeApp(config);
 
   export default firebase
