@@ -14,7 +14,7 @@ class Edit extends Component {
         super(props);
         this.state = { 
             level: 0,
-            exp: 2000,
+            exp: 0,
             prof: 0,
             health: 10,
             ac: 0,
@@ -35,7 +35,7 @@ class Edit extends Component {
             gold: 0,
             silver: 0,
             copper: 0
-         }
+        }
 
         this.updateState = this.updateState.bind(this)
         this.updateArrayValue = this.updateArrayValue.bind(this)

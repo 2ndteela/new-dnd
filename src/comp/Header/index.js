@@ -6,7 +6,7 @@ class Header extends Component {
         super(props);
         this.state = { 
             showMenu: false
-         }
+        }
     }
 
     toggleHamberger() {
@@ -34,7 +34,7 @@ class Header extends Component {
                     {this.props.children}
                 </div>
             </div>
-         );
+        );
     }
 }
 
