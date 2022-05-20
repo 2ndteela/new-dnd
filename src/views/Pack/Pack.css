@@ -1,0 +1,28 @@
+.multi-input {
+    flex-direction: row !important;
+    justify-content: space-between;
+    padding-bottom: 16px;
+}
+
+.multi-input .styled-input {
+    flex: 1 !important;
+    margin-left: 8px;;
+}
+
+.multi-input .styled-input:first-child {
+    margin-left: 0px !important;
+}
+
+.pack-height {
+    height: 35vh;
+    width: 100%;
+}
+
+.pack-height input {
+    height: 100%;
+}
+
+.note-height {
+    height: 35vh;
+    width: 100%;
+}

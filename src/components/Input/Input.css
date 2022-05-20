@@ -1,0 +1,59 @@
+.styled-input {
+    border: 2px solid grey;
+    border-radius: 8px;
+    position: relative;
+    padding: 8px;
+    width: 100%;
+    background-color: transparent;
+    margin-bottom: 16px;
+    flex-direction: row;
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
+
+.styled-input input {
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+.styled-input span {
+    background-color: white;
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    padding: 0 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: grey;
+}
+
+.styled-input button {
+    background-color: white;
+    color: grey;
+    border: none;
+    padding: 0 !important;
+    margin: 0 !important;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 30px;
+}
+
+.add input {
+    text-align: center;
+}
+
+.styled-input textarea {
+    border: none;
+    width: 100%;
+    min-height: 100px;
+    height: 100%;
+    resize: none;
+}
+
+.fill-height {
+    height: 100% !important;
+}
+

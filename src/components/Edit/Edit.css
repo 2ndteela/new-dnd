@@ -1,0 +1,58 @@
+.multi-input {
+    flex-direction: row !important;
+    justify-content: space-between;
+    padding-bottom: 16px;
+}
+
+.multi-input .styled-input {
+    flex: 1 !important;
+    margin-left: 8px;;
+}
+
+.multi-input .styled-input:first-child {
+    margin-left: 0px !important;
+}
+
+.to-bottom {
+    position: fixed;
+    bottom: 0px;
+    padding: 16px;
+    padding-top: 0px;
+}
+
+.not-full {
+    min-height: 0px !important;
+    max-height: calc(100vh - 130px);
+    overflow-y: auto;
+    padding-bottom: 0px;
+}
+
+.spell-slot-div {
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 16px;
+}
+
+.spell-slot-div .styled-input {
+    margin-bottom: 0px;
+    width: 90%;
+}
+
+.spell-slot-div button {
+    margin-left: 8px;
+    margin-bottom: 0px;
+    justify-content: center;
+}
+
+.with-nav {
+    min-height: calc(100vh - 58px) !important;
+    padding-bottom: 100px;
+} 
+
+.to-bottom-nav {
+    position: fixed;
+    bottom: 48px;
+    width: 100vw;
+    padding: 16px;
+    background-color: white;
+}

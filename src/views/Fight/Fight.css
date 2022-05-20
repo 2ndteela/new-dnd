@@ -1,0 +1,119 @@
+.multi-input {
+    width: 100%;
+}
+
+.multi-input .slot-box {
+    flex: 1;
+}
+
+.multi-input .styled-input {
+    flex: 1;
+    margin-bottom: 0 !important;
+}
+
+.some-stat {
+    border: 2px solid grey;
+    border-radius: 8px; 
+    position: relative;
+    width: 100px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+}
+
+.some-stat .stat-label {
+    position: absolute;
+    top: -10px;
+    background-color: white;
+    left: 12px;
+    padding: 0 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: grey;
+}
+
+.read-only-stats {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 16px;
+}
+
+.read-only-stats div {
+    width: 31% !important;
+    height: 48px;
+    margin-bottom: 0;
+}
+
+.weapon-container {
+    width: 100%;
+    border: 2px solid grey;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+    padding: 16px;
+}
+
+.weapon-header {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 24px;
+}
+
+.weapon-header span {
+    color: grey;
+}
+
+.weapon-stats {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.stat-box {
+    width: 30%;
+}
+
+.stat-box div {
+    border-bottom: 1px solid grey;
+    width: 100%;
+}
+
+.stat-box span {
+    font-size: 12px;
+    color: gray;
+}
+
+.custom-description {
+    padding-bottom: 16px;
+}
+
+.custom-stat-box {
+    width: 48%;
+}
+
+.custom-stat-box div {
+    border-bottom: 1px solid grey;
+    width: 100%;
+}
+
+.custom-stat-box span {
+    color: gray;
+}
+
+#all-weapons {
+    width: 100%;
+}
+
+@media screen and (min-width: 767px) {
+    #all-weapons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    #all-weapons .weapon-container {
+        width: 316px;
+    }
+}

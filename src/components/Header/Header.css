@@ -1,0 +1,76 @@
+.header-container { 
+    width: 100vw;
+    height: 58px;
+    justify-content: center;
+    background-color: #0A2239;
+    color: white;
+    position: relative;
+    z-index: 10;
+}
+
+.hamberger-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 58px;
+    width: 58px;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 10;
+}
+
+.hamberger-icon span {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    z-index: 10;
+    transition: .3s;
+}
+
+#nomal-bar {
+    position: relative;
+    top: 0;
+}
+
+#hamberger-drawer {
+    position: absolute;
+    top: 58px;
+    width: 100vw;
+    padding: 0px 16px;
+    background-color: white;
+    z-index: 5;
+    border-bottom: 1px solid lightgray;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    max-height: 0px;
+    transition: .3s linear;
+}
+
+#hamberger-drawer a {
+    color: grey;
+    text-decoration: none;
+    padding-top: 16px;
+}
+
+.show-menu:last-child {
+    padding-bottom: 16px !important;
+}
+
+.show-menu {
+    max-height: 100px !important;
+}
+
+.make-ex #flippy-bar {
+    transform: rotate(-45deg);
+}
+
+.make-ex #nomal-bar {
+    transform: rotate(45deg);
+    top: 8px;
+}
+
+.make-ex #go-away-bar {
+    opacity: 0;
+}
