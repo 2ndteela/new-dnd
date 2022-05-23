@@ -9,7 +9,7 @@ export default function EditPage() {
         const character = loadCharacter()
         if(!character.savedChar)
             writeCharacterToDb()
-    })
+    }, [])
     
     return (
         <>

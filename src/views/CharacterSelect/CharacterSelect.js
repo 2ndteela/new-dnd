@@ -18,7 +18,10 @@ export default function CharacterSelect() {
             const keys = Object.keys(data.characters)
             const charArray = []
 
-            keys.forEach(k => charArray.push(data.characters[k]))
+            keys.forEach(k => {
+                data.characters[k].key = k
+                charArray.push(data.characters[k])
+            })
 
             setCharacters(charArray)
         })

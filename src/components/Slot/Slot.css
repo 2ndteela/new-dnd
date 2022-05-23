@@ -6,6 +6,7 @@
     width: 100%;
     background-color: transparent;
     flex-direction: row;
+    margin-top: 8px;
 }
 
 .main-slot-container {

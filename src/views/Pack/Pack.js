@@ -21,7 +21,7 @@ export default function Pack() {
     useEffect(() => {
         if(!character.savedChar)
             writeCharacterToDb()
-    })
+    }, [])
 
     return ( 
         <div>

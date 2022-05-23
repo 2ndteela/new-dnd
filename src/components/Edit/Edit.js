@@ -254,6 +254,7 @@ class Edit extends Component {
                             <span>Alignment</span>
                         </div>
                         <Input label="Backstory" val={this.state.backStory} field="backStory" textarea onUpdate={this.updateState} />
+                        <br></br>
                         <div className="multi-input" >
                             <Input add label="Level" val={this.state.level} field="level" onUpdate={this.updateState} ></Input>
                             <Input add label="Experience" val={this.state.exp} field="exp" onUpdate={this.updateState} ></Input>
@@ -291,6 +292,7 @@ class Edit extends Component {
                         <div className="button-box" style={{paddingBottom: '8px'}}>
                             <button className="flat-button" onClick={() => this.fillSkills()} >Fill Skills</button>
                         </div>
+                        <br></br>
                     
                         <h3 className="sub-header" style={{color: 'grey'}} >Charisma Skills</h3>
                         <Input add label="Save" val={this.state.charSave} field="charSave" onUpdate={this.updateState} />
@@ -302,9 +304,11 @@ class Edit extends Component {
                             <Input add label="Performance" val={this.state.perform} field="perform" onUpdate={this.updateState} />
                             <Input add label="Persuasion" val={this.state.persuasion} field="persuasion" onUpdate={this.updateState} />
                         </div>
+                        <br></br>
 
                         <h3 style={{color: 'grey'}} className="sub-header">Constitution Save</h3>
                         <Input add label="Save" val={this.state.conSave} field="conSave" onUpdate={this.updateState} />
+                        <br></br>
                         
                         <h3 className="sub-header" style={{color: 'grey'}} >Dexterity Skills</h3>
                         <Input add label="Save" val={this.state.dexSave} field="dexSave" onUpdate={this.updateState} />
@@ -313,6 +317,7 @@ class Edit extends Component {
                             <Input add label="Slight of Hand" val={this.state.soh} field="soh" onUpdate={this.updateState} />
                             <Input add label="Stealth" val={this.state.stealth} field="stealth" onUpdate={this.updateState} />
                         </div>
+                        <br></br>
 
                         <h3 style={{color: 'grey'}} className="sub-header">Intelligence Skills</h3>
                         <Input add label="Save" val={this.state.intSave} field="intSave" onUpdate={this.updateState} />
@@ -325,10 +330,12 @@ class Edit extends Component {
                             <Input add label="Nature" val={this.state.nature} field="nature" onUpdate={this.updateState} />
                             <Input add label="Religion" val={this.state.religion} field="religion" onUpdate={this.updateState} />
                         </div>
+                        <br></br>
 
                         <h3 style={{color: 'grey'}} className="sub-header">Strength Skills</h3>
                         <Input add label="Save" val={this.state.strSave} field="strSave" onUpdate={this.updateState} />
                         <Input add label="Athletics" val={this.state.athletics} field="athletics" onUpdate={this.updateState} />
+                        <br></br>
 
                         <h3 style={{color: 'grey'}} className="sub-header">Wisdom Skills</h3>
                         <Input add label="Save" val={this.state.wisSave} field="wisSave" onUpdate={this.updateState} />
@@ -341,6 +348,7 @@ class Edit extends Component {
                             <Input add label="Perception" val={this.state.perception} field="perception" onUpdate={this.updateState} />
                             <Input add label="Survival" val={this.state.survival} field="survival" onUpdate={this.updateState} />
                         </div>
+                        <br></br>
                     </ExpansionPannel>
 
                     <ExpansionPannel header="Inventory">
@@ -365,6 +373,7 @@ class Edit extends Component {
                             )
                         })}
                         <button className="full-button" onClick={() => this.addWeapon()} >Add Weapon</button>
+                        <br></br>
                         <h3 className="sub-header" style={{color: 'grey'}}>Pack</h3>
                         <div className="multi-input">
                             <Input add label="Gold" val={this.state.gold} field="gold" onUpdate={this.updateState} />
@@ -376,7 +385,7 @@ class Edit extends Component {
                     <ExpansionPannel header="Abilities">
                         {this.state.abilities.map((a, itr) => {
                             return (
-                                <div style={{width: '100%', alignItems: 'flex-end'}} >
+                                <div key={`${itr}-abs`} style={{width: '100%', alignItems: 'flex-end'}} >
                                     <button className="icon-button" onClick={() => this.removeArrayValue('abilities', itr)} >
                                         <MdClose />
                                     </button>
@@ -444,7 +453,7 @@ class Edit extends Component {
                     <ExpansionPannel header="Custom Fields">
                     {this.state.customFields.map((cf, i) => {
                             return (
-                                <div style={{width: '100%', alignItems: 'flex-end'}}>
+                                <div key={`${i}-custs`} style={{width: '100%', alignItems: 'flex-end'}}>
                                     <button className="icon-button" onClick={() => this.removeArrayValue("customFields", i)} >
                                         <MdClose />
                                     </button>

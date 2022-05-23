@@ -36,8 +36,13 @@ export default function Login() {
         }
     }
 
+    function onKeyHandler(e) {
+        if(e.code === 'Enter')
+            signIn()
+    }
+
     return ( 
-        <div>
+        <div onKeyDown={onKeyHandler}>
             <Header noActions={true} label="Login"></Header>
             <div className="page-content" style={{justifyContent: 'center'}}>
                 <Input label="Email" field="email" val={email} onUpdate={setEmail} />

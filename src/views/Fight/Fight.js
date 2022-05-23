@@ -16,7 +16,7 @@ export default function Fight() {
     useEffect(() => {
         if(!character.savedChar)
             writeCharacterToDb()
-    })
+    }, [])
 
 
 

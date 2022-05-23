@@ -45,8 +45,7 @@ export const signInUser = async (email, password) => {
     try {
         const auth = getAuth()
         const credentials = await signInWithEmailAndPassword(auth, email, password)
-
-        console.log('user', credentials)
+        
         writeToLocalStorage('uid', credentials.user.uid)
         return credentials.user
     }

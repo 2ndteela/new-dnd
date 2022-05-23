@@ -15,7 +15,7 @@ export default function Skills() {
     useEffect(() => {
         if(!character.savedChar)
             writeCharacterToDb()
-    })
+    }, [])
 
     return ( 
         <div>
