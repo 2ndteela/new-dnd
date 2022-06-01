@@ -242,7 +242,8 @@ class Edit extends Component {
                     <Link to='/characters' >Characters</Link>
                     <Link to='/' >Logout</Link>
                 </Header>
-                <div className={this.state.savedChar !== null ? 'page-content with-nav' : 'page-content not-full' }>
+                <div id="edit-page-container" className={this.state.savedChar !== null ? 'page-content with-nav' : 'page-content not-full' }>
+                    <div>
                     <ExpansionPannel header="Details">
                         <Input label="Name" val={this.state.name} field="name" onUpdate={this.updateState} />
                         <Input label="Race" val={this.state.race} field="race" onUpdate={this.updateState} />
@@ -473,6 +474,7 @@ class Edit extends Component {
                         })}
                         <button className="full-button" onClick={() => this.addCustom()}>Add Custom</button>
                     </ExpansionPannel>
+                    </div>
                     <div className={ this.state.savedChar === null ? "button-box to-bottom" : "button-box to-bottom-nav"} >
                         <button className="flat-button" onClick={() => this.saveCharacter()}>Save Character</button>
                     </div>
