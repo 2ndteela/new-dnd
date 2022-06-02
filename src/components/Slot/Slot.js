@@ -3,10 +3,8 @@ import './Slot.css'
 
 export default function Slot(props) {
     const {val, field, idx, arr, max, reverse, label, onUpdate} = props
-    console.log('arr from props', arr)
 
     function inc() {
-        console.log('slot arr', arr)
         const temp = parseInt(val, 10) + 1
         if(temp <= max) 
             if(arr) handleUpdate(temp, idx, arr)
