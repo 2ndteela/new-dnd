@@ -28,11 +28,12 @@ export default function Fight() {
         writeCharacter(newChar)
     }
 
-    function updateArrayValue(val, field, itr = 0, arr, updateArr) {
-        const temp = [...arr]
+    function updateArrayValue(val, field, itr = 0, arr) {
+        const toUpdate = character[arr]
+        const temp = [...toUpdate]
         temp[itr][field] = val
 
-        updateArr(temp)
+        updateState(temp, arr)
         writeCharacter(temp)
     }
 
