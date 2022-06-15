@@ -29,7 +29,7 @@ export default function CharacterSelect() {
 
     function goToCharacter(char) {
         writeCharacter(char)
-        navigate('/skills')
+        navigate('/multi')
     }
 
     return ( 

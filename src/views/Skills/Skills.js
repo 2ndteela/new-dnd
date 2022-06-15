@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import BottomNav from '../../components/BottomNav/BottomNav'
-import Header from '../../components/Header/Header'
 import StatBox from '../../components/StatBox/StatBox';
-import { Link } from 'react-router-dom'
 import './Skills.css'
 import { skillList, loadCharacter } from '../../assets/utilities';
 import { writeCharacterToDb } from '../../assets/services';
@@ -19,12 +16,8 @@ export default function Skills() {
 
     return ( 
         <div>
-            <Header label="Skills">
-                <Link to='/characters' >Characters</Link>
-                <Link to='/' >Logout</Link>
-            </Header>
-            <div className="page-content with-bottom-nav">
-                <div className="stats-box" >
+            <div>
+                <div className="stats-box" style={{paddingBottom: '24px'}}>
                     <StatBox name="Charisma" save={character.charSave} main={character.charisma}></StatBox>
                     <StatBox name="Constitution" save={character.conSave} main={character.const}></StatBox>
                     <StatBox name="Dexterity" save={character.dexSave} main={character.dex}></StatBox>
@@ -59,7 +52,6 @@ export default function Skills() {
                     })}
                 </div>
             </div>
-            <BottomNav></BottomNav>
         </div>
     );
 }

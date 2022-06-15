@@ -7,3 +7,15 @@ h1, h2, h3, h4 {
 body {
     font-family: 'Open Sans'
 }
+
+.App {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+#routes-container {
+    display: flex;
+    justify-content: center;
+    width: calc(100vw - 48px);
+}

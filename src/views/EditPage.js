@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { writeCharacterToDb } from '../assets/services'
 import { loadCharacter } from '../assets/utilities'
-import BottomNav from '../components/BottomNav/BottomNav'
 import Edit from '../components/Edit/Edit'
 
 export default function EditPage() {
@@ -13,8 +12,7 @@ export default function EditPage() {
     
     return (
         <>
-            <Edit title='Edit' />
-            <BottomNav />
+            <Edit />
         </>
     )
 }

@@ -4,8 +4,6 @@ import ExpansionPannel from '../ExpansionPannel/ExpansionPannel';
 import { MdClose } from 'react-icons/md'
 import CheckBox from '../CheckBox/CheckBox';
 import {loadCharacter} from '../../assets/utilities'
-import Header from '../Header/Header'
-import {Link} from 'react-router-dom'
 import './Edit.css'
 import { writeCharacterToDb } from '../../assets/services';
 import { writeCharacter } from '../../assets/utilities';
@@ -238,11 +236,7 @@ class Edit extends Component {
     render() { 
         return ( 
             <div>
-                <Header label={this.props.title}>
-                    <Link to='/characters' >Characters</Link>
-                    <Link to='/' >Logout</Link>
-                </Header>
-                <div id="edit-page-container" className={this.state.savedChar !== null ? 'page-content with-nav' : 'page-content not-full' }>
+                <div id="edit-page-container" >
                     <div>
                     <ExpansionPannel header="Details">
                         <Input label="Name" val={this.state.name} field="name" onUpdate={this.updateState} />

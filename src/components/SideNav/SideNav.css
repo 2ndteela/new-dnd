@@ -1,0 +1,57 @@
+#side-nav-container {
+    display: flex;
+    width: 64px;
+    border-right: 1px solid grey;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#side-nav-container button {
+    width: 64px;
+    background-color: white;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #0A2239;
+    color: #0A2239;
+    padding: 0px !important;
+    margin: 0px !important;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+#sign-out-button {
+    border-top: 1px solid #0A2239;
+}
+
+@media screen and (max-width: 1099px) {
+    #side-nav-container {
+        border-right: none;
+        border-top: 1px solid #0A2239;
+        flex-direction: row;
+        height: 64px;
+        width: 100vw;
+    }
+
+    #side-nav-container button {
+        width: 16.5vw;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    #side-nav-buttons {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #side-nav-buttons button {
+        border-right: 1px solid #0A2239;
+    }
+
+    #sign-out-button {
+        border-top: none;
+    }
+}

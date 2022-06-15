@@ -1,0 +1,40 @@
+#spells-container {
+    width: 100%;
+}
+
+.spell-box {
+    width: 100%;
+    border: 2px solid grey;
+    border-radius: 8px;
+    padding: 16px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.spell-header {
+    flex-direction: row;
+    padding-bottom: 8px;
+    width: 100%;
+    justify-content: space-between;
+}
+.spell-stats {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.spell-stat-container {
+    width: 48%;
+}
+
+.spell-stat-container span {
+    font-size: 12px;
+    border-top: 1px solid grey;
+    width: 100%;
+}
+
+@media screen and (max-width: 1009px) {
+    #spells-container {
+        width: 100vw;
+    }
+}

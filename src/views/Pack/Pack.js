@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import BottomNav from '../../components/BottomNav/BottomNav'
 import Input from '../../components/Input/Input'
-import Header from '../../components/Header/Header'
-import { Link } from 'react-router-dom'
 
 import './Pack.css'
 import { loadCharacter, writeCharacter } from '../../assets/utilities';
@@ -25,11 +22,11 @@ export default function Pack() {
 
     return ( 
         <div>
-            <Header label="Pack">
+            {/* <Header label="Pack">
                 <Link to='/characters' >Characters</Link>
                 <Link to='/' >Logout</Link>
-            </Header>
-            <div className="page-content with-bottom-nav">
+            </Header> */}
+            <div>
                 <div className="multi-input">
                     <Input add={true} label="Gold" val={character.gold} field="gold" onUpdate={updateState}></Input>
                     <Input add={true} label="Silver" val={character.silver} field="silver" onUpdate={updateState}></Input>
@@ -42,7 +39,7 @@ export default function Pack() {
                     <Input label="Notes" textarea={true} field="notes" fillHeight={true} val={character.notes} onUpdate={updateState} />
                 </div>
             </div>
-            <BottomNav></BottomNav>
+            {/* <BottomNav></BottomNav> */}
         </div>
     );
 }

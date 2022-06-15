@@ -71,16 +71,16 @@
     justify-content: space-between;
 }
 
-.stat-box {
+.weapon-stat-box {
     width: 30%;
 }
 
-.stat-box div {
+.weapon-stat-box div {
     border-bottom: 1px solid grey;
     width: 100%;
 }
 
-.stat-box span {
+.weapon-stat-box span {
     font-size: 12px;
     color: gray;
 }
@@ -104,16 +104,4 @@
 
 #all-weapons {
     width: 100%;
-}
-
-@media screen and (min-width: 767px) {
-    #all-weapons {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-
-    #all-weapons .weapon-container {
-        width: 316px;
-    }
 }

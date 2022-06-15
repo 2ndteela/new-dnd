@@ -37,15 +37,9 @@
     justify-content: center;
 }
 
-.with-nav {
-    min-height: calc(100vh - 58px) !important;
-    padding-bottom: 100px;
-} 
-
 #edit-page-container {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 64px;
 }

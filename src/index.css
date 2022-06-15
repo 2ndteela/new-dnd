@@ -1,16 +1,16 @@
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: grey; 
+  box-shadow: #1d68ad; 
   border-radius: 10px;
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #0A2239;
+  background: lightgrey;
   border-radius: 10px;
 }
 
@@ -175,6 +175,11 @@ input[type=number] {
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
   appearance: textfield;
+}
+
+#no-bottom-pad {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 

@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
 import Slot from '../../components/Slot/Slot'
 import Input from '../../components/Input/Input'
-import BottomNav from '../../components/BottomNav/BottomNav'
-import Header from '../../components/Header/Header'
 import { writeCharacter, loadCharacter } from '../../assets/utilities';
 import { writeCharacterToDb } from '../../assets/services';
 
@@ -69,11 +66,11 @@ export default function Fight() {
 
     return ( 
         <div>
-            <Header label="Fight">
+            {/* <Header label="Fight">
                 <Link to='/characters' >Characters</Link>
                 <Link to='/' >Logout</Link>
-            </Header>
-            <div className="page-content with-bottom-nav">
+            </Header> */}
+            <div className>
                 <div className="multi-input" style={{paddingBottom: '16px'}}>
                     <Slot label="Health" max={character.health} val={character.currentHealth} field="currentHealth" onUpdate={updateState} ></Slot>
                     <Input add label="Temporary Health" val={character.tempHealth} field="tempHealth" onUpdate={updateState} ></Input>
@@ -99,15 +96,15 @@ export default function Fight() {
                                 <span>{w.damType}</span>
                             </div>
                             <div className="weapon-stats">
-                                <div className="stat-box">
+                                <div className="weapon-stat-box">
                                     <div>{w.range}</div>
                                     <span>Range</span>
                                 </div>
-                                <div className="stat-box">
+                                <div className="weapon-stat-box">
                                     <div>{w.atkBns > 0 ? '+' + w.atkBns : w.atkBns}</div>
                                     <span>Attack Bonus</span>
                                 </div>
-                                <div className="stat-box">
+                                <div className="weapon-stat-box">
                                     <div>{w.damage}</div>
                                     <span>Damage</span>
                                 </div>
@@ -145,7 +142,7 @@ export default function Fight() {
                 {character?.spellSlots?.map((ss, i) =>{ 
                     return (
                         <div style={{width: '100%', paddingBottom: '16px'}}>
-                            <Slot max={ss.maxSlots} val={ss.usedSlots} label={"Level " + (parseInt(i, 10) + 1)} idx={i} field="usedSlots" arr="spellSlots" reverse onUpdate={this.updateArrayValue} />
+                            <Slot max={ss.maxSlots} val={ss.usedSlots} label={"Level " + (parseInt(i, 10) + 1)} idx={i} field="usedSlots" arr="spellSlots" reverse onUpdate={updateArrayValue} />
                         </div>
                     )
                 })}
@@ -180,7 +177,7 @@ export default function Fight() {
                 <button className="full-button" onClick={longRest} >Long Rest</button>
                 <br></br>
             </div>
-            <BottomNav></BottomNav>
+            {/* <BottomNav></BottomNav> */}
         </div>
         );
 }
