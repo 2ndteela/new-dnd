@@ -1,21 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Slot from '../../components/Slot/Slot'
 import Input from '../../components/Input/Input'
 import { writeCharacter, loadCharacter } from '../../assets/utilities';
-import { writeCharacterToDb } from '../../assets/services';
 
 import './Fight.css'
 
 export default function Fight() {
     const [ character, setCharacter ] = useState(loadCharacter())
-    
-
-    useEffect(() => {
-        if(!character.savedChar)
-            writeCharacterToDb()
-    }, [])
-
-
 
     function updateState(val, field) {
         const newChar = {...character}
@@ -26,12 +17,14 @@ export default function Fight() {
     }
 
     function updateArrayValue(val, field, itr = 0, arr) {
+        const charCopy = {...character}
         const toUpdate = character[arr]
         const temp = [...toUpdate]
         temp[itr][field] = val
+        charCopy[arr] = temp
 
         updateState(temp, arr)
-        writeCharacter(temp)
+        writeCharacter(charCopy)
     }
 
     function longRest() {
@@ -86,9 +79,9 @@ export default function Fight() {
                     </div>
                     <Input add label="Dice left" field="hitDiceNum" val={character.hitDiceNum} onUpdate={updateState} />
                 </div>
-                <h2 className={character.weapons.length > 0 ? 'sub-header' : ''} style={{color: 'grey'}} >{character.weapons.length > 0 ? 'Weapons' : ''}</h2>
+                <h2 className={character?.weapons?.length > 0 ? 'sub-header' : ''} style={{color: 'grey'}} >{character?.weapons?.length > 0 ? 'Weapons' : ''}</h2>
                 <div id="all-weapons">
-                    {character.weapons.map((w, i) => {
+                    {character?.weapons.map((w, i) => {
                         return (
                         <div className="weapon-container" key={'wep-' + i} >
                             <div className="weapon-header">

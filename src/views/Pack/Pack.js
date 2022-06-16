@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Input from '../../components/Input/Input'
 
 import './Pack.css'
 import { loadCharacter, writeCharacter } from '../../assets/utilities';
-import { writeCharacterToDb } from '../../assets/services';
 
 export default function Pack() {
     const [character, setCharacter] = useState(loadCharacter)
@@ -15,17 +14,8 @@ export default function Pack() {
         writeCharacter(c)
     }
 
-    useEffect(() => {
-        if(!character.savedChar)
-            writeCharacterToDb()
-    }, [])
-
     return ( 
         <div>
-            {/* <Header label="Pack">
-                <Link to='/characters' >Characters</Link>
-                <Link to='/' >Logout</Link>
-            </Header> */}
             <div>
                 <div className="multi-input">
                     <Input add={true} label="Gold" val={character.gold} field="gold" onUpdate={updateState}></Input>
@@ -39,7 +29,6 @@ export default function Pack() {
                     <Input label="Notes" textarea={true} field="notes" fillHeight={true} val={character.notes} onUpdate={updateState} />
                 </div>
             </div>
-            {/* <BottomNav></BottomNav> */}
         </div>
     );
 }

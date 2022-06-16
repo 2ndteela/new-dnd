@@ -6,9 +6,10 @@ import Edit from '../../views/EditPage.js'
 import Spells from '../../views/Spells/Spells'
 import './MultiPannelViewer.css'
 import SideNav from "../SideNav/SideNav"
+import { writeCharacterToDb } from "../../assets/services"
 
 export default function MultiPannelViewer() {
-    const [ pannels, setPannels ] = useState(['skills', 'edit'])
+    const [ pannels, setPannels ] = useState(['skills', 'fight'])
     const windowWidth = window.innerWidth
 
     function getPannel(num) {
@@ -52,6 +53,7 @@ export default function MultiPannelViewer() {
             ps[0] = p
 
             setPannels(ps)
+            writeCharacterToDb()
         }
     }
 

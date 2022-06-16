@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import StatBox from '../../components/StatBox/StatBox';
 import './Skills.css'
 import { skillList, loadCharacter } from '../../assets/utilities';
-import { writeCharacterToDb } from '../../assets/services';
 
 export default function Skills() {
     const skills = skillList()
     const character = loadCharacter()
     const [ selectedSkill, setSelectedSkill ] = useState()
-
-    useEffect(() => {
-        if(!character.savedChar)
-            writeCharacterToDb()
-    }, [])
 
     return ( 
         <div>
