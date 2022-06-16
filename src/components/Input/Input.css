@@ -41,6 +41,10 @@
     width: 30px;
 }
 
+.add {
+    top: -4px;
+}
+
 .add input {
     text-align: center;
 }

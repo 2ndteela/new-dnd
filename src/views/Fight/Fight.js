@@ -59,10 +59,6 @@ export default function Fight() {
 
     return ( 
         <div>
-            {/* <Header label="Fight">
-                <Link to='/characters' >Characters</Link>
-                <Link to='/' >Logout</Link>
-            </Header> */}
             <div className>
                 <div className="multi-input" style={{paddingBottom: '16px'}}>
                     <Slot label="Health" max={character.health} val={character.currentHealth} field="currentHealth" onUpdate={updateState} ></Slot>
@@ -78,6 +74,12 @@ export default function Fight() {
                         <span className="stat-label">Hit Die</span>
                     </div>
                     <Input add label="Dice left" field="hitDiceNum" val={character.hitDiceNum} onUpdate={updateState} />
+                </div>
+                <div style={{width: "100%"}}>
+                    <div className="some-stat full-width-box">
+                        <span>{character.speed}</span>
+                        <span className="stat-label">Speed</span>
+                    </div>
                 </div>
                 <h2 className={character?.weapons?.length > 0 ? 'sub-header' : ''} style={{color: 'grey'}} >{character?.weapons?.length > 0 ? 'Weapons' : ''}</h2>
                 <div id="all-weapons">
@@ -170,7 +172,6 @@ export default function Fight() {
                 <button className="full-button" onClick={longRest} >Long Rest</button>
                 <br></br>
             </div>
-            {/* <BottomNav></BottomNav> */}
         </div>
         );
 }
