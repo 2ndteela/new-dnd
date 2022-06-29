@@ -6,6 +6,8 @@
 .pannel-in-viewer {
     width: 500px;
     margin: 8px;
+    position: relative;
+    left: 0px;
 }
 
 .pannel-header {
@@ -13,6 +15,7 @@
     background-color: #0A2239;
     padding: 16px;
     color: white;
+    transition: .5s;
 }
 
 .pannel-body-container {
@@ -41,6 +44,50 @@
     border-color: #1d68ad;
 }
 
+.move-right {
+    left: 516px;
+}
+
+.fade-out.move-right {
+    opacity: 0;
+}
+
+#pannel-window {
+    width: 1032px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    position: relative;
+}
+
+.in-transition { 
+    transition: .5s;
+}
+
+#area-to-add-new-window {
+    min-width: 500px;
+    max-width: 500px;
+    min-height: 100%;
+    left: -516px;
+    top: 8px;
+    position: absolute;
+    opacity: 0;
+}
+
+#area-to-add-new-window.add-in {
+    left: 8px;
+    opacity: 1;
+}
+
+.looks-like-second .pannel-header {
+    background-color: #1d68ad;
+}
+
+.looks-like-second .pannel-body-container {
+    border-color: #1d68ad;
+}
+
+
 @media screen and (max-width: 1099px) {
     #pannels-container {
         flex-direction: column-reverse;
@@ -66,5 +113,23 @@
 
     #all-the-pannels {
         width: 100vw;
+    }
+
+    #area-to-add-new-window {
+        min-width: 100vw;
+        max-width: 100vw;
+        min-height: 100vh;
+        left: -100vw;
+        top: 0px;
+        position: absolute;
+        opacity: 1;
+    }
+    
+    #area-to-add-new-window.add-in {
+        left: 0px;
+    }
+
+    .move-right {
+        left: 100vw;
     }
 }

@@ -1,14 +1,14 @@
 #side-nav-container {
     display: flex;
     width: 64px;
-    border-right: 1px solid grey;
+    border-right: 1px solid #0A2239;
     height: 100vh;
     flex-direction: column;
     justify-content: space-between;
 }
 
 #side-nav-container button {
-    width: 64px;
+    width: 100%;
     background-color: white;
     border: none;
     border-radius: 0px;
@@ -23,8 +23,9 @@
     font-size: 28px;
 }
 
-#sign-out-button {
+#side-nav-container button#sign-out-button {
     border-top: 1px solid #0A2239;
+    width: 100%;
 }
 
 @media screen and (max-width: 1099px) {
@@ -36,12 +37,6 @@
         width: 100vw;
     }
 
-    #side-nav-container button {
-        width: 16.5vw;
-        border-top: none;
-        border-bottom: none;
-    }
-
     #side-nav-buttons {
         display: flex;
         flex-direction: row;
@@ -49,9 +44,13 @@
 
     #side-nav-buttons button {
         border-right: 1px solid #0A2239;
+        border-bottom: none;
+        flex: 1 1;
     }
 
-    #sign-out-button {
-        border-top: none;
+    #side-nav-container button#sign-out-button {
+        border: none;
     }
+
+    
 }
