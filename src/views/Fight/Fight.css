@@ -109,3 +109,11 @@
 .full-width-box {
     width: 100% !important;
 }
+
+.weapon-actions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 16px;
+}

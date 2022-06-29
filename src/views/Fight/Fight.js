@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import Slot from '../../components/Slot/Slot'
 import Input from '../../components/Input/Input'
 import { writeCharacter, loadCharacter } from '../../assets/utilities';
+import {GiDiceTwentyFacesTwenty, GiSpinningSword} from 'react-icons/gi'
 
 import './Fight.css'
 
-export default function Fight() {
+export default function Fight({setFormula}) {
     const [ character, setCharacter ] = useState(loadCharacter())
 
     function updateState(val, field) {
@@ -103,6 +104,11 @@ export default function Fight() {
                                     <div>{w.damage}</div>
                                     <span>Damage</span>
                                 </div>
+                            </div>
+                            <div className="weapon-actions">
+                                <GiDiceTwentyFacesTwenty size={36} onClick={() => setFormula(`d20 + ${w.atkBns}`)} />
+                                <div style={{width: '24px'}} />
+                                <GiSpinningSword size={36} onClick={() => setFormula(w.damage)} />
                             </div>
                         </div>
                         )

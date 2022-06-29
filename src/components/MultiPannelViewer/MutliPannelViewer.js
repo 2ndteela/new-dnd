@@ -7,6 +7,7 @@ import Spells from '../../views/Spells/Spells'
 import './MultiPannelViewer.css'
 import SideNav from "../SideNav/SideNav"
 import { writeCharacterToDb } from "../../assets/services"
+import Roller from '../../components/Roller/Roller'
 
 export default function MultiPannelViewer() {
     const windowWidth = window.innerWidth
@@ -14,11 +15,12 @@ export default function MultiPannelViewer() {
     const [ pannelTwo, setPannelTwo ] = useState(windowWidth > 1099 ? 'fight' : null)
     const [ pannelToAdd, setPannelToAdd ] = useState(null)
     const [ transitionActive, setTransitionActive ] = useState(true)
+    const [ formula, setFormula ] = useState('')
 
     function getPannel(num) {
 
         let header = 'Fight'
-        let body = <Fight />
+        let body = <Fight setFormula={setFormula} />
         let toGet = pannelOne
 
 
@@ -39,7 +41,7 @@ export default function MultiPannelViewer() {
         }
         else if (toGet === 'skills') {
             header = 'Skills'
-            body = <Skills />
+            body = <Skills setFormula={setFormula} />
         }
         else if(toGet === 'edit') {
             header = 'Edit'
@@ -82,6 +84,7 @@ export default function MultiPannelViewer() {
 
     return (
         <div id="pannels-container">
+            <Roller formula={formula} setFormula={setFormula} />
             <div>
                 <SideNav addPannel={addPannel} pannels={[pannelOne, pannelTwo]} />
             </div>

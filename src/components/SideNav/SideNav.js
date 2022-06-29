@@ -50,7 +50,7 @@ export default function SideNav({addPannel, pannels}) {
     return (
         <div id='side-nav-container'>
             <div style={{width: '100%'}} id="side-nav-buttons" >
-                {buttons.map(b => <button onClick={() => addPannel(b.name)} style={makeStyles(b.name)}>{b.icon}</button> )}
+                {buttons.map(b => <button key={b.name} onClick={() => addPannel(b.name)} style={makeStyles(b.name)}>{b.icon}</button> )}
                 { windowWidth < 1099 && <button id="sign-out-button" onClick={() => navigate('/characters')} > <FaSignOutAlt></FaSignOutAlt></button>}
             </div>
             { windowWidth > 1099 && <button id="sign-out-button" onClick={() => navigate('/characters')} > <FaSignOutAlt></FaSignOutAlt></button>}

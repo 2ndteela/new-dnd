@@ -7,6 +7,8 @@
 
 .skills-box {
     width: 100%;
+    position: relative;
+    right: 4px;
 }
 
 .solo-skill {
@@ -39,7 +41,24 @@
 }
 
 .selected-skill {
-    border-left: 4px solid #0A2239;
-    padding-left: 8px;
     background-color: #eee;
+}
+
+.roll-dice-for-skill {
+    background-color: #0A2239;
+    height: 100%;
+    width: 0px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: .2s;
+    opacity: 0;
+}
+
+.selected-skill .roll-dice-for-skill {
+    width: 24px;
+    margin-right: 8px;
+    opacity: 1;
 }
