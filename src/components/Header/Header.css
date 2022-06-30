@@ -2,7 +2,7 @@
     width: 100vw;
     height: 58px;
     justify-content: center;
-    background-color: #0A2239;
+    background-color: #1e3b56;
     color: white;
     position: relative;
     z-index: 10;
@@ -38,9 +38,8 @@
     top: 58px;
     width: 100vw;
     padding: 0px 16px;
-    background-color: white;
+    background-color: #333;
     z-index: 5;
-    border-bottom: 1px solid lightgray;
     justify-content: flex-start;
     align-items: flex-start;
     overflow: hidden;
@@ -49,7 +48,7 @@
 }
 
 #hamberger-drawer a {
-    color: grey;
+    color: #ffffffdf;
     text-decoration: none;
     padding-top: 16px;
 }

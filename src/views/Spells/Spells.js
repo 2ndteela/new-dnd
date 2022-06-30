@@ -37,7 +37,7 @@ export default function Spells() {
 
         setFilteredSpells(arr)
 
-    }, [searchTerm, filterTerm])
+    }, [searchTerm, filterTerm, spells])
 
     return ( 
         <div id="spells-container">
@@ -60,7 +60,7 @@ export default function Spells() {
                                 <h3>{s.name}</h3>
                                 <span>{s.level === 'Cantrip' || s.level === 'cantrip' ? 'Cantrip' : 'Level ' + s.level}</span>
                             </div>
-                            <div style={{paddingBottom: '8px', color: '#0A2239'}}>
+                            <div style={{paddingBottom: '8px', color: '#1e3b56'}}>
                                 {s.con === true ? 'Concentration' : ''}
                             </div>
                             <div style={{paddingBottom: '8px'}}>

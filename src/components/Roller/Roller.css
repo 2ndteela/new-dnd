@@ -15,8 +15,7 @@
 #roller-body {
     width: 180px;
     height: 180px;
-    background-color: #fff;
-    border: 1px solid grey;
+    background-color: #333;
     border-radius: 8px;
     z-index: 50;
     display: flex;
@@ -29,11 +28,11 @@
 
 #roller-body h1 {
     font-size: 84px;
-    color: lightgrey;
+    color: #ffffff80;
 }
 
 .final-color {
-    color: black !important;
+    color: #ffffffdf !important;
 }
 
 #roller-screen {

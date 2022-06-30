@@ -34,9 +34,9 @@ export default function SideNav({addPannel, pannels}) {
 
         if(pannels[0] === which) 
             return {
-                backgroundColor: "#0A2239",
+                backgroundColor: "#1e3b56",
                 color: 'white',
-                borderColor: "#0A2239"
+                borderColor: "#1e3b56"
             }
         
         else if(pannels[1] === which && windowWidth > 1099)

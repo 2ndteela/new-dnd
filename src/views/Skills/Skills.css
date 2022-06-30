@@ -25,7 +25,7 @@
 }
 
 .selected-skill span {
-    background-color: #0A2239;
+    background-color: #1e3b56;
     color: white;
 }
 
@@ -41,11 +41,10 @@
 }
 
 .selected-skill {
-    background-color: #eee;
+    background-color: #333;
 }
 
 .roll-dice-for-skill {
-    background-color: #0A2239;
     height: 100%;
     width: 0px;
     color: white;

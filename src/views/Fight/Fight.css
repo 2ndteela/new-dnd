@@ -12,24 +12,24 @@
 }
 
 .some-stat {
-    border: 2px solid grey;
     border-radius: 8px; 
     position: relative;
     width: 100px;
-    height: 48px;
+    padding-top: 24px;
+    padding-bottom: 8px;
     justify-content: center;
     align-items: center;
+    background-color: #333;
 }
 
 .some-stat .stat-label {
     position: absolute;
-    top: -10px;
-    background-color: white;
-    left: 12px;
+    top: 4px;
+    left: 4px;
     padding: 0 4px;
     font-size: 12px;
     font-weight: bold;
-    color: grey;
+    color: #ffffffdf;
 }
 
 .read-only-stats {
@@ -47,11 +47,11 @@
 
 .weapon-container {
     width: 100%;
-    border: 2px solid grey;
     border-radius: 8px;
     margin-bottom: 16px;
     align-items: flex-start;
     padding: 16px;
+    background-color: #333;
 }
 
 .weapon-header {

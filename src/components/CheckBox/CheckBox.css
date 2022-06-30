@@ -1,5 +1,5 @@
 .outer-box {
-    border: 1px solid #0A2239;
+    border: 1px solid #1e3b56;
     justify-content: center;
     align-items: center ;
     height: 16px;
@@ -11,7 +11,7 @@
     height: 16px;
     width: 16px;
     opacity: 0;
-    background-color: #0A2239;
+    background-color: #1e3b56;
     border-radius: 4px;
 }
 

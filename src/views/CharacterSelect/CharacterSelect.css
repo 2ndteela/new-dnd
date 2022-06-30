@@ -10,8 +10,8 @@
 #full-bottom-button a {
     width: 92vw;
     padding: 8px;
-    background-color: lightgray;
-    color: #0A2239;
+    background-color: #242424;
+    color: #ffffffdf;
     border-radius: 4px;
     text-decoration: none;
     max-width: 680px;
@@ -24,10 +24,10 @@
     padding: 16px;
     border-radius: 4px;
     margin-bottom: 8px;
-    border: 1px solid lightgray;
     transition: .3s;
+    background-color: #242424;
 }
 
 .char-card:hover {
-    background-color: lightgray;
+    background-color: #333;
 }

@@ -1,19 +1,18 @@
 #side-nav-container {
     display: flex;
     width: 64px;
-    border-right: 1px solid #0A2239;
     height: 100vh;
     flex-direction: column;
     justify-content: space-between;
+    background-color: #333;
 }
 
 #side-nav-container button {
     width: 100%;
-    background-color: white;
+    background-color: #333;
     border: none;
     border-radius: 0px;
-    border-bottom: 1px solid #0A2239;
-    color: #0A2239;
+    color: #ffffff99;
     padding: 0px !important;
     margin: 0px !important;
     height: 64px;
@@ -24,14 +23,11 @@
 }
 
 #side-nav-container button#sign-out-button {
-    border-top: 1px solid #0A2239;
     width: 100%;
 }
 
 @media screen and (max-width: 1099px) {
     #side-nav-container {
-        border-right: none;
-        border-top: 1px solid #0A2239;
         flex-direction: row;
         height: 64px;
         width: 100vw;
@@ -43,7 +39,6 @@
     }
 
     #side-nav-buttons button {
-        border-right: 1px solid #0A2239;
         border-bottom: none;
         flex: 1 1;
     }

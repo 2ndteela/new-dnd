@@ -12,7 +12,7 @@
 
 .pannel-header {
     width: 100%;
-    background-color: #0A2239;
+    background-color: #1e3b56;
     padding: 16px;
     color: white;
     transition: .5s;
@@ -21,11 +21,11 @@
 .pannel-body-container {
     padding: 16px;
     overflow: scroll;
-    border: 2px solid #0A2239;
     border-top: none;
     height: 84vh;
     max-height: 84vh;
     min-width: 500px;
+    background-color: #1f1f1f;
 }
 
 #all-the-pannels {
