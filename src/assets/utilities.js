@@ -69,6 +69,10 @@ export const skillList = () => {
             field: 'intim'
         },
         {
+            name: 'Investigation',
+            field: 'invest'
+        },
+        {
             name: 'Medicine',
             field: 'med'
         },

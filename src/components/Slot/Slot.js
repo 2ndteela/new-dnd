@@ -5,14 +5,16 @@ export default function Slot(props) {
     const {val, field, idx, arr, max, reverse, label, onUpdate} = props
 
     function inc() {
-        const temp = parseInt(val, 10) + 1
+        let newVal = !!val ? parseInt(val, 10) : 0
+        const temp = newVal + 1
         if(temp <= max) 
             if(arr) handleUpdate(temp, idx, arr)
             else handleUpdate(temp)
     }
 
     function dec() {
-        const temp = parseInt(val, 10) - 1
+        let newVal = !!val ? parseInt(val, 10) : 0
+        const temp = newVal - 1
         if(temp > -1) 
             if(arr) handleUpdate(temp, idx, arr)
             else handleUpdate(temp)
