@@ -4,11 +4,11 @@
 
 .spell-box {
     width: 100%;
-    border: 2px solid grey;
     border-radius: 8px;
     padding: 16px;
     align-items: flex-start;
     margin-bottom: 16px;
+    background-color: #333;
 }
 
 .spell-header {
@@ -33,8 +33,17 @@
     width: 100%;
 }
 
+#spells-list-container {
+    width: 100%;
+}
+
 @media screen and (max-width: 1009px) {
     #spells-container {
         width: 100vw;
+    }
+
+    #spells-list-container {
+        padding: 16px;
+        padding-top: 0px;
     }
 }

@@ -469,6 +469,7 @@ class Edit extends Component {
                         <button className="full-button" onClick={() => this.addCustom()}>Add Custom</button>
                     </ExpansionPannel>
                     </div>
+                    <br></br>
                     <div className={ this.state.savedChar === null ? "button-box to-bottom" : "button-box to-bottom-nav"} >
                         <button className="flat-button" onClick={() => this.saveCharacter()}>Save Character</button>
                     </div>

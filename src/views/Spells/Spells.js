@@ -43,7 +43,7 @@ export default function Spells() {
         <div id="spells-container">
             {spells?.length === 0 && <h3>No spells! Add some in the edit tab.</h3>}
             {spells?.length > 0 && (
-                <div>
+                <div id="spells-list-container">
                 <div className="styled-input">
                     <select value={filterTerm} onChange={(e) => setFilterTerm(e.target.value)} >
                         <option value="lowest" >Lowest Level</option>
