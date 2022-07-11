@@ -69,3 +69,15 @@ export const createNewUser = async (email, password) => {
         throw err
     }
 }
+
+export const searchForSpell = async spell => {
+    try {
+        const split = spell.spell(' ')
+        const resp = await fetch(`https://www.dnd5eapi.co/api/spells/${split.join('-').toLowercase()}`)
+        return resp
+    }
+    catch (error) {
+        console.error('error is', error)
+        return null
+    }
+}

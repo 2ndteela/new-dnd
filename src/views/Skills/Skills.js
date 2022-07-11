@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StatBox from '../../components/StatBox/StatBox';
 import './Skills.css'
 import { skillList, loadCharacter } from '../../assets/utilities';
@@ -8,6 +8,19 @@ export default function Skills({setFormula}) {
     const skills = skillList()
     const character = loadCharacter()
     const [ selectedSkill, setSelectedSkill ] = useState()
+    const [ currentSkills, setCurrentSkills ] = useState(skills)
+    const [ skillFilter, setSkillFilter ] = useState('All')
+    const skillBases = ['All', 'Chr', 'Dex', 'Int', 'Str', 'Wis']
+
+    useEffect(() => {
+        const allSkills = [...skills]
+
+        if(skillFilter === 'All')
+            setCurrentSkills(allSkills)
+
+        else 
+            setCurrentSkills(allSkills.filter(s => s.base === skillFilter))    
+        }, [skillFilter, skills])
 
     return ( 
         <div>
@@ -22,9 +35,16 @@ export default function Skills({setFormula}) {
                     <StatBox name="Strength" save={character.strSave} main={character.strength} setFormula={setFormula}></StatBox>
                     <StatBox name="Wisdom" save={character.wisSave} main={character.wisdom} setFormula={setFormula}></StatBox>
                 </div>
-                <h2 className="sub-header" style={{color: 'grey'}} >Skill Checks</h2>
+                <div id='skill-header-and-buttons' >
+                    <h2 className="sub-header" style={{color: 'grey', paddingBottom: '4px'}} >Skill Checks</h2>
+                    <div id="skill-filter-buttons">
+                    {
+                        skillBases.map(s => <button onClick={() => setSkillFilter(s)} className={`${skillFilter === s ? 'selected-skill-button' : ''}`} >{s}</button>)
+                    }
+                    </div>
+                </div>
                 <div className="skills-box" >
-                    {skills.map((s, i) => {
+                    {currentSkills.map((s, i) => {
                         return (
                             <div className={selectedSkill === i ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => setSelectedSkill(i)} key={`s-${i}`}>
                                 <div style={{display: 'flex', flexDirection: 'row', height: '24px'}}>

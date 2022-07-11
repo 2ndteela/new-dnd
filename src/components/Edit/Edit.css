@@ -1,12 +1,12 @@
-.multi-input {
+#edit-page-container .multi-input {
     flex-direction: row !important;
     justify-content: space-between;
-    padding-bottom: 16px;
+    padding-bottom: 4px;
 }
 
 .multi-input .styled-input {
     flex: 1 !important;
-    margin-left: 8px;;
+    margin-left: 4px;;
 }
 
 .multi-input .styled-input:first-child {

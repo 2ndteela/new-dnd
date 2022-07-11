@@ -38,75 +38,93 @@ export const skillList = () => {
     return [
         {
             name: 'Acrobatics',
-            field: 'acrobatics'
+            field: 'acrobatics',
+            base: 'Dex'
         },
         {
             name: 'Animal Handling',
-            field: 'aniHand'
+            field: 'aniHand',
+            base: 'Wis'
         },
         {
             name: 'Arcana',
-            field: 'arcana'
+            field: 'arcana',
+            base: 'Int'
         },
         {
             name: 'Athletics',
-            field: 'athletics'
+            field: 'athletics',
+            base: 'Str'
         },
         {
             name: 'Deception',
-            field: 'deception'
+            field: 'deception',
+            base: 'Chr'
         },
         {
             name: 'History',
-            field: 'history'
+            field: 'history',
+            base: 'Int'
         },
         {
             name: 'Insight',
-            field: 'insight'
+            field: 'insight',
+            base: 'Wis'
         },
         {
             name: 'Initimidation',
-            field: 'intim'
+            field: 'intim',
+            base: 'Chr'
         },
         {
             name: 'Investigation',
-            field: 'invest'
+            field: 'invest',
+            base: 'Int'
         },
         {
             name: 'Medicine',
-            field: 'med'
+            field: 'med',
+            base: 'Wis'
         },
         {
             name: 'Nature',
-            field: 'nature'
+            field: 'nature',
+            base: 'Int'
         },
         {
             name: 'Perception',
-            field: 'perception'
+            field: 'perception',
+            base: 'Wis'
         },
         {
             name: 'Performance',
-            field: 'perform'
+            field: 'perform',
+            base: 'Chr'
         },
         {
             name: 'Persuasion',
-            field: 'persuasion'
+            field: 'persuasion',
+            base: 'Chr'
         },
         {
             name: 'Religion',
-            field: 'religion'
+            field: 'religion',
+            base: 'Int'
         },
         {
             name: 'Slight of Hand',
-            field: 'soh'
+            field: 'soh',
+            base: 'Dex'
         },
         {
             name: 'Sealth',
-            field: 'stealth'
+            field: 'stealth',
+            base: 'Dex'
         },
         {
             name: 'Survival',
-            field: 'survival'
+            field: 'survival',
+            base: 'Wis'
         }
     ]
 }

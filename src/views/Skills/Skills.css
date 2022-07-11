@@ -24,6 +24,10 @@
     width: 24px;
 }
 
+.solo-skill h3 {
+    color: #ffffff99;
+}
+
 .selected-skill span {
     background-color: #1e3b56;
     color: white;
@@ -60,4 +64,27 @@
     width: 24px;
     margin-right: 8px;
     opacity: 1;
+}
+
+#skill-header-and-buttons {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+#skill-filter-buttons {
+    flex-direction: row;
+}
+
+#skill-filter-buttons button {
+    padding: 2px 4px !important;
+    background-color: transparent;
+    border: 1px solid grey;
+    color: grey;
+}
+
+#skill-filter-buttons button.selected-skill-button {
+    background-color: lightgrey;
+    border: 1px solid lightgray;
+    color: #333;
 }

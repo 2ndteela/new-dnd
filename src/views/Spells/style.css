@@ -7,7 +7,7 @@
     border-radius: 8px;
     padding: 16px;
     align-items: flex-start;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     background-color: #333;
 }
 
@@ -35,6 +35,11 @@
 
 #spells-list-container {
     width: 100%;
+}
+
+.spell-requirement {
+    color: white;
+    padding-right: 16px;
 }
 
 @media screen and (max-width: 1009px) {

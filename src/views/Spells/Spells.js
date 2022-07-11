@@ -60,9 +60,6 @@ export default function Spells() {
                                 <h3>{s.name}</h3>
                                 <span>{s.level === 'Cantrip' || s.level === 'cantrip' ? 'Cantrip' : 'Level ' + s.level}</span>
                             </div>
-                            <div style={{paddingBottom: '8px', color: '#1e3b56'}}>
-                                {s.con === true ? 'Concentration' : ''}
-                            </div>
                             <div style={{paddingBottom: '8px'}}>
                                 {s.description}
                             </div>
@@ -75,6 +72,11 @@ export default function Spells() {
                                     <div>{s.damage}</div>
                                     <span>Damage</span>
                                 </div>
+                            </div>
+                            <div style={{paddingTop: '12px', flexDirection: 'row'}}>
+                            { s.con && <div className='spell-requirement'>Concentration</div>}
+                            { s.somatic && <div className='spell-requirement'>Somatic</div>}
+                            { s.vocal && <div className='spell-requirement'>Vocal</div>}
                             </div>
                         </div>
                     )

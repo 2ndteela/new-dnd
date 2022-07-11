@@ -47,7 +47,8 @@ class Edit extends Component {
             wisdom: 10,
             gold: 0,
             silver: 0,
-            copper: 0
+            copper: 0,
+            spellToSearch: ''
         }
 
         this.updateState = this.updateState.bind(this)
@@ -393,6 +394,7 @@ class Edit extends Component {
                     </ExpansionPannel>
 
                     <ExpansionPannel header="Spells">
+                        <Input label="Search All Spells" val={this.spellToSearch} onUpdate={this.updateState} />
                         {this.state.spells.map((s, itr) => {
                             return(
                                 <div key={"spl-" + itr} style={{width: '100%', alignItems: 'flex-end'}}>
@@ -406,7 +408,11 @@ class Edit extends Component {
                                         <Input label="Level" val={s.level} field="level" idx={itr} arr="spells" onUpdate={this.updateArrayValue} />
                                     </div>
                                     <Input label="Description" textarea val={s.description} arr="spells" field="description" idx={itr} onUpdate={this.updateArrayValue} />
-                                    <CheckBox label='Concentration' model={s.con} idx={itr} arr="spells" field="con" onUpdate={this.updateArrayValue} ></CheckBox>
+                                    <div style={{flexDirection: 'row', justifyContent: 'flex-start', width: '100%'}}>
+                                        <CheckBox label='Concentration' model={s.con} idx={itr} arr="spells" field="con" onUpdate={this.updateArrayValue} ></CheckBox>
+                                        <CheckBox label='Vocal' model={s.vocal} idx={itr} arr="spells" field="vocal" onUpdate={this.updateArrayValue} ></CheckBox>
+                                        <CheckBox label='Somatic' model={s.somatic} idx={itr} arr="spells" field="somatic" onUpdate={this.updateArrayValue} ></CheckBox>
+                                    </div>
                                 </div>
                             )
                         })}

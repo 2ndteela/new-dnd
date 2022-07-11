@@ -112,7 +112,7 @@ button:hover {
 
 .flat-button {
   background-color: #333;
-  color: #white;
+  color: transparent;
   border-color: #333;
 }
 
