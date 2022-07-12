@@ -7,7 +7,6 @@
     background-color: transparent;
     margin-bottom: 8px;
     flex-direction: row;
-    margin-top: 8px;
     background-color: #333;
 }
 
@@ -42,10 +41,6 @@
     width: 30px;
 }
 
-.add {
-    top: -4px;
-}
-
 .add input {
     text-align: center;
 }
@@ -64,3 +59,7 @@
     height: 100% !important;
 }
 
+.text-field-standin {
+    width: 100%;
+    text-align: start;
+}

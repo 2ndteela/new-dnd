@@ -22,7 +22,6 @@ export default function Input(props) {
             onUpdate(val, field, idx, arr)
         }
         else {
-            console.log(val, field)
             onUpdate(val, field)
         }
     }

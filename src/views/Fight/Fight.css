@@ -39,10 +39,9 @@
     padding-bottom: 16px;
 }
 
-.read-only-stats div {
-    width: 31% !important;
-    height: 48px;
+.read-only-stats .styled-input {
     margin-bottom: 0;
+    width: 32%;
 }
 
 .weapon-container {
@@ -72,7 +71,11 @@
 }
 
 .weapon-stat-box {
-    width: 30%;
+    width: 50%;
+}
+
+.weapon-stat-box.smaller {
+    width: 20%;
 }
 
 .weapon-stat-box div {
@@ -116,4 +119,10 @@
     width: 100%;
     justify-content: flex-end;
     padding-top: 16px;
+}
+
+.editable-weapon-container {
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 16px;
 }

@@ -434,25 +434,6 @@ class Edit extends Component {
                             <button onClick={() => this.addSpellSlot()} className="flat-button">Add Slot</button>
                         </div>
                     </ExpansionPannel>
-                    <ExpansionPannel header="Other Attacks">
-                        {this.state.customAttacks.map((ca, i) => {
-                            return( 
-                                <div style={{width: '100%', alignItems: 'flex-end'}} key={"ca-" + i} >
-                                    <button className="icon-button" onClick={() => this.removeArrayValue('customAttacks', i)} >
-                                        <MdClose />
-                                    </button>
-                                    <Input label="Name" key={'ca-' + i} idx={i} field="name" val={ca.name} arr="customAttacks" onUpdate={this.updateArrayValue}></Input>
-                                    <div className="multi-input">
-                                        <Input label="Range" val={ca.range} field="range" idx={i} arr="customAttacks" onUpdate={this.updateArrayValue} />
-                                        <Input label="Damage" val={ca.damage} field="damage" idx={i} arr="customAttacks" onUpdate={this.updateArrayValue} />
-                                        <Input label="Damage Type" val={ca.damType} field="damType" idx={i} arr="customAttacks" onUpdate={this.updateArrayValue} />
-                                    </div>
-                                    <Input textarea label="Description" val={ca.description} field="description" idx={i} arr="customAttacks" onUpdate={this.updateArrayValue} />
-                                </div>
-                                )
-                        })}
-                        <button className="full-button" onClick={() => this.addCustomAttack()}>Add Attack</button>
-                    </ExpansionPannel>
                     <ExpansionPannel header="Custom Fields">
                     {this.state.customFields.map((cf, i) => {
                             return (
