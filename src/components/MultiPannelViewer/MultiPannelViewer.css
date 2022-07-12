@@ -16,6 +16,7 @@
     padding: 16px;
     color: white;
     transition: .5s;
+    position: relative;
 }
 
 .pannel-body-container {
@@ -85,6 +86,13 @@
 
 .looks-like-second .pannel-body-container {
     border-color: #1d68ad;
+}
+
+.header-action {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 18px;
 }
 
 

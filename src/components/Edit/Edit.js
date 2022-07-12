@@ -394,7 +394,9 @@ class Edit extends Component {
                     </ExpansionPannel>
 
                     <ExpansionPannel header="Spells">
-                        <Input label="Search All Spells" val={this.spellToSearch} onUpdate={this.updateState} />
+                        <div>
+                            <Input label="Search All Spells" val={this.spellToSearch} onUpdate={this.updateState} />
+                        </div>
                         {this.state.spells.map((s, itr) => {
                             return(
                                 <div key={"spl-" + itr} style={{width: '100%', alignItems: 'flex-end'}}>

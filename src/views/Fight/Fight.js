@@ -6,7 +6,7 @@ import {GiDiceTwentyFacesTwenty, GiSpinningSword} from 'react-icons/gi'
 
 import './Fight.css'
 
-export default function Fight({setFormula}) {
+export default function Fight({setFormula, editMode}) {
     const [ character, setCharacter ] = useState(loadCharacter())
 
     function updateState(val, field) {

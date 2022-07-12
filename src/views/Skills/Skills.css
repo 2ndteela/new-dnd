@@ -88,3 +88,11 @@
     border: 1px solid lightgray;
     color: #333;
 }
+
+.editible-stat {
+    padding: 8px;
+    border: 2px solid #333333;
+    border-radius: 8px;
+    padding-bottom: 0px;
+    width: 136px;
+}

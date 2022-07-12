@@ -8,20 +8,23 @@ import './MultiPannelViewer.css'
 import SideNav from "../SideNav/SideNav"
 import { writeCharacterToDb } from "../../assets/services"
 import Roller from '../../components/Roller/Roller'
+import { FaEdit } from 'react-icons/fa'
+import {AiFillSave} from 'react-icons/ai'
 
 export default function MultiPannelViewer() {
     const windowWidth = window.innerWidth
     const [ pannelOne, setPannelOne ] = useState('skills')
     const [ pannelTwo, setPannelTwo ] = useState(windowWidth > 1099 ? 'fight' : null)
+    const [ pannelOneEditMode, setPannelOneEditMode ] = useState(false)
+    const [ pannelTwoEditMode, setPannelTwoEditMode ] = useState(false)
     const [ pannelToAdd, setPannelToAdd ] = useState(null)
     const [ transitionActive, setTransitionActive ] = useState(true)
     const [ formula, setFormula ] = useState('')
 
     function getPannel(num) {
-
-        let header = 'Fight'
-        let body = <Fight setFormula={setFormula} />
         let toGet = pannelOne
+        let isEditMode = pannelOneEditMode
+        let setEditMode = setPannelOneEditMode
 
 
         if(num === -1) {
@@ -31,8 +34,14 @@ export default function MultiPannelViewer() {
             toGet = pannelToAdd
         }
 
-        else if(num === 1)
+        else if(num === 1) {
             toGet = pannelTwo
+            isEditMode = pannelTwoEditMode
+            setEditMode = setPannelTwoEditMode
+        }
+
+        let header = 'Fight'
+        let body = <Fight setFormula={setFormula} editMode={isEditMode} />
         
         
         if(toGet === 'pack') {
@@ -41,7 +50,7 @@ export default function MultiPannelViewer() {
         }
         else if (toGet === 'skills') {
             header = 'Skills'
-            body = <Skills setFormula={setFormula} />
+            body = <Skills setFormula={setFormula} editMode={isEditMode} />
         }
         else if(toGet === 'edit') {
             header = 'Edit'
@@ -55,6 +64,10 @@ export default function MultiPannelViewer() {
         return (
             <div style={{display: 'flex', alignItems: 'flex-start'}}>
                 <div className="pannel-header"> 
+                    {isEditMode ? 
+                        <AiFillSave className="header-action" onClick={() => setEditMode(false)} /> 
+                        : <FaEdit onClick={() => setEditMode(true)} className="header-action" />
+                    }
                     <h2 >{header}</h2>
                 </div>
                 <div className="pannel-body-container">
@@ -94,8 +107,9 @@ export default function MultiPannelViewer() {
                         {getPannel(-1)}
                     </div>
                     <div 
-                        className={`pannel-in-viewer ${pannelToAdd !== null ? 'move-right' : ''} ${transitionActive ? 'in-transition' : ''}`} 
-                    > {getPannel(0)}</div>
+                        className={`pannel-in-viewer ${pannelToAdd !== null ? 'move-right' : ''} ${transitionActive ? 'in-transition' : ''}`}> 
+                        {getPannel(0)}
+                    </div>
                     {
                     windowWidth > 1100 && 
                     <div className={`pannel-in-viewer second-pannel ${pannelToAdd !== null ? 'move-right fade-out' : ''} ${transitionActive ? 'in-transition' : ''}`}> {getPannel(1)}</div>

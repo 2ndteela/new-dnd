@@ -13,7 +13,8 @@ export default function Input(props) {
         arr, 
         val, 
         label, 
-        fillHeight 
+        fillHeight,
+        disabled
     } = props
 
     function handleInput(val) {
@@ -21,6 +22,7 @@ export default function Input(props) {
             onUpdate(val, field, idx, arr)
         }
         else {
+            console.log(val, field)
             onUpdate(val, field)
         }
     }
@@ -40,7 +42,10 @@ export default function Input(props) {
     if(textarea) {
         return ( 
             <div className={ fillHeight === true ? "styled-input fill-height" : "styled-input"} >
-                <textarea onChange={(e) => handleInput(e.target.value, field)}  value={val} ></textarea>
+                {disabled ? 
+                    <div className='textarea-standin'>{val}</div> : 
+                    <textarea onChange={(e) => handleInput(e.target.value, field)}  value={val} ></textarea> 
+                }
                 <span>{label}</span>
             </div>
         );
@@ -66,7 +71,10 @@ export default function Input(props) {
     }
     return ( 
         <div className="styled-input" >
-            <input onChange={(e) => handleInput(e.target.value, field)} value={val} ></input>
+            { disabled ?
+                <div className='text-field-standin'>{val}</div> :
+                <input onChange={(e) => handleInput(e.target.value, field)} value={val} ></input>
+            }
             <span>{label}</span>
         </div>
     )
