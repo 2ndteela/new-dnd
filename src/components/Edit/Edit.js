@@ -170,7 +170,7 @@ class Edit extends Component {
     makeCustom(cf, idx) {
         if (cf.type === 'slot') {
             return (
-                <div style={{width: "100%"}} >
+                <div className='full-width-row' >
                     <Input label="Max Value" val={cf.maxValue} field="maxValue" arr="customFields" idx={idx} onUpdate={this.updateArrayValue} />
                 </div>
             )
@@ -290,7 +290,7 @@ class Edit extends Component {
                         </div>
                         <br></br>
                     
-                        <h3 className="sub-header" style={{color: 'grey'}} >Charisma Skills</h3>
+                        <h3 className="sub-header grey-color">Charisma Skills</h3>
                         <Input add label="Save" val={this.state.charSave} field="charSave" onUpdate={this.updateState} />
                         <div className="multi-input">
                             <Input add label="Deception" val={this.state.deception} field="deception" onUpdate={this.updateState} />
@@ -302,11 +302,11 @@ class Edit extends Component {
                         </div>
                         <br></br>
 
-                        <h3 style={{color: 'grey'}} className="sub-header">Constitution Save</h3>
+                        <h3 className="sub-header grey-color">Constitution Save</h3>
                         <Input add label="Save" val={this.state.conSave} field="conSave" onUpdate={this.updateState} />
                         <br></br>
                         
-                        <h3 className="sub-header" style={{color: 'grey'}} >Dexterity Skills</h3>
+                        <h3 className="sub-header grey-color" >Dexterity Skills</h3>
                         <Input add label="Save" val={this.state.dexSave} field="dexSave" onUpdate={this.updateState} />
                         <div className="multi-input">
                             <Input add label="Acrobatics" val={this.state.acrobatics} field="acrobatics" onUpdate={this.updateState} />
@@ -315,7 +315,7 @@ class Edit extends Component {
                         </div>
                         <br></br>
 
-                        <h3 style={{color: 'grey'}} className="sub-header">Intelligence Skills</h3>
+                        <h3 className="sub-header grey-color">Intelligence Skills</h3>
                         <Input add label="Save" val={this.state.intSave} field="intSave" onUpdate={this.updateState} />
                         <div className="multi-input">
                             <Input add label="Arcana" val={this.state.arcana} field="arcana" onUpdate={this.updateState} />
@@ -328,12 +328,12 @@ class Edit extends Component {
                         </div>
                         <br></br>
 
-                        <h3 style={{color: 'grey'}} className="sub-header">Strength Skills</h3>
+                        <h3 className="grey-color sub-header">Strength Skills</h3>
                         <Input add label="Save" val={this.state.strSave} field="strSave" onUpdate={this.updateState} />
                         <Input add label="Athletics" val={this.state.athletics} field="athletics" onUpdate={this.updateState} />
                         <br></br>
 
-                        <h3 style={{color: 'grey'}} className="sub-header">Wisdom Skills</h3>
+                        <h3 className="grey-color sub-header">Wisdom Skills</h3>
                         <Input add label="Save" val={this.state.wisSave} field="wisSave" onUpdate={this.updateState} />
                         <div className="multi-input">
                             <Input add label="Animal Handling" val={this.state.aniHand} field="aniHand" onUpdate={this.updateState} />
@@ -348,7 +348,7 @@ class Edit extends Component {
                     </ExpansionPannel>
 
                     <ExpansionPannel header="Inventory">
-                        <h3 className="sub-header" style={{color: 'grey', paddingTop: '0px'}}>Weapons</h3>
+                        <h3 className="sub-header grey-color" style={{paddingTop: '0px'}}>Weapons</h3>
                         {this.state.weapons.map((w, itr) => {
                             return (
                             <div key={"weap-" + itr} style={{width: '100%', alignItems: 'flex-end'}} >
@@ -370,7 +370,7 @@ class Edit extends Component {
                         })}
                         <button className="full-button" onClick={() => this.addWeapon()} >Add Weapon</button>
                         <br></br>
-                        <h3 className="sub-header" style={{color: 'grey'}}>Pack</h3>
+                        <h3 className="sub-header grey-color">Pack</h3>
                         <div className="multi-input">
                             <Input add label="Gold" val={this.state.gold} field="gold" onUpdate={this.updateState} />
                             <Input add label="Silver" val={this.state.silver} field="silver" onUpdate={this.updateState} />
@@ -410,7 +410,7 @@ class Edit extends Component {
                                         <Input label="Level" val={s.level} field="level" idx={itr} arr="spells" onUpdate={this.updateArrayValue} />
                                     </div>
                                     <Input label="Description" textarea val={s.description} arr="spells" field="description" idx={itr} onUpdate={this.updateArrayValue} />
-                                    <div style={{flexDirection: 'row', justifyContent: 'flex-start', width: '100%'}}>
+                                    <div className='full-width-row' style={{justifyContent: 'flex-start'}}>
                                         <CheckBox label='Concentration' model={s.con} idx={itr} arr="spells" field="con" onUpdate={this.updateArrayValue} ></CheckBox>
                                         <CheckBox label='Vocal' model={s.vocal} idx={itr} arr="spells" field="vocal" onUpdate={this.updateArrayValue} ></CheckBox>
                                         <CheckBox label='Somatic' model={s.somatic} idx={itr} arr="spells" field="somatic" onUpdate={this.updateArrayValue} ></CheckBox>

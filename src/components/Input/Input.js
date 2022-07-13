@@ -14,7 +14,7 @@ export default function Input(props) {
         val, 
         label, 
         fillHeight,
-        disabled
+        disabled,
     } = props
 
     function handleInput(val) {
@@ -68,6 +68,7 @@ export default function Input(props) {
             </div>
         )
     }
+
     return ( 
         <div className="styled-input" >
             { disabled ?

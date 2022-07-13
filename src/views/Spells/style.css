@@ -42,6 +42,10 @@
     padding-right: 16px;
 }
 
+.edit-spell-box {
+    padding-bottom: 16px;
+}
+
 @media screen and (max-width: 1009px) {
     #spells-container {
         width: 100vw;

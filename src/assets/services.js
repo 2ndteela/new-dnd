@@ -72,12 +72,24 @@ export const createNewUser = async (email, password) => {
 
 export const searchForSpell = async spell => {
     try {
-        const split = spell.spell(' ')
-        const resp = await fetch(`https://www.dnd5eapi.co/api/spells/${split.join('-').toLowercase()}`)
-        return resp
+        const resp = await fetch(`https://www.dnd5eapi.co/api/spells/${spell}`)
+        const data = await resp.json()
+        return data
     }
     catch (error) {
         console.error('error is', error)
         return null
+    }
+}
+
+export const getAllSpells = async () => {
+    try {
+        const resp = await fetch("https://www.dnd5eapi.co/api/spells")
+        const data = await resp.json()
+        console.log('resp', data)
+        return data
+    }
+    catch(error) {
+        console.error(error)
     }
 }

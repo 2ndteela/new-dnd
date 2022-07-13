@@ -141,29 +141,26 @@ export default function Fight({setFormula, editMode}) {
                     <Input add label="Dice left" field="hitDiceNum" val={character.hitDiceNum} onUpdate={updateState} />
                 </div>
                 <Input label='Speed' val={character.speed} field="speed" onUpdate={updateState} disabled={!editMode} />
-                <div style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}>
-                    { (character.weapons || editMode) && <h2 className='sub-header' style={{color: 'grey'}} >Attacks and Weapons</h2>}
+                <div className='full-width-row' style={{alignItems: 'center'}}>
+                    { (character.weapons || editMode) && <h2 className='sub-header grey-color' >Attacks and Weapons</h2>}
                     {editMode && <button onClick={addNewWeapon} style={{marginBottom: '0px'}} className="icon-button">+</button>}
                 </div>
                 <div id="all-weapons">
                     {character?.weapons.map((w, i) => (
                         editMode ? 
-                        <div style={{flexDirection: 'row'}}>
+                        <div className='full-width-row'>
                             <div className='editable-weapon-container' >
-                                <div style={{flexDirection: 'row', width: '100%'}}>
+                                <div className='full-width-row space-styled-inputs'>
                                     <Input label="Name" val={w.name} field="name" arr="weapons" idx={i} onUpdate={updateArrayValue} />
-                                    <div style={{width: '16px'}} />
                                     <Input label="Damage Type" val={w.damType} field="damType" arr="weapons" idx={i} onUpdate={updateArrayValue} />
                                 </div>
-                                <div style={{flexDirection: 'row', width: '100%'}}>
+                                <div className='full-width-row space-styled-inputs'>
                                     <Input label="Range" val={w.range} field="range" arr="weapons" idx={i} onUpdate={updateArrayValue} />
-                                    <div style={{width: '24px'}} />
                                     <Input label="Attack Bonus" val={w.atkBns} field="atkBns" arr="weapons" idx={i} onUpdate={updateArrayValue} />
-                                    <div style={{width: '24px'}} />
                                     <Input label="Damage" val={w.damage} field="damage" arr="weapons" idx={i} onUpdate={updateArrayValue} />
                                 </div>
                                 { w.versitile && <Input label="Versitile Damage" val={w.versitileDamage} field='versitileDamage' arr="weapons" idx={i} onUpdate={updateArrayValue} />}
-                                <div style={{flexDirection: 'row', width: '100%'}}>
+                                <div className='full-width-row'>
                                     <CheckBox label='Versitile' model={w.versitile} idx={i} arr="weapons" field="versitile" onUpdate={updateArrayValue} ></CheckBox>
                                 </div>
                             </div> 
@@ -193,8 +190,8 @@ export default function Fight({setFormula, editMode}) {
                     )}
                 </div>
 
-                <div style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}>
-                    { (character.spellSlots || editMode) && <h2 className='sub-header' style={{color: 'grey'}} >Spell Slots</h2>}
+                <div className='full-width-row' style={{alignItems: 'center'}}>
+                    { (character.spellSlots || editMode) && <h2 className='sub-header grey-color'>Spell Slots</h2>}
                     {editMode && 
                         <div style={{flexDirection: 'row'}}>
                             <AiOutlineMinusCircle onClick={() => removeSpellSlot()} style={{fontSize: '24px', marginRight: '8px', position: 'relative'}} />
@@ -204,7 +201,7 @@ export default function Fight({setFormula, editMode}) {
                 </div>
                 {character?.spellSlots?.map((ss, i) => (
                         editMode ? 
-                        <div style={{width: '100%', paddingBottom: '8px', flexDirection: 'row'}}>
+                        <div className='full-width-row' style={{paddingBottom: '8px'}}>
                             <Input label={`Level ${(parseInt(i, 10) + 1)}`} val={ss.maxSlots} idx={i} field="maxSlots" arr="spellSlots" onUpdate={updateArrayValue} add ></Input>
                         </div>
                         : <div style={{width: '100%', paddingBottom: '8px'}}>
@@ -213,17 +210,17 @@ export default function Fight({setFormula, editMode}) {
                     )
                 )}
 
-                <div style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}>
-                    { (character.customFields || editMode) && <h2 className='sub-header' style={{color: 'grey'}} >Custom Fields</h2>}
+                <div className='full-width-row' style={{alignItems: 'center'}}>
+                    { (character.customFields || editMode) && <h2 className='sub-header grey-color' >Custom Fields</h2>}
                     {editMode && <button onClick={addCustomSlot} style={{marginBottom: '0px'}} className="icon-button">+</button>}
                 </div>
                 {character?.customFields?.map((cs, i) => {
 
                     if(editMode) 
                         return (
-                            <div style={{flexDirection: 'row', width: '100%'}}>
+                            <div className='full-width-row'>
                                 <div style={{width: '100%', paddingBottom: '16px'}}>
-                                    <div style={{flexDirection: 'row', width: '100%'}}> 
+                                    <div className='full-width-row'> 
                                         <div className="styled-input">
                                             <select 
                                                 value={cs.type} 

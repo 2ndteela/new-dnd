@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import Fight from '../../views/Fight/Fight'
 import Pack from '../../views/Pack/Pack'
 import Skills from '../../views/Skills/Skills'
@@ -6,7 +6,7 @@ import Edit from '../../views/EditPage.js'
 import Spells from '../../views/Spells/Spells'
 import './MultiPannelViewer.css'
 import SideNav from "../SideNav/SideNav"
-import { writeCharacterToDb } from "../../assets/services"
+import { getAllSpells, writeCharacterToDb } from "../../assets/services"
 import Roller from '../../components/Roller/Roller'
 import { FaEdit } from 'react-icons/fa'
 import {AiFillSave} from 'react-icons/ai'
@@ -20,6 +20,20 @@ export default function MultiPannelViewer() {
     const [ pannelToAdd, setPannelToAdd ] = useState(null)
     const [ transitionActive, setTransitionActive ] = useState(true)
     const [ formula, setFormula ] = useState('')
+    const [ fullSpellList, setfullSpellList ] = useState([])
+
+    useEffect(() => {
+
+        async function getFullSpellList() {
+            const spells = await getAllSpells()
+            console.log(spells)
+            setfullSpellList(spells)
+        }
+
+        if(!fullSpellList.length) {
+            getFullSpellList()
+        }
+    }, [])
 
     function getPannel(num) {
         let toGet = pannelOne
@@ -58,7 +72,7 @@ export default function MultiPannelViewer() {
         }
         else if(toGet === 'spells') {
             header = 'Spells'
-            body = <Spells />
+            body = <Spells editMode={isEditMode} fullSpellList={fullSpellList} />
         }
 
         return (
@@ -78,6 +92,9 @@ export default function MultiPannelViewer() {
     }
 
     function addPannel(p) {
+
+        setPannelOneEditMode(false)
+        setPannelTwoEditMode(false)
 
         setPannelToAdd(p)
         setTransitionActive(true)

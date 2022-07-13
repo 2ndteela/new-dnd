@@ -108,7 +108,7 @@ export default function Skills({setFormula, editMode}) {
             }
 
         <div id='skill-header-and-buttons' >
-            <h2 className="sub-header" style={{color: 'grey', paddingBottom: '4px'}} >Skill Checks</h2>
+            <h2 className="sub-header grey-color" style={{paddingBottom: '4px'}} >Skill Checks</h2>
             <div id="skill-filter-buttons">
             {
                 !editMode && skillBases.map(s => <button key={s} onClick={() => setSkillFilter(s)} className={`${skillFilter === s ? 'selected-skill-button' : ''}`} >{s}</button>)
@@ -134,7 +134,7 @@ export default function Skills({setFormula, editMode}) {
                 )
             ))}
         </div>
-        <h2 className="sub-header" style={{color: 'grey'}} >Abilities</h2>
+        <h2 className="sub-header grey-color">Abilities</h2>
         <div style={{width: '100%'}}>
             {character.abilities.map((a, i) => (
                 editMode ? 
