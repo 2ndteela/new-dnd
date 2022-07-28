@@ -81,6 +81,7 @@
     background-color: transparent;
     border: 1px solid grey;
     color: grey;
+    margin-left: 8px;
 }
 
 #skill-filter-buttons button.selected-skill-button {

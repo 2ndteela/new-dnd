@@ -46,6 +46,83 @@
     padding-bottom: 16px;
 }
 
+#add-new-spell-box {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    border: 4px dashed #333;
+    border-radius: 8px;
+}
+
+#search-new-spell {
+    flex-direction: column;
+    width: 100%;
+}
+
+#handbook-spell-list {
+    width: 100%;
+    background-color: #2f2f2f;
+}
+
+#current-spell-list {
+    max-height: 0px;
+    overflow: scroll;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    transition: .2s;
+    opacity: 0;
+    padding-bottom: 0px;
+}
+
+#current-spell-list.show-handbook-spells {
+    max-height: 300px;
+    opacity: 1;
+    padding-bottom: 2px;
+}
+
+.spell-in-list {
+    padding: 2px 16px;
+    transition: .2s;
+    text-align: left;
+    margin: 4px 4px;
+    border-radius: 16px;
+    background-color: #2f2f2f;
+    border: 1px solid #3f3f3f;
+    flex-direction: row;
+}
+
+.spell-in-list:hover {
+    background-color: #2f2f2f;
+}
+
+#selected-spell-data {
+    background-color: #2f2f2f;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    max-height: 500px;
+    overflow: scroll;
+}
+
+#selected-spell-data b {
+    color: #ffffffd7;
+    padding-right: 4px;
+}
+
+.spell-requirement {
+    font-weight: bold;
+    color: #ffffffd7;
+}
+
+.spell-requirements {
+    margin-bottom: 8px;
+    border-bottom: 1px  solid #ffffffd7;
+}
+
 @media screen and (max-width: 1009px) {
     #spells-container {
         width: 100vw;

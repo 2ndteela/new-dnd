@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import Slot from '../../components/Slot/Slot'
 import Input from '../../components/Input/Input'
-import { writeCharacter, loadCharacter } from '../../assets/utilities';
 
 import './Fight.css'
 import CheckBox from '../../components/CheckBox/CheckBox';
 import { AiFillCloseCircle, AiOutlineMinusCircle } from 'react-icons/ai';
+import { BiSearchAlt } from 'react-icons/bi'
+import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext';
 
-export default function Fight({setFormula, editMode}) {
-    const [ character, setCharacter ] = useState(loadCharacter())
+export default function Fight({setFormula, editMode }) {
+
+    const {character, updateCharacter, allWeapons} = useCharacterContext()
+    const [ filteredWeapons, setFilteredWeapons ] = useState(allWeapons)
+
+    console.log(allWeapons)
 
     function updateState(val, field) {
         const newChar = {...character}
         newChar[field] = val
 
-        setCharacter(newChar)
-        writeCharacter(newChar)
+        updateCharacter(newChar)
     }
 
     function updateArrayValue(val, field, itr = 0, arr) {
@@ -26,7 +30,6 @@ export default function Fight({setFormula, editMode}) {
         charCopy[arr] = temp
 
         updateState(temp, arr)
-        writeCharacter(charCopy)
     }
 
     function longRest() {
@@ -55,8 +58,7 @@ export default function Fight({setFormula, editMode}) {
         newChar.customFields = customs
         newChar.hitDiceNum = moreDice
 
-        setCharacter(newChar)
-        writeCharacter(newChar)
+        updateCharacter(newChar)
     }
 
     function addNewWeapon() {
@@ -69,8 +71,7 @@ export default function Fight({setFormula, editMode}) {
         else 
             char.weapons = []
 
-        setCharacter(char)
-        writeCharacter(char)
+        updateCharacter(char)
     }
 
     function removeWeapon(idx) {
@@ -78,8 +79,7 @@ export default function Fight({setFormula, editMode}) {
         if(char.weapons)
             char.weapons.splice(idx, 1)
 
-        setCharacter(char)
-        writeCharacter(char)
+        updateCharacter(true)
     }
 
     function addNewSpellSlot() {
@@ -92,8 +92,7 @@ export default function Fight({setFormula, editMode}) {
         else 
             char.weapons = []
 
-        setCharacter(char)
-        writeCharacter(char)
+        updateCharacter(char)
     }
 
     function removeSpellSlot() {
@@ -101,8 +100,7 @@ export default function Fight({setFormula, editMode}) {
         if(char.spellSlots)
             char.spellSlots.splice(char.spellSlots.length - 1, 1)
 
-        setCharacter(char)
-        writeCharacter(char)
+        updateCharacter(char)
     }
 
     function addCustomSlot() {
@@ -115,8 +113,7 @@ export default function Fight({setFormula, editMode}) {
         else 
             char.weapons = []
 
-        setCharacter(char)
-        writeCharacter(char)
+        updateCharacter(char)
     }
 
     function removeCustomSlot(idx) {
@@ -124,8 +121,7 @@ export default function Fight({setFormula, editMode}) {
         if(char.customFields)
             char.customFields.splice(idx, 1)
 
-        setCharacter(char)
-        writeCharacter(char)
+        updateCharacter(true)
     }
 
     return ( 
@@ -143,7 +139,13 @@ export default function Fight({setFormula, editMode}) {
                 <Input label='Speed' val={character.speed} field="speed" onUpdate={updateState} disabled={!editMode} />
                 <div className='full-width-row' style={{alignItems: 'center'}}>
                     { (character.weapons || editMode) && <h2 className='sub-header grey-color' >Attacks and Weapons</h2>}
-                    {editMode && <button onClick={addNewWeapon} style={{marginBottom: '0px'}} className="icon-button">+</button>}
+                    {editMode && (
+                    <div style={{flexDirection: 'row'}}>
+                        <span style={{paddingRight: '8px'}}>
+                            <button style={{marginBottom: '0px'}} className='icon-button'> <BiSearchAlt /> </button>
+                        </span>
+                        <button onClick={addNewWeapon} style={{marginBottom: '0px'}} className="icon-button">+</button>
+                    </div>)}
                 </div>
                 <div id="all-weapons">
                     {character?.weapons.map((w, i) => (

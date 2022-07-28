@@ -11,8 +11,10 @@ export default function AllSpellsBottomSheet({addSpell, spells}) {
     const [ selectedSpell, setSelectedSpell ] = useState(null)
 
     useEffect(() => {
-        if(!spellSearch)
+        if(!spellSearch || spellSearch === '') {
             setFilteredSpells(spells.results)
+            setSelectedSpell(null)
+        }
         else {
             const arr = [...spells.results]
             const results = arr.filter(s => s.name.toLocaleLowerCase().includes(spellSearch.toLocaleLowerCase()))
@@ -22,60 +24,26 @@ export default function AllSpellsBottomSheet({addSpell, spells}) {
         }
     }, [spells, spellSearch])
 
-    async function getSpellDetails(spell) {
-        try {
-            const val = await searchForSpell(spell.index)
-            setSpellSearch(spell.name)
-            console.log(val)
-            setSelectedSpell(val)
+    function addSpellToList(spell) {
+        setSpellSearch('')
+        addSpell(spell)
 
-        }
-        catch(error) {
-            console.error(error)
-        }
+        alert(`${spell.name} added to your spell book`)
     }
 
     return (
         <div id="all-spells-side-sheet-container">
-            <button onClick={() => setShow(true)} >All Spells</button>
-            <div id="sliding-side-sheet" className={show ? 'opened' : ''}>
-                <div className='full-width-row' style={{justifyContent: 'flex-end', paddingBottom: '16px'}}>
-                    <MdClose style={{fontSize: '24px'}} onClick={() => setShow(false)} />
-                </div>
-                <div className='full-width-row' >
-                    <Input label="Search" val={spellSearch} onUpdate={setSpellSearch} />
-                </div>
-                <div id="current-spell-list">
-                    {filteredSpells.map(s => (
-                        <div className='spell-in-list' onClick={() => getSpellDetails(s)} >
-                            {s.name}
-                            {s.name === selectedSpell.name && <MdClose style={{marginLeft: '8px'}} />}
-                        </div>
-                    ))}
-                </div>
-                {selectedSpell && 
-                <div id="selected-spell-data">
-                    <div className='full-width-row'>
-                        <div style={{width: '100%', alignItems: 'flex-start', paddingBottom: '8px'}}>
-                            <div className='full-width-row' ><b>Range:</b> <div>{selectedSpell?.range}</div></div>
-                            <div className='full-width-row'> <b>School:</b> <div>{selectedSpell?.school?.name}</div></div>
-                            <div className='full-width-row'> <b>Level:</b><div>{selectedSpell?.level === 0 ? 'Cantrip': `Level ${selectedSpell.level}`}</div></div>
-                            <div className='full-width-row'> <b>Casting Time:</b> <div>{selectedSpell?.casting_time}</div></div>
-                            <div className='full-width-row'> <b>Duration:</b> <div>{selectedSpell?.duration}</div></div>
-                        </div>
-                        <button>Add Spell</button>
+            <button onClick={() => setShow(true)} >Search Spells</button>
+            <div id="all-spells-skrim" className={show ? 'opened' : ''}>
+                <div id="sliding-side-sheet" className={show ? 'opened' : ''}>
+                    <div className='full-width-row' style={{justifyContent: 'flex-end', paddingBottom: '16px'}}>
+                        <MdClose style={{fontSize: '24px'}} onClick={() => setShow(false)} />
                     </div>
-                    <div className='full-width-row spell-requirements'>
-                        {selectedSpell.concentration && <div className='spell-requirement'>Concentration</div>} 
-                        {selectedSpell?.components.includes('V') && <div className='spell-requirement'>Vocal</div>} 
-                        {selectedSpell?.components.includes('S') && <div className='spell-requirement'>Somatic</div>}
+                    <div className='full-width-row' >
+                        <Input label="Search" val={spellSearch} onUpdate={setSpellSearch} />
                     </div>
-                    <div>
-                        {selectedSpell.desc.map(d => (
-                            <div style={{paddingBottom: '8px'}} >{d}</div>
-                        ))}
-                    </div>
-                </div>}
+                    
+                </div>
             </div>
         </div>
     )

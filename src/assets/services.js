@@ -86,10 +86,20 @@ export const getAllSpells = async () => {
     try {
         const resp = await fetch("https://www.dnd5eapi.co/api/spells")
         const data = await resp.json()
-        console.log('resp', data)
         return data
     }
     catch(error) {
         console.error(error)
+    }
+}
+
+export const getAllWeapons = async () => {
+    try {
+        const resp = await fetch("https://www.dnd5eapi.co/api/equipment-categories/weapon")
+        const data = await resp.json()
+        return data
+    }
+    catch(error) {
+
     }
 }

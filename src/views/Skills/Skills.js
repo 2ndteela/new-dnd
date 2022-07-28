@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import StatBox from '../../components/StatBox/StatBox';
 import './Skills.css'
-import { skillList, loadCharacter, writeCharacter } from '../../assets/utilities';
+import { skillList } from '../../assets/utilities';
 import {GiDiceTwentyFacesTwenty} from 'react-icons/gi'
 import Input from '../../components/Input/Input';
+import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext'
 
 export default function Skills({setFormula, editMode}) {
     const [skills] = useState(skillList())
-    const [ character, setCharacter ] = useState(loadCharacter())
     const [ selectedSkill, setSelectedSkill ] = useState()
     const [ currentSkills, setCurrentSkills ] = useState(skills)
     const [ skillFilter, setSkillFilter ] = useState('All')
@@ -47,6 +47,7 @@ export default function Skills({setFormula, editMode}) {
         },
     ]
     const statRows = [statRowOne, statRowTwo]
+    const { character, updateCharacter} = useCharacterContext()
 
     useEffect(() => {
         const allSkills = [...skills]
@@ -62,16 +63,14 @@ export default function Skills({setFormula, editMode}) {
         const char = {...character}
         char[field] = value
 
-        writeCharacter(char)
-        setCharacter(char)
+        updateCharacter(char)
     }
 
     function updateIndex(value, field, index, array) {
         const char = {...character}
         char[array][index][field] = value
 
-        writeCharacter(char)
-        setCharacter(char)
+        updateCharacter(char)
     }
 
     return ( 

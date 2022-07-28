@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react"
 import Fight from '../../views/Fight/Fight'
 import Pack from '../../views/Pack/Pack'
 import Skills from '../../views/Skills/Skills'
-import Edit from '../../views/EditPage.js'
 import Spells from '../../views/Spells/Spells'
 import './MultiPannelViewer.css'
 import SideNav from "../SideNav/SideNav"
@@ -10,6 +9,7 @@ import { getAllSpells, writeCharacterToDb } from "../../assets/services"
 import Roller from '../../components/Roller/Roller'
 import { FaEdit } from 'react-icons/fa'
 import {AiFillSave} from 'react-icons/ai'
+import CharacterContextProvider from "./CharacterContext"
 
 export default function MultiPannelViewer() {
     const windowWidth = window.innerWidth
@@ -20,20 +20,22 @@ export default function MultiPannelViewer() {
     const [ pannelToAdd, setPannelToAdd ] = useState(null)
     const [ transitionActive, setTransitionActive ] = useState(true)
     const [ formula, setFormula ] = useState('')
-    const [ fullSpellList, setfullSpellList ] = useState([])
+    const [ updateCharacter, setUpdateCharacter ] = useState(false)
 
     useEffect(() => {
-
-        async function getFullSpellList() {
-            const spells = await getAllSpells()
-            console.log(spells)
-            setfullSpellList(spells)
+        if(updateCharacter) {
+            setTimeout(() => {setUpdateCharacter(false)}, 50)
         }
+    }, [updateCharacter])
 
-        if(!fullSpellList.length) {
-            getFullSpellList()
-        }
-    }, [])
+    function saveChanges(pannel) {
+        if(pannel === 'one') 
+            setPannelOneEditMode(false)
+
+        else setPannelTwoEditMode(false)
+
+        writeCharacterToDb()
+    }
 
     function getPannel(num) {
         let toGet = pannelOne
@@ -66,20 +68,16 @@ export default function MultiPannelViewer() {
             header = 'Skills'
             body = <Skills setFormula={setFormula} editMode={isEditMode} />
         }
-        else if(toGet === 'edit') {
-            header = 'Edit'
-            body = <Edit />
-        }
         else if(toGet === 'spells') {
             header = 'Spells'
-            body = <Spells editMode={isEditMode} fullSpellList={fullSpellList} />
+            body = <Spells editMode={isEditMode} />
         }
 
         return (
             <div style={{display: 'flex', alignItems: 'flex-start'}}>
                 <div className="pannel-header"> 
                     {isEditMode ? 
-                        <AiFillSave className="header-action" onClick={() => setEditMode(false)} /> 
+                        <AiFillSave className="header-action" onClick={() => saveChanges(num === 0 ? 'one' : 'two')} /> 
                         : <FaEdit onClick={() => setEditMode(true)} className="header-action" />
                     }
                     <h2 >{header}</h2>
@@ -110,29 +108,33 @@ export default function MultiPannelViewer() {
             setPannelToAdd(null)
             setTransitionActive(false)
         }, 500)
+
+        writeCharacterToDb()
     }
 
     return (
-        <div id="pannels-container">
-            <Roller formula={formula} setFormula={setFormula} />
-            <div>
-                <SideNav addPannel={addPannel} pannels={[pannelOne, pannelTwo]} />
-            </div>
-            <div id="all-the-pannels" >
-                <div id="pannel-window">
-                    <div id="area-to-add-new-window" className={`${pannelToAdd !== null ? 'add-in' : ''} ${transitionActive ? 'in-transition' : ''}`}>
-                        {getPannel(-1)}
+        <CharacterContextProvider>
+            <div id="pannels-container">
+                <Roller formula={formula} setFormula={setFormula} />
+                <div>
+                    <SideNav addPannel={addPannel} pannels={[pannelOne, pannelTwo]} />
+                </div>
+                <div id="all-the-pannels" >
+                    <div id="pannel-window">
+                        <div id="area-to-add-new-window" className={`${pannelToAdd !== null ? 'add-in' : ''} ${transitionActive ? 'in-transition' : ''}`}>
+                            {getPannel(-1)}
+                        </div>
+                        <div 
+                            className={`pannel-in-viewer ${pannelToAdd !== null ? 'move-right' : ''} ${transitionActive ? 'in-transition' : ''}`}> 
+                            {getPannel(0)}
+                        </div>
+                        {
+                        windowWidth > 1100 && 
+                        <div className={`pannel-in-viewer second-pannel ${pannelToAdd !== null ? 'move-right fade-out' : ''} ${transitionActive ? 'in-transition' : ''}`}> {getPannel(1)}</div>
+                        }
                     </div>
-                    <div 
-                        className={`pannel-in-viewer ${pannelToAdd !== null ? 'move-right' : ''} ${transitionActive ? 'in-transition' : ''}`}> 
-                        {getPannel(0)}
-                    </div>
-                    {
-                    windowWidth > 1100 && 
-                    <div className={`pannel-in-viewer second-pannel ${pannelToAdd !== null ? 'move-right fade-out' : ''} ${transitionActive ? 'in-transition' : ''}`}> {getPannel(1)}</div>
-                    }
                 </div>
             </div>
-        </div>
+        </CharacterContextProvider>
     )
 }

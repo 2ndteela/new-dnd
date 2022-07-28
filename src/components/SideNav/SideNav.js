@@ -1,7 +1,7 @@
 import React from 'react'
 import './SideNav.css'
 import { GiCrossedSwords, GiSkills, GiLightBackpack, GiSpellBook} from "react-icons/gi";
-import { FaEdit, FaSignOutAlt } from 'react-icons/fa'
+import {FaSignOutAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
 import { loadCharacter } from '../../assets/utilities';
 
@@ -16,7 +16,6 @@ export default function SideNav({addPannel, pannels}) {
         {name: 'pack', icon: <GiLightBackpack />}, 
         {name: 'skills', icon: <GiSkills />}, 
         {name: 'spells', icon: <GiSpellBook />}, 
-        {name: 'edit', icon: <FaEdit />}
     ]
 
     if(!character?.spells) {
@@ -24,7 +23,6 @@ export default function SideNav({addPannel, pannels}) {
             {name: 'fight', icon: <GiCrossedSwords />},
             {name: 'pack', icon: <GiLightBackpack />}, 
             {name: 'skills', icon: <GiSkills />}, 
-            {name: 'edit', icon: <FaEdit />}
         ]
     }
 

@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Input from '../../components/Input/Input'
+import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext';
 
 import './Pack.css'
-import { loadCharacter, writeCharacter } from '../../assets/utilities';
 
 export default function Pack() {
-    const [character, setCharacter] = useState(loadCharacter)
+
+    const {character, updateCharacter} = useCharacterContext()
 
     function updateState(val, field) {
         const c = {...character}
         c[field] = val
-        setCharacter(c)
-        writeCharacter(c)
+        updateCharacter(c)
     }
 
     return ( 

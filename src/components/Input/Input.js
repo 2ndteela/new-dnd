@@ -8,6 +8,8 @@ export default function Input(props) {
         textarea, 
         hidden, 
         add, 
+        maxValue,
+        minValue,
         idx, 
         field, 
         arr, 
@@ -18,21 +20,27 @@ export default function Input(props) {
     } = props
 
     function handleInput(val) {
-        if(idx !== undefined) {
+        if(idx !== undefined) 
             onUpdate(val, field, idx, arr)
-        }
-        else {
+        else 
             onUpdate(val, field)
-        }
     }
 
     function dec() {
+        if(minValue)
+            if(val <= parseInt(minValue, 10))
+                return 
+        
         const temp = val - 1
         if(idx === 0 || idx) onUpdate(temp, field, idx, arr)
         else onUpdate(temp, field)
     }
 
     function inc() {
+        if(maxValue)
+            if(val >= parseInt(maxValue, 10))
+                return 
+
         const temp = parseInt(val, 10) + 1
         if(idx === 0 || idx) onUpdate(temp, field, idx, arr)
         else onUpdate(temp, field)
