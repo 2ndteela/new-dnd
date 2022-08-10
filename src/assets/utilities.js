@@ -31,7 +31,10 @@ export const writeCharacterWithoutFlag = data => {
 }
 
 export const loadCharacter = () => {
-    return getFromLocalStorage(characterString)
+    const char = getFromLocalStorage(characterString)
+    if(!char.weapons) char.weapons = []
+    if(!char.abilities) char.abilities = []
+    return char
 }
 
 export const skillList = () => {

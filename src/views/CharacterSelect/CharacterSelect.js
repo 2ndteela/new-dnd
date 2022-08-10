@@ -32,6 +32,26 @@ export default function CharacterSelect() {
         navigate('/multi')
     }
 
+    function createNewCharacter() {
+        const char = {
+            name: 'New Character',
+            con: 10,
+            dex: 10,
+            str: 10,
+            int: 10,
+            wis: 10,
+            char: 10,
+            abilities: [],
+            spellSlots: [],
+            customFields: [],
+            weapons: [],
+            spells: []
+        }
+
+        writeCharacter(char)
+        navigate('/multi')
+    }
+
     return ( 
         <div>
             <Header label="Characters">
@@ -47,9 +67,9 @@ export default function CharacterSelect() {
                     )
                 })}
                 {!characters.length && <h2>Looks like you're new here. Click "New Character" to begin!</h2>}
-            </div>
-            <div id="full-bottom-button">
-                <Link to="/new" >New Character</Link>
+                <div id='new-character-space' onClick={createNewCharacter}>
+                    +
+                </div>
             </div>
         </div>
     );

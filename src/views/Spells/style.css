@@ -123,6 +123,24 @@
     border-bottom: 1px  solid #ffffffd7;
 }
 
+.spell-stat-container.full-width-range {
+    width: 100% !important;
+}
+
+.full-width-row.three-items :first-child {
+    margin-right: 8px;
+    flex: 1;
+}
+
+.full-width-row.three-items :nth-child(2) {
+    flex: 1;
+}
+
+.full-width-row.three-items :last-child {
+    margin-left: 8px;
+    flex: 1;
+}
+
 @media screen and (max-width: 1009px) {
     #spells-container {
         width: 100vw;

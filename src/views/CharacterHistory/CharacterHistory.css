@@ -1,0 +1,36 @@
+#character-history-container {
+    width: 100%;
+    align-items: flex-start;
+}
+
+#character-history-container .full-width {
+    width: 100%;
+}
+
+#character-history-container .information-container {
+    align-items: flex-start;
+    background-color: #333;
+    padding: 8px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+#character-history-container .information-container h2 {
+    padding-bottom: 8px;
+}
+
+.information-container-header {
+    color: #ffffffdf;
+    font-size: 12px;
+    padding-bottom: 4px;
+}
+
+.full-width-row.two-items .information-container {
+    width: 48%;
+}
+
+.full-width-row.two-items :first-child {
+    margin-right: 8px;
+}

@@ -93,6 +93,32 @@ export const getAllSpells = async () => {
     }
 }
 
+export const searchForWeapon = async weapon => {
+    try {
+        const resp = await fetch(`https://www.dnd5eapi.co/api/equipment/${weapon}`)
+        const data = await resp.json()
+
+        if(!data.error)
+            return data
+
+        const magicItem = await fetch(`https://www.dnd5eapi.co/api/magic-items/${weapon}`)
+        const magicData = await magicItem.json()
+        magicData.isMagic = true
+
+        if(!magicData.error)
+            return magicData
+
+        return null
+    }
+    catch(error) {
+
+        
+
+        console.error(error)
+        return null
+    }
+}
+
 export const getAllWeapons = async () => {
     try {
         const resp = await fetch("https://www.dnd5eapi.co/api/equipment-categories/weapon")

@@ -1,30 +1,21 @@
 import React from 'react'
 import './SideNav.css'
-import { GiCrossedSwords, GiSkills, GiLightBackpack, GiSpellBook} from "react-icons/gi";
+import { GiCrossedSwords, GiSkills, GiLightBackpack, GiSpellBook, GiBookmarklet} from "react-icons/gi";
 import {FaSignOutAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
-import { loadCharacter } from '../../assets/utilities';
 
 
 export default function SideNav({addPannel, pannels}) {
 
     const windowWidth = window.innerWidth
-    const character = loadCharacter()
 
     let buttons = [
+        {name: 'history', icon: <GiBookmarklet />},
         {name: 'fight', icon: <GiCrossedSwords />},
         {name: 'pack', icon: <GiLightBackpack />}, 
         {name: 'skills', icon: <GiSkills />}, 
         {name: 'spells', icon: <GiSpellBook />}, 
     ]
-
-    if(!character?.spells) {
-        buttons = [
-            {name: 'fight', icon: <GiCrossedSwords />},
-            {name: 'pack', icon: <GiLightBackpack />}, 
-            {name: 'skills', icon: <GiSkills />}, 
-        ]
-    }
 
     const navigate = useNavigate()  
 

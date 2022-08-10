@@ -5,6 +5,7 @@ import { skillList } from '../../assets/utilities';
 import {GiDiceTwentyFacesTwenty} from 'react-icons/gi'
 import Input from '../../components/Input/Input';
 import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext'
+import { IoMdCloseCircle } from 'react-icons/io'
 
 export default function Skills({setFormula, editMode}) {
     const [skills] = useState(skillList())
@@ -73,6 +74,91 @@ export default function Skills({setFormula, editMode}) {
         updateCharacter(char)
     }
 
+    function addAbility() {
+        const char = {...character}
+        if(!char.abilities) char.abilities = []
+        
+        char.abilities.push({
+            header: '',
+            description: ''
+        })
+
+        updateCharacter(char)
+    }
+
+    function removeAbility(idx) {
+        const char = {...character}
+
+        char.abilities.splice(idx, 1)
+
+        updateCharacter(char)
+    }
+
+    function fillSkills() {
+
+        let charVal, strVal, constVal, dexVal, intVal, wisVal = 10
+
+        try {
+            charVal = Math.floor((character.charisma - 10) / 2)
+            strVal = Math.floor((character.strength - 10) / 2)
+            constVal = Math.floor((character.const - 10) /2)
+            dexVal = Math.floor((character.dex - 10) / 2)
+            intVal = Math.floor((character.intelligence - 10) /2) 
+            wisVal = Math.floor((character.wisdom - 10) / 2 )
+        }
+        finally {
+            const skills = {
+                charSave: charVal,
+                deception: charVal,
+                intim: charVal,
+                perform: charVal,
+                persuasion: charVal,
+
+                conSave: constVal,
+
+                dexSave: dexVal,
+                acrobatics: dexVal,
+                soh: dexVal,
+                stealth: dexVal,
+                
+                intSave: intVal,
+                arcana: intVal,
+                history: intVal,
+                invest: intVal,
+                nature: intVal,
+                religion: intVal,
+
+                strSave: strVal,
+                athletics: strVal,
+
+                wisSave: wisVal,
+                aniHand: wisVal,
+                insight: wisVal,
+                med: wisVal,
+                perception: wisVal,
+                survival: wisVal
+            }
+
+            const char = {...character}
+
+            statRowOne.forEach(stat => {
+                if(!char[stat.main]) char[stat.main] = 10
+                if(!char[stat.save]) char[stat.save] = 0
+            })
+
+            statRowTwo.forEach(stat => {
+                if(!char[stat.main]) char[stat.main] = 10
+                if(!char[stat.save]) char[stat.save] = 0
+            })
+
+            Object.keys(skills).forEach(skill => {
+                char[skill] = skills[skill]
+            })
+
+            updateCharacter(char)
+        }
+    }
+
     return ( 
         <div style={{width: '100%'}}>
             {
@@ -106,12 +192,11 @@ export default function Skills({setFormula, editMode}) {
                 ))
             }
 
+        {editMode && <button onClick={fillSkills} >Fill Skills</button>}
         <div id='skill-header-and-buttons' >
             <h2 className="sub-header grey-color" style={{paddingBottom: '4px'}} >Skill Checks</h2>
             <div id="skill-filter-buttons">
-            {
-                !editMode && skillBases.map(s => <button key={s} onClick={() => setSkillFilter(s)} className={`${skillFilter === s ? 'selected-skill-button' : ''}`} >{s}</button>)
-            }
+            { skillBases.map(s => <button key={s} onClick={() => setSkillFilter(s)} className={`${skillFilter === s ? 'selected-skill-button' : ''}`} >{s}</button>)}
             </div>
         </div>
         <div className="skills-box" >
@@ -133,13 +218,24 @@ export default function Skills({setFormula, editMode}) {
                 )
             ))}
         </div>
-        <h2 className="sub-header grey-color">Abilities</h2>
+        { (character.abilities.length > 0 || editMode) && 
+        <div className='full-width-row'>
+            <h2 className="sub-header grey-color">Abilities</h2>
+            {editMode && <button className='icon-button' onClick={addAbility}>+</button>}
+        </div>}
         <div style={{width: '100%'}}>
             {character.abilities.map((a, i) => (
                 editMode ? 
                 <div style={{width: '100%', paddingBottom: '16px'}}>
-                    <Input label="Name" val={a.header} field='header' idx={i} arr='abilities' onUpdate={updateIndex} />
-                    <Input label="Description" textarea val={a.description} field="description" idx={i} arr='abilities' onUpdate={updateIndex} />
+                    <div className='full-width-row'>
+                        <div style={{width: '100%', marginRight: '8px'}}>
+                            <Input label="Name" val={a.header} field='header' idx={i} arr='abilities' onUpdate={updateIndex} />
+                            <Input label="Description" textarea val={a.description} field="description" idx={i} arr='abilities' onUpdate={updateIndex} />
+                        </div>
+                        <div>
+                            <IoMdCloseCircle style={{fontSize: '24px'}} onClick={() => removeAbility(i)} />
+                        </div>
+                    </div>
                 </div> 
                 : <div 
                     className='class-ability' 

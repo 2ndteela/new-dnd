@@ -5,11 +5,12 @@ import Skills from '../../views/Skills/Skills'
 import Spells from '../../views/Spells/Spells'
 import './MultiPannelViewer.css'
 import SideNav from "../SideNav/SideNav"
-import { getAllSpells, writeCharacterToDb } from "../../assets/services"
+import { writeCharacterToDb } from "../../assets/services"
 import Roller from '../../components/Roller/Roller'
 import { FaEdit } from 'react-icons/fa'
 import {AiFillSave} from 'react-icons/ai'
 import CharacterContextProvider from "./CharacterContext"
+import CharacterHistory from "../../views/CharacterHistory/CharacterHistory.js"
 
 export default function MultiPannelViewer() {
     const windowWidth = window.innerWidth
@@ -71,6 +72,10 @@ export default function MultiPannelViewer() {
         else if(toGet === 'spells') {
             header = 'Spells'
             body = <Spells editMode={isEditMode} />
+        }
+        else if(toGet === 'history') {
+            header = 'Character History'
+            body = <CharacterHistory editMode={isEditMode} />
         }
 
         return (

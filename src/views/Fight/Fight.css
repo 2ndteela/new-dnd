@@ -126,3 +126,62 @@
     justify-content: space-between;
     margin-bottom: 16px;
 }
+
+#handbook-weapons-chips {
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #333;
+    justify-content: center;
+    margin-bottom: 8px;
+    min-width: 100%;
+    padding: 0px 8px;
+    max-height: 0px;
+    transition: .2s;
+    overflow: hidden;
+}
+
+#handbook-weapons-chips.open-weapon-chips {
+    max-height: 500px;
+    padding: 8px;
+}
+
+
+.weapon-chip {
+    background-color: #2f2f2f;
+    border: 1px solid #3f3f3f;
+    padding: 4px 8px;
+    border-radius: 16px;
+    margin-right: 8px;
+}
+
+#selected-weapon-info {
+    width: 100%;
+    background-color: #333;
+    margin-bottom: 8px;
+    align-items: flex-start;
+    padding: 0 8px;
+    transition: .2s;
+    max-height: 0px;
+}
+
+#selected-weapon-info.open-selected-weapon {
+    max-height: 500px;
+    padding: 8px;
+}
+
+#selected-weapon-info span {
+    padding-left: 8px;
+}
+
+#selected-weapon-info strong {
+    padding-right: 4px;
+    color: #ffffffd7;
+}
+
+#selected-weapon-info .magical-description {
+    padding-top: 8px;
+}
+
+#selected-weapon-info .magical-description span {
+    padding-top: 8px;
+}

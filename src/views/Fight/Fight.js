@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slot from '../../components/Slot/Slot'
 import Input from '../../components/Input/Input'
 
 import './Fight.css'
 import CheckBox from '../../components/CheckBox/CheckBox';
 import { AiFillCloseCircle, AiOutlineMinusCircle } from 'react-icons/ai';
-import { BiSearchAlt } from 'react-icons/bi'
 import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext';
+import { searchForWeapon } from '../../assets/services';
+import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 
 export default function Fight({setFormula, editMode }) {
 
     const {character, updateCharacter, allWeapons} = useCharacterContext()
-    const [ filteredWeapons, setFilteredWeapons ] = useState(allWeapons)
-
-    console.log(allWeapons)
+    const [ filteredWeapons, setFilteredWeapons ] = useState([])
+    const [ weaponSearch, setWeaponSearch ] = useState('')
+    const [ selectedWeapon, setSelectedWeapon ] = useState(null)
+    const [ showFilteredWeapons, setShowFilteredWeapons ] = useState(true)
 
     function updateState(val, field) {
         const newChar = {...character}
@@ -79,7 +81,7 @@ export default function Fight({setFormula, editMode }) {
         if(char.weapons)
             char.weapons.splice(idx, 1)
 
-        updateCharacter(true)
+        updateCharacter(char)
     }
 
     function addNewSpellSlot() {
@@ -105,13 +107,13 @@ export default function Fight({setFormula, editMode }) {
 
     function addCustomSlot() {
         const char = {...character}
-        if(char.weapons)
+        if(char.customFields)
             char.customFields.push({
                 maxValue: 0,
                 label: 0
             })
         else 
-            char.weapons = []
+            char.customFields = []
 
         updateCharacter(char)
     }
@@ -121,16 +123,74 @@ export default function Fight({setFormula, editMode }) {
         if(char.customFields)
             char.customFields.splice(idx, 1)
 
-        updateCharacter(true)
+        updateCharacter(char)
+    }
+
+    async function getWeaponDetails(weapon) {
+        if(weapon.name === selectedWeapon?.name)
+            return
+
+        try {
+            const w = await searchForWeapon(weapon.index)
+            if(w) {
+                setWeaponSearch(weapon.name)
+                setSelectedWeapon(w)
+            }
+        }
+        catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {
+        if(allWeapons?.equipment) {
+            if(!weaponSearch) {
+                setFilteredWeapons(allWeapons.equipment)
+                setSelectedWeapon(null)
+            }
+
+            else {
+                setShowFilteredWeapons(true)
+                const filtered = allWeapons.equipment.filter(w => w.name.toLowerCase().includes(weaponSearch.toLowerCase()))
+                setFilteredWeapons(filtered)
+            }
+
+        }
+    }, [weaponSearch, allWeapons, selectedWeapon])
+
+    useEffect(() => {
+        if(!showFilteredWeapons && selectedWeapon)
+            setSelectedWeapon(null)
+    }, [showFilteredWeapons, selectedWeapon])
+
+    function addHandbookWeapon() {
+        const char = {...character}
+        
+        const newWeapon = {
+            name: selectedWeapon.name,
+            damType: selectedWeapon.damage.damage_type.name,
+            range: selectedWeapon.range.long ? `${selectedWeapon.range.normal} - ${selectedWeapon.range.long}` : selectedWeapon.range.normal,
+            damage: selectedWeapon.damage.damage_dice,
+        }
+
+        if(selectedWeapon.two_handed_damage) {
+            newWeapon.versitile = true
+            newWeapon.versitileDamage = selectedWeapon.two_handed_damage.damage_dice
+        }
+
+        char.weapons.push(newWeapon)
+        setSelectedWeapon(null)
+        updateCharacter(char)
     }
 
     return ( 
         <div>
-            <div className>
+            <div>
                 <div className="multi-input" style={{paddingBottom: '16px'}}>
                     <Slot label="Health" max={character.health} val={character.currentHealth} field="currentHealth" onUpdate={updateState} ></Slot>
                     <Input add label="Temporary Health" val={character.tempHealth} field="tempHealth" onUpdate={updateState} ></Input>
                 </div>
+                {editMode && <Input label="Max Health" add val={character.health} field="health" onUpdate={updateState} />}
                 <div className="read-only-stats" >
                     <Input label='Armor Class' val={character.ac} field="ac" onUpdate={updateState} disabled={!editMode} />
                     <Input label='Hit Die' val={character.hitDie} field="hitDie" onUpdate={updateState} disabled={!editMode} />
@@ -141,13 +201,54 @@ export default function Fight({setFormula, editMode }) {
                     { (character.weapons || editMode) && <h2 className='sub-header grey-color' >Attacks and Weapons</h2>}
                     {editMode && (
                     <div style={{flexDirection: 'row'}}>
-                        <span style={{paddingRight: '8px'}}>
-                            <button style={{marginBottom: '0px'}} className='icon-button'> <BiSearchAlt /> </button>
-                        </span>
                         <button onClick={addNewWeapon} style={{marginBottom: '0px'}} className="icon-button">+</button>
                     </div>)}
                 </div>
                 <div id="all-weapons">
+                    { editMode && (
+                        <div style={{width: '100%'}} >
+                            <div className='full-width-row'>
+                                <Input label="Search Handbook Weapons" val={weaponSearch} onUpdate={setWeaponSearch} />
+                                <div style={{paddingLeft: '8px'}} >
+                                    <button className='icon-button' onClick={() => setShowFilteredWeapons(!showFilteredWeapons)} > {showFilteredWeapons ?<MdArrowDropUp /> : <MdArrowDropDown />} </button>
+                                </div>
+                            </div>
+                            <div id='handbook-weapons-chips' className={showFilteredWeapons ? 'open-weapon-chips' : ''} >
+                                {filteredWeapons.map(w => (
+                                    <div key={w.key} onClick={() => getWeaponDetails(w)} className='weapon-chip'>{w.name}</div>
+                                ))}
+                            </div>
+                            <div id="selected-weapon-info" className={selectedWeapon ? 'open-selected-weapon' : ''} >
+                                {selectedWeapon && !selectedWeapon.isMagic && (
+                                        <>
+                                            <div className='full-width-row' ><strong>Name:</strong> {selectedWeapon.name}</div>
+                                            <div className='full-width-row' ><strong>Damage:</strong> {selectedWeapon?.damage?.damage_dice} {selectedWeapon?.two_handed_damage ? `/ ${selectedWeapon.two_handed_damage.damage_dice}` : '' } {selectedWeapon?.damage.damage_type.name} </div>
+                                            { selectedWeapon?.range && <div className='full-width-row'><strong>Range:</strong> {selectedWeapon.range.normal} {selectedWeapon.range.long ? `, ${selectedWeapon.range.long}` : '' }</div>}
+                                            <div className='full-width-row'>
+                                                <div className='full-width-row'>{selectedWeapon?.properties.map(p => <strong>{p.name}</strong>)} </div>
+                                            </div>
+                                        </>
+                                )}
+                                {selectedWeapon && selectedWeapon?.isMagic && (
+                                    <>
+                                        <div className='full-width-row' ><strong>Name:</strong> {selectedWeapon.name}</div>
+                                        <div className='full-width-row' ><strong>Rarity:</strong> {selectedWeapon?.rarity?.name}</div>
+                                        <div className='full-width-row'>
+                                            <div className='magical-description'>{selectedWeapon?.desc.map(d => <span>{d}</span>)} </div>
+                                        </div>
+                                    </>
+                                )}
+                                {selectedWeapon && !selectedWeapon?.isMagic && 
+                                <div 
+                                    className='full-width-row' 
+                                    style={{paddingTop: '8px', justifyContent: 'flex-end'}}
+                                    onClick={addHandbookWeapon}
+                                ><button>Add Weapon</button></div>
+                                }
+                                {selectedWeapon?.isMagic && <div>This weapon can't be added automatically</div>}
+                            </div>
+                        </div>
+                    )}
                     {character?.weapons.map((w, i) => (
                         editMode ? 
                         <div className='full-width-row'>

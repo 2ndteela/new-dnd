@@ -4,7 +4,7 @@ import CheckBox from '../../components/CheckBox/CheckBox';
 import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext';
 
 import './style.css'
-import { MdArrowDropDown, MdArrowDropDownCircle, MdArrowDropUp, MdArrowUpward, MdClose } from 'react-icons/md';
+import { MdArrowDropDown, MdArrowDropUp, MdClose } from 'react-icons/md';
 import {searchForSpell} from '../../assets/services'
 
 export default function Spells({editMode}) {
@@ -38,7 +38,7 @@ export default function Spells({editMode}) {
 
         else 
             setfilteredHandbookSpells(allSpells.results.filter(s => s.name.toLowerCase().includes(handbookSpellSearch.toLocaleLowerCase())))
-    }, [allSpells, handbookSpellSearch])
+    }, [allSpells, handbookSpellSearch, selectedSpell])
 
     function updateState(val, field) {
         const newChar = {...character}
@@ -161,10 +161,46 @@ export default function Spells({editMode}) {
         setHandbookSpellSearch('')
     }
 
+    function updateValue(val, field) {
+        const char = {...character}
+
+        char[field] = val
+
+        updateCharacter(char)
+    }
+
     return ( 
         <div id="spells-container">
-            {spells?.length > 0 && (
                 <div id="spells-list-container">
+                    {
+                        (editMode || character.spellSave || character.spellAtk || character.spellMod) && 
+                        <div style={{width: '100%'}} >
+                            <div className='full-width-row three-items'>
+                                { editMode && <Input label="Spell Save DC" add val={character.spellSave} field='spellSave' onUpdate={updateValue} /> }
+                                { editMode && <Input label="Spell Atk Bonus" add val={character.spellAtk} field='spellAtk' onUpdate={updateValue} /> }
+                                { editMode && <Input label="Spell Modifier" val={character.spellMod} field='spellMod' onUpdate={updateValue} />}
+                                {!editMode &&  
+                                    (<div className='input-look-alike'>
+                                        <div>Spell Save DC</div>
+                                        <div>{character.spellSave ? character.spellSave : '-'}</div>
+                                    </div>)
+                                }
+                                {!editMode &&  
+                                    (<div className='input-look-alike'>
+                                        <div>Spell Atk Bouns</div>
+                                        <div>{character.spellAtk ? character.spellAtk : '-'}</div>
+                                    </div>)
+                                }
+                                {!editMode &&  
+                                    (<div className='input-look-alike'>
+                                        <div>Spell Modifier</div>
+                                        <div>{character.spellMod ? character.spellMod : '-'}</div>
+                                    </div>)
+                                }
+                            </div>
+                            
+                        </div>
+                    }
                     { !editMode && 
                     <div className="styled-input">
                         <select value={filterTerm} onChange={(e) => setFilterTerm(e.target.value)} >
@@ -252,14 +288,14 @@ export default function Spells({editMode}) {
                                     {s.description}
                                 </div>
                                 <div className="spell-stats">
-                                    <div className="spell-stat-container">
+                                    <div className={ s.damage ? "spell-stat-container" : 'spell-stat-container full-width-range'}>
                                         <div>{s.range}</div>
                                         <span>Range</span>
                                     </div>
-                                    <div className="spell-stat-container">
+                                    { s.damage &&  <div className="spell-stat-container">
                                         <div>{s.damage}</div>
                                         <span>Damage</span>
-                                    </div>
+                                    </div>}
                                 </div>
                                 <div style={{paddingTop: '12px', flexDirection: 'row', justifyContent: 'space-between', width: '100%'}}>
                                     <div className='full-width-row' >
@@ -271,7 +307,7 @@ export default function Spells({editMode}) {
                             </div>
                         )
                     )}
-            </div>)}
+            </div>
         </div>
     )
 }
