@@ -20,11 +20,16 @@ export default function Spells({editMode}) {
     const [ showSpellList, setShowSpellList ] = useState(false)
 
     useEffect(() => {
+        try {
         const spells = [...character.spells]
         spells.forEach(s => {
             s.castingLevel = parseInt(s.level, 10)
         })
         setFilteredSpells(spells)
+        }
+        catch {
+            setFilteredSpells([])
+        }
 
     }, [character])
 
