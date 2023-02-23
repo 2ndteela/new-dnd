@@ -9,9 +9,11 @@ import './CharacterSelect.css'
 export default function CharacterSelect() {
     const navigate = useNavigate()  
     const [ characters, setCharacters ] = useState([])
+    const [ loading, setLoading ] = useState(false)
 
 
     useEffect(() => {
+        setLoading(true)
         clearCurrentCharacter()
         
         getCharacters().then(data => {
@@ -24,6 +26,7 @@ export default function CharacterSelect() {
             })
 
             setCharacters(charArray)
+            setLoading(false)
         })
     }, [])
 
@@ -58,6 +61,7 @@ export default function CharacterSelect() {
                 <Link to='/' >Logout</Link>
             </Header>
             <div className="page-content">
+                {loading && <h1>Fetching Characters...</h1>}
                 {characters.map((char, i) => {
                     return (
                         <div className="char-card" key={"char-" + i} onClick={() => goToCharacter(char)} >
@@ -66,10 +70,10 @@ export default function CharacterSelect() {
                         </div>
                     )
                 })}
-                {!characters.length && <h2>Looks like you're new here. Click "New Character" to begin!</h2>}
-                <div id='new-character-space' onClick={createNewCharacter}>
+                {!characters.length && !loading && <h2>Looks like you're new here. Click "New Character" to begin!</h2>}
+                {!loading && <div id='new-character-space' onClick={createNewCharacter}>
                     +
-                </div>
+                </div>}
             </div>
         </div>
     );

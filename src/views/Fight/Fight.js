@@ -35,12 +35,12 @@ export default function Fight({setFormula, editMode }) {
     }
 
     function longRest() {
-        const slots =  [...character.spellSlots]
+        const slots = character.spellSlots ? [...character.spellSlots] : []
         slots?.forEach(s => {
             s.usedSlots = 0
         })
 
-        const customs = [...character.customFields]
+        const customs = character.customFields ? [...character.customFields] : {}
         customs?.forEach(c => {
             if(!!c.maxValue) c.value = 0
         })
