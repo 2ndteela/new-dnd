@@ -1,6 +1,6 @@
 import { getDatabase, child, ref, get, set, push } from "firebase/database";
 import { getFromLocalStorage, loadCharacter, writeCharacterWithoutFlag, writeToLocalStorage } from "./utilities";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
 export const getCharacters = async () => {
     try {
@@ -68,6 +68,19 @@ export const createNewUser = async (email, password) => {
     catch(err) {
         throw err
     }
+}
+
+export const sendForgotPasswordEmail = async (email) => {
+    const auth = getAuth();
+    try {
+        await sendPasswordResetEmail(auth, email)
+        return 200
+    }
+    catch(error) {
+        throw error
+    }
+
+
 }
 
 export const searchForSpell = async spell => {

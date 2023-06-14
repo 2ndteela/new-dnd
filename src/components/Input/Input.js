@@ -60,7 +60,7 @@ export default function Input(props) {
     if(hidden) {
         return(
             <div className="styled-input" >
-                <input onChange={(e) => handleInput(e.target.value, field)} type="password" value={val} ></input>
+                <input onChange={(e) => handleInput(e.target.value, field)} type="password" value={val} autoComplete='current-password' ></input>
                 <span>{label}</span>
             </div>
         )
@@ -78,7 +78,7 @@ export default function Input(props) {
     }
 
     return ( 
-        <div className="styled-input" >
+        <div className="styled-input" autoComplete={label === 'Email' ? 'username' : ''} >
             { disabled ?
                 <div className='text-field-standin'>{val}</div> :
                 <input onChange={(e) => handleInput(e.target.value, field)} value={val} ></input>
