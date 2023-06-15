@@ -1,0 +1,47 @@
+#class-table {
+    display: flex;
+    flex-direction: column;
+    background-color: #1f1f1f;
+    width: calc(100vw - 32px);
+    max-width: 960px;
+}
+
+#class-options {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    width: calc(100vw - 48px);
+    max-width: 960px;
+}
+
+#class-options span {
+    width: 100px;
+    padding: 8px;
+    align-items: center;
+}
+
+.selected-class {
+    background-color: #333;
+    color: #fff;
+}
+
+#class-description {
+    padding: 8px;
+    width: 100%;
+}
+
+#class-description h3, #class-description h4 {
+    font-weight: 300;
+    width: 100%;
+    align-items: flex-start;
+}
+
+#class-description span {
+    width: 100%;
+    align-items: flex-start;
+}
+
+.class-detail {
+    width: 100%;
+    padding-bottom: 16px;
+}

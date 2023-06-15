@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Input from '../components/Input/Input.js'
-import Header from '../components/Header/Header.js'
 import { createNewUser, sendForgotPasswordEmail, signInUser } from '../assets/services.js';
 import { useNavigate } from 'react-router-dom';
 
