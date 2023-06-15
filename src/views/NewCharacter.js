@@ -10,10 +10,6 @@ export default function NewCharacter() {
 
     return (
         <div style={{width: '100%', display: 'flex', alignItems: 'center'}}>
-            <Header label="New Character" >
-                <Link to="/characters">Back To My Characters</Link>
-            </Header>
-            <br />
             <Edit></Edit>
         </div>
     )

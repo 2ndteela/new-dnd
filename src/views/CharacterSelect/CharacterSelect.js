@@ -52,14 +52,11 @@ export default function CharacterSelect() {
         }
 
         writeCharacter(char)
-        navigate('/multi')
+        navigate('/character-create')
     }
 
     return ( 
         <div>
-            <Header label="Characters">
-                <Link to='/' >Logout</Link>
-            </Header>
             <div className="page-content">
                 {loading && <h1>Fetching Characters...</h1>}
                 {characters.map((char, i) => {

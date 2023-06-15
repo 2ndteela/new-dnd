@@ -71,7 +71,6 @@ export default function Login() {
 
     return ( 
         <div>
-            <Header noActions={true} label="Login"></Header>
                 <div className="page-content" style={{justifyContent: 'center'}}>
                     <div className='full-width-row push-end' style={{paddingBottom: '8px'}}>
                         <button className='text-button' onClick={() => setHidePassword(!hidePassword)} >{!hidePassword ? 'Forgot My Password' : 'Never mind'}</button>

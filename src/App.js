@@ -7,17 +7,23 @@ import CharacterSelect from './views/CharacterSelect/CharacterSelect'
 import NewCharacter from './views/NewCharacter'
 import MultiPannelViewer from './components/MultiPannelViewer/MutliPannelViewer';
 import './firebase'
+import CharacterCreation from './views/CharacterCreation/CharacterCreation';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div className="App">
         <Router>
+          <div id='app-container' >
+          <Header />
           <Routes>
-            <Route path='/' element={<Login />} ></Route>
+            <Route path='/' element={<Login />} />
+            <Route path='/character-create' element={<CharacterCreation />} />
             <Route path='/characters' element={<CharacterSelect />} />
             <Route path='/new' element={<NewCharacter />} />
             <Route path='/multi' element={<MultiPannelViewer />} />
           </Routes>
+          </div>
         </Router>
       </div>
   );

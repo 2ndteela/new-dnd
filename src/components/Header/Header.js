@@ -1,33 +1,26 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import './Header.css'
+import { loadCharacter } from '../../assets/utilities';
 
-export default function Header(props) {
+export default function Header() {
 
-    const { label, children, noActions } = props
-    const [ showMenu, setShowMenu ] = useState(false)
+    const location = useLocation()
 
-    function toggleHamberger() {
-        setShowMenu(!showMenu)
-    }
+    const titleText = useMemo(() => {
+        if(location.pathname === '/character-create') return 'New Character Creation'
+        if(location.pathname === '/characters') return 'My Characters'
+        if(location.pathname === '/multi') {
+            const character = loadCharacter()
+            return character?.name ?? ''
+        }
 
-    if(noActions) 
-        return (
-            <div className="header-container center-up">
-                <h1>{label}</h1>
-            </div>
-        )
+        return "Dee n' Dee"
+    }, [location])
 
     return ( 
         <div className="header-container">
-            <h1>{label}</h1>
-            <div className={showMenu === true ? 'make-ex hamberger-icon': 'hamberger-icon' } onClick={toggleHamberger}>
-                <span id="nomal-bar" ></span>
-                <span id="flippy-bar"></span>
-                <span id='go-away-bar'></span>
-            </div>
-            <div id="hamberger-drawer" className={showMenu === true ? 'show-menu' : ''}>
-                {children}
-            </div>
+            <h1>{titleText}</h1>
         </div>
         );
 }

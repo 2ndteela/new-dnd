@@ -79,8 +79,6 @@ export const sendForgotPasswordEmail = async (email) => {
     catch(error) {
         throw error
     }
-
-
 }
 
 export const searchForSpell = async spell => {
@@ -124,9 +122,6 @@ export const searchForWeapon = async weapon => {
         return null
     }
     catch(error) {
-
-        
-
         console.error(error)
         return null
     }
@@ -139,6 +134,28 @@ export const getAllWeapons = async () => {
         return data
     }
     catch(error) {
+        console.error(error)
+    }
+}
 
+export const getAllClasses = async () => {
+    try {
+        const resp = await fetch('https://www.dnd5eapi.co/api/classes')
+        const data = await resp.json()
+        return data.results
+    }
+    catch(error) {
+        console.error(error)
+    }
+}
+
+export const getFromDnd5eApi = async (endpoint) => {
+    try {
+        const resp = await fetch(`https://www.dnd5eapi.co${endpoint}`)
+        const data = await resp.json()
+        return data
+    }
+    catch(error) {
+        console.error(error)
     }
 }
