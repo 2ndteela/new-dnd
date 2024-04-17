@@ -34,9 +34,10 @@
 }
 
 .class-ability {
-    min-width: 100%;
+    width: 50%;
     justify-content: flex-start;
     padding-bottom: 16px;
+    border: 1px solid gray;
 }
 
 .class-ability * {
@@ -70,6 +71,7 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
+    
 }
 
 #skill-filter-buttons {

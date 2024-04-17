@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 export default function Stats() {
-  const standardSet = [15, 14, 13, 12, 10, 8]
-  const [stats, setStats] = useState(standardSet)
+  // const standardSet = [15, 14, 13, 12, 10, 8]
+  // const [stats, setStats] = useState(standardSet)
   const [statLine, setStatLine] = useState('standard')
 
   return (

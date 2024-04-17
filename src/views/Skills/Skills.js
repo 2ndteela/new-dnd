@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import StatBox from '../../components/StatBox/StatBox';
 import './Skills.css'
 import { skillList } from '../../assets/utilities';
@@ -6,13 +6,39 @@ import {GiDiceTwentyFacesTwenty} from 'react-icons/gi'
 import Input from '../../components/Input/Input';
 import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext'
 import { IoMdCloseCircle } from 'react-icons/io'
+import ExpandableCard from '../../components/ExpandableCard/ExpandableCard';
 
 export default function Skills({setFormula, editMode}) {
     const [skills] = useState(skillList())
     const [ selectedSkill, setSelectedSkill ] = useState()
-    const [ currentSkills, setCurrentSkills ] = useState(skills)
     const [ skillFilter, setSkillFilter ] = useState('All')
-    const skillBases = ['All', 'Chr', 'Dex', 'Int', 'Str', 'Wis']
+    const [ skillOrder, setSkillOrder ] = useState('A-Z')
+    const skillBases = [
+        {
+            label: 'All', 
+            value: 'All'
+        },
+        {
+            label: 'Charisma', 
+            value: 'Chr'
+        },
+        {
+            label: 'Dexterity', 
+            value: 'Dex'
+        },
+        {
+            label: 'Integration', 
+            value: 'Int'
+        },
+        {
+            label: 'Strength', 
+            value: 'Str'
+        },
+        {
+            label: 'Wisdom', 
+            value: 'Wis'
+        }
+    ]
     const statRowOne = [ 
         {   
             name: 'Charisma',
@@ -49,28 +75,35 @@ export default function Skills({setFormula, editMode}) {
     ]
     const statRows = [statRowOne, statRowTwo]
     const { character, updateCharacter} = useCharacterContext()
-
-    useEffect(() => {
+    const currentSkills = useMemo(() => {
         const allSkills = [...skills]
 
-        if(skillFilter === 'All')
-            setCurrentSkills(allSkills)
+        if (skillOrder === 'a-z') allSkills.sort((a,b) => { 
+            if(a.name > b.name) return 1
+            return -1
+        })
+        if (skillOrder === 'h-l') allSkills.sort((a,b) => { 
+            if(character[a.field] > character[b.field]) return -1
+            return 1
+        })
+        if (skillOrder === 'l-h') allSkills.sort((a,b) => { 
+            if(character[a.field] > character[b.field]) return 1
+            return -1
+        })
 
-        else 
-            setCurrentSkills(allSkills.filter(s => s.base === skillFilter))    
-    }, [skillFilter, skills])
+        if(skillFilter === 'All') return allSkills
+        return allSkills.filter(s => s.base === skillFilter)
+    }, [skillFilter, skills, skillOrder, character])
 
     function updateField(value, field) {
         const char = {...character}
         char[field] = value
-
         updateCharacter(char)
     }
 
     function updateIndex(value, field, index, array) {
         const char = {...character}
         char[array][index][field] = value
-
         updateCharacter(char)
     }
 
@@ -88,9 +121,7 @@ export default function Skills({setFormula, editMode}) {
 
     function removeAbility(idx) {
         const char = {...character}
-
         char.abilities.splice(idx, 1)
-
         updateCharacter(char)
     }
 
@@ -195,25 +226,36 @@ export default function Skills({setFormula, editMode}) {
         {editMode && <button onClick={fillSkills} >Fill Skills</button>}
         <div id='skill-header-and-buttons' >
             <h2 className="sub-header grey-color" style={{paddingBottom: '4px'}} >Skill Checks</h2>
-            <div id="skill-filter-buttons">
-            { skillBases.map(s => <button key={s} onClick={() => setSkillFilter(s)} className={`${skillFilter === s ? 'selected-skill-button' : ''}`} >{s}</button>)}
+            <div style={{flexDirection: 'row'}}>
+                <div style={{backgroundColor: '#333', padding: '4px', width: '120px', marginRight: '8px', borderRadius: '4px'}} >
+                    <select value={skillFilter} onChange={e => setSkillFilter(e.target.value)} >
+                        { skillBases.map(s => <option value={s.value}>{s.label}</option>)}
+                    </select>
+                </div>
+                <div style={{backgroundColor: '#333', padding: '4px', width: '60px', borderRadius: '4px'}} >
+                    <select value={skillOrder} onChange={e => setSkillOrder(e.target.value)} >
+                        <option value="a-z">A - Z</option>
+                        <option value="h-l">H - L</option>
+                        <option value="l-h">L - H</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div className="skills-box" >
             {currentSkills.map((s, i) => (
-                editMode ? <Input 
+                editMode ? (<Input 
                 label={s.name} 
                 val={character[s.field]} 
                 field={s.field} 
                 add 
-                onUpdate={updateField}  />:
-                (
+                onUpdate={updateField}  />) 
+                : (
                     <div className={selectedSkill === i ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => setSelectedSkill(i)} key={`skillz-${i}`}>
                         <div style={{display: 'flex', flexDirection: 'row', height: '24px'}}>
                             <div className='roll-dice-for-skill' onClick={() => setFormula(`d20 + ${character[s.field]}`)}> <GiDiceTwentyFacesTwenty /> </div>
-                            <h3>{s.name}</h3> 
+                            <div>{s.name}</div> 
                         </div>
-                        <span> {character[s.field]}</span>
+                        <span>{character[s.field]}</span>
                     </div>  
                 )
             ))}
@@ -223,7 +265,7 @@ export default function Skills({setFormula, editMode}) {
             <h2 className="sub-header grey-color">Abilities</h2>
             {editMode && <button className='icon-button' onClick={addAbility}>+</button>}
         </div>}
-        <div style={{width: '100%'}}>
+        <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start'}}>
             {character.abilities.map((a, i) => (
                 editMode ? 
                 <div style={{width: '100%', paddingBottom: '16px'}}>
@@ -237,13 +279,7 @@ export default function Skills({setFormula, editMode}) {
                         </div>
                     </div>
                 </div> 
-                : <div 
-                    className='class-ability' 
-                    key={'abil-' + i}
-                    >
-                        <h3>{a.header}</h3>
-                        <div>{a.description}</div>
-                    </div>
+                : <ExpandableCard key={'abil-' + i} title={a.header} width='49%'>{a.description}</ExpandableCard>
                 )
             )}
         </div>

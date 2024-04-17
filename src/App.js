@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './views/Login';
 import CharacterSelect from './views/CharacterSelect/CharacterSelect'
-import NewCharacter from './views/NewCharacter'
 import MultiPannelViewer from './components/MultiPannelViewer/MutliPannelViewer';
 import './firebase'
 import CharacterCreation from './views/CharacterCreation/CharacterCreation';
@@ -20,7 +19,6 @@ function App() {
             <Route path='/' element={<Login />} />
             <Route path='/character-create' element={<CharacterCreation />} />
             <Route path='/characters' element={<CharacterSelect />} />
-            <Route path='/new' element={<NewCharacter />} />
             <Route path='/multi' element={<MultiPannelViewer />} />
           </Routes>
           </div>
