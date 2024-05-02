@@ -26,6 +26,70 @@
     width: 100%;
 }
 
+#roller-calc-container {
+    transition: .5s;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #00000088;
+    z-index: -200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+#roller-calc-container.show-dialog {
+    opacity: 1;
+    z-index: 200;
+}
+
+#roller-calc-body {
+    transition: .5s;
+    position: relative;
+    background-color: #121212;
+    box-shadow: 2px 4px 20px #000000aa;
+    top: 36px;
+}
+
+#roller-calc-body.show-dialog {
+    top: 0px;
+}
+
+#roller-calc-dice-keypad, #roller-calc-value-keypad {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#roller-calc-readout {
+    height: 128px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#roller-calc-body button {
+    font-size: 1em;
+    width: 64px;
+    margin: 2px !important;
+}
+
+button#close-roller {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #00000066 !important;
+    height: 24px;
+    width: 24px;
+    border-radius: 12px;
+}
+
+
 @media screen and (max-width: 1099px) {
     #side-nav-container {
         flex-direction: row;
@@ -46,6 +110,4 @@
     #side-nav-container button#sign-out-button {
         border: none;
     }
-
-    
 }
