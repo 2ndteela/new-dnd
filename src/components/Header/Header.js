@@ -4,6 +4,8 @@ import { MdArrowBack, MdCloudDone } from 'react-icons/md';
 import { useLocalValue } from '../../assets/storage';
 import './Header.css'
 import { loadCharacter } from '../../assets/utilities';
+import Button from '../Button/Button';
+import IconButton from '../IconButton/IconButton';
 
 export default function Header() {
 
@@ -31,9 +33,9 @@ export default function Header() {
         <div className="header-container">
             <h1>{titleText}</h1>
             {showBack && (
-                <button className="header-back-button" aria-label="Back to resources" title="Back to resources" onClick={() => navigate('/resources')}>
+                <IconButton label="Back to resources" size="lg" tone="on-color" className="header-back-button" onClick={() => navigate('/resources')}>
                     <MdArrowBack />
-                </button>
+                </IconButton>
             )}
             {!onLogin && signedIn && (
                 <div className="header-account-status" role="img" aria-label="Signed in, changes sync to your account" title="Signed in, changes sync to your account">
@@ -41,7 +43,7 @@ export default function Header() {
                 </div>
             )}
             {!onLogin && guest && (
-                <button className="header-sign-in-button" onClick={() => navigate('/')}>Sign in</button>
+                <Button variant="outline" size="sm" className="header-sign-in-button" onClick={() => navigate('/')}>Sign in</Button>
             )}
         </div>
     );

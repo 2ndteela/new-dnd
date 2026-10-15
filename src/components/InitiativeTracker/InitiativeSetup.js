@@ -5,6 +5,8 @@ import EditableText from '../EditableText/EditableText'
 import Input from '../Input/Input'
 import { getDexModifier } from './encounterData'
 import './InitiativeSetup.css'
+import Button from '../Button/Button'
+import IconButton from '../IconButton/IconButton'
 
 const SECTIONS = [
   { type: 'character', title: 'Characters', empty: 'No characters yet.' },
@@ -35,9 +37,9 @@ function SetupRow({ entry, onUpdate, onRemove }) {
         value={entry.roll}
         onChange={(e) => updateRoll(e.target.value)}
       />
-      <button className='setup-remove-button' aria-label={`Remove ${entry.name}`} onClick={() => onRemove(entry.id)}>
+      <IconButton label={`Remove ${entry.name}`} tone='danger' className='setup-remove-button' onClick={() => onRemove(entry.id)}>
         <MdClose />
-      </button>
+      </IconButton>
     </div>
   )
 }
@@ -54,7 +56,7 @@ function AddCharacterForm({ onAdd }) {
   return (
     <div className='setup-add-form'>
       <Input label='Character Name' val={name} onUpdate={setName} />
-      <button className='flat-button setup-add-button' disabled={!name.trim()} onClick={submit}>Add Character</button>
+      <Button variant='flat' fullWidth disabled={!name.trim()} onClick={submit}>Add Character</Button>
     </div>
   )
 }
@@ -74,7 +76,7 @@ function AddEventForm({ onAdd }) {
     <div className='setup-add-form'>
       <Input label='Event Name' val={name} onUpdate={setName} />
       <Input textarea label='Description' val={description} onUpdate={setDescription} />
-      <button className='flat-button setup-add-button' disabled={!name.trim()} onClick={submit}>Add Event</button>
+      <Button variant='flat' fullWidth disabled={!name.trim()} onClick={submit}>Add Event</Button>
     </div>
   )
 }
@@ -100,10 +102,10 @@ export default function InitiativeSetup({ entries, onUpdate, onRemove, onAddChar
       })}
       <CheckBox label='Include players when randomizing' model={includePlayers} onUpdate={setIncludePlayers} />
       <div className='turn-controls setup-controls'>
-        <button className='flat-button' disabled={entries.length < 1} onClick={() => onRandomize(includePlayers)}>
+        <Button variant='flat' disabled={entries.length < 1} onClick={() => onRandomize(includePlayers)}>
           Randomize Order
-        </button>
-        <button disabled={entries.length < 1} onClick={onStart}>{startLabel}</button>
+        </Button>
+        <Button disabled={entries.length < 1} onClick={onStart}>{startLabel}</Button>
       </div>
     </div>
   )

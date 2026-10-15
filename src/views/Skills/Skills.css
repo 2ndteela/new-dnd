@@ -25,19 +25,19 @@
 }
 
 .solo-skill h3 {
-    color: #ffffff99;
+    color: var(--color-text);
 }
 
 .selected-skill span {
-    background-color: #1e3b56;
-    color: white;
+    background-color: var(--color-brand);
+    color: var(--color-white);
 }
 
 .class-ability {
     width: 50%;
     justify-content: flex-start;
     padding-bottom: 16px;
-    border: 1px solid gray;
+    border: 1px solid var(--color-text-dim);
 }
 
 .class-ability * {
@@ -46,25 +46,30 @@
 }
 
 .selected-skill {
-    background-color: #333;
+    background-color: var(--color-surface-2);
 }
 
-.roll-dice-for-skill {
+.solo-skill-name {
+    flex-direction: row;
+    height: 24px;
+}
+
+/* Hidden (zero width) until the skill is selected; not tappable while hidden */
+.btn.icon-btn.roll-dice-for-skill {
     height: 100%;
     width: 0px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: var(--color-white);
     overflow: hidden;
-    transition: .2s;
+    transition: width .2s, opacity .2s, margin .2s;
     opacity: 0;
+    pointer-events: none;
 }
 
-.selected-skill .roll-dice-for-skill {
+.selected-skill .btn.icon-btn.roll-dice-for-skill {
     width: 24px;
-    margin-right: 8px;
+    margin-right: var(--space-2);
     opacity: 1;
+    pointer-events: auto;
 }
 
 #skill-header-and-buttons {
@@ -79,23 +84,78 @@
 }
 
 #skill-filter-buttons button {
-    padding: 2px 4px !important;
+    padding: 2px 4px;
     background-color: transparent;
-    border: 1px solid grey;
-    color: grey;
+    border: 1px solid var(--color-text-dim);
+    color: var(--color-text-dim);
     margin-left: 4px;
 }
 
 #skill-filter-buttons button.selected-skill-button {
-    background-color: lightgrey;
-    border: 1px solid lightgray;
-    color: #333;
+    background-color: var(--color-neutral-light);
+    border: 1px solid var(--color-neutral-light);
+    color: var(--color-surface-2);
 }
 
 .editible-stat {
     padding: 8px;
-    border: 2px solid #333333;
-    border-radius: 8px;
+    border: 2px solid var(--color-surface-2);
+    border-radius: var(--radius);
     padding-bottom: 0px;
     width: 136px;
+}
+.skills-view {
+    width: 100%;
+}
+
+.stats-box.stats-box-spaced {
+    padding-bottom: var(--space-6);
+}
+
+.sub-header.skills-heading {
+    padding-bottom: var(--space-1);
+}
+
+.skill-filters {
+    flex-direction: row;
+}
+
+.skill-select {
+    padding: var(--space-1);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface-3);
+}
+
+.skill-select-filter {
+    width: 120px;
+    margin-right: var(--space-2);
+}
+
+.skill-select-order {
+    width: 60px;
+}
+
+.btn.icon-btn.skills-add-ability {
+    margin-bottom: var(--space-2);
+}
+
+.skills-abilities {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.skills-ability-edit {
+    width: 100%;
+    padding-bottom: var(--space-4);
+}
+
+.skills-ability-fields {
+    width: 100%;
+    margin-right: var(--space-2);
+}
+
+.btn.icon-btn.skills-remove-ability {
+    font-size: 24px;
 }

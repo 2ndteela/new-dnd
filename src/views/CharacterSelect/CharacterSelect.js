@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCharacters } from '../../assets/services';
 import { clearCurrentCharacter, writeCharacter } from '../../assets/utilities';
+import Button from '../../components/Button/Button';
 import './CharacterSelect.css'
 
 
@@ -59,16 +60,16 @@ export default function CharacterSelect() {
             {loading && <h1>Fetching Characters...</h1>}
             {characters.map((char, i) => {
                 return (
-                    <button className="flat-button char-card" key={"char-" + i} onClick={() => goToCharacter(char)} >
+                    <Button variant="flat" className="char-card" key={"char-" + i} onClick={() => goToCharacter(char)} >
                         <h3>{char.name}</h3>
                         <div>Level {char.level} {char.race} {char.class}</div>
-                    </button>
+                    </Button>
                 )
             })}
             {!characters.length && !loading && <h2>Looks like you're new here. Click "New Character" to begin!</h2>}
-            {!loading && <button className='flat-button' id='new-character-space' onClick={createNewCharacter}>
+            {!loading && <Button variant='flat' aria-label='New character' className='new-character-space' onClick={createNewCharacter}>
                 +
-            </button>}
+            </Button>}
         </div>
     );
 }

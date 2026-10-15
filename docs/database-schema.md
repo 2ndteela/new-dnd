@@ -276,6 +276,8 @@ Just a name in the order. Not linked to the saved `Character` sheets.
 
 Collections are namespaced by account, so guest data and each account's data stay separate. On sign-in or sign-up, any guest characters and encounters are added to the account with one multi-path `update` on `users/{uid}`, which leaves existing account data alone. They're then merged into the account's local copy and the guest copy is cleared. If the upload fails, the guest data stays on the device and is tried again on the next sign-in.
 
+**Signing out** (side nav) signs out of Firebase and clears `character`, `uid` and `guest`. The `data/…` collections (account and guest) stay on the device.
+
 **Reads when signed in** come from Firebase. A successful read replaces the local copy of that collection; if Firebase can't be reached, the local copy is used instead. Remote writes don't block the app. Offline, Firebase queues them until it reconnects, but only for the current session.
 
 ## Quirks and inconsistencies

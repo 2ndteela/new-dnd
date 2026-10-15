@@ -1,17 +1,17 @@
 
 .bottom-nav {
     position: fixed;
-    background-color: #1e3b56;
+    background-color: var(--color-brand);
     height: 48px;
     width: 100vw;
     bottom: 0px;
     flex-direction: row;
     justify-content: center;
-    z-index: 20;
+    z-index: var(--z-drawer);
 }
 
 .bottom-nav a {
-    color: white;
+    color: var(--color-white);
     text-decoration: none;
     flex: 1;
     height: 100%;
@@ -22,7 +22,7 @@
 }
 
 .match {
-    background-color: #376996;
+    background-color: var(--color-accent);
     height: 54px !important; 
 }
 

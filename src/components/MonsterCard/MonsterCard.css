@@ -10,7 +10,7 @@
 }
 
 .monster-box-base-stat {
-  background-color: #545454;
+  background-color: var(--color-surface-4);
   padding: 2px;
   width: 100%;
   margin-top: 8px;
@@ -18,7 +18,7 @@
 
 .monster-box-stats-container {
   width: 100%;
-  border: 1px solid #545454;
+  border: 1px solid var(--color-surface-4);
   padding-bottom: 0px;
   justify-content: flex-end;
   border-inline-start: none;
@@ -35,16 +35,16 @@
 }
 
 .monster-stats-table:first-child .monster-stat-box .monster-box-stats-container {
-  border-inline-start: 1px solid #545454;
+  border-inline-start: 1px solid var(--color-surface-4);
 }
 
 .monster-box-bonus {
-  color: #FFFFFFa0;
+  color: var(--color-text);
 }
 
 .monster-box-bonus.has-save {
   font-style: italic;
-  color: #FFF;
+  color: var(--color-white);
 }
 
 .other-monster-stats {
@@ -62,24 +62,30 @@
   padding-top: 4px;
 }
 
-button.add-to-initiative {
-  flex-direction: row;
-  align-items: center;
-}
-
 .initiative-count {
   min-width: 20px;
   height: 20px;
-  margin-left: 8px;
+  margin-left: var(--space-1);
   padding: 0 6px;
   border-radius: 10px;
   justify-content: center;
   font-size: 12px;
-  color: white;
-  background-color: #376996;
+  color: var(--color-white);
+  background-color: var(--color-accent);
 }
 
-button.add-to-initiative:disabled {
-  opacity: .5;
-  cursor: default;
+/* Space between the stats table, More Stats, Abilities and Actions */
+.monster-details-section {
+  padding-top: var(--space-4);
+}
+
+.monster-detail-entry {
+  width: 100%;
+  align-items: flex-start;
+  padding-bottom: var(--space-2);
+}
+
+.monster-card-health {
+  align-items: flex-end;
+  text-align: right;
 }

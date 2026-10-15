@@ -1,4 +1,8 @@
 import React, {useCallback, useState, useMemo} from 'react'
+import Button from '../Button/Button'
+import IconButton from '../IconButton/IconButton'
+import { isDesktopWidth } from '../../assets/breakpoints'
+import { signOutUser } from '../../assets/services'
 import './SideNav.css'
 import { GiCrossedSwords, GiSkills, GiLightBackpack, GiSpellBook, GiBookmarklet, GiDiceTwentyFacesTwenty} from "react-icons/gi";
 import { MdClear } from "react-icons/md";
@@ -9,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 const diceValues = ['d4', 'd6', 'd8', 'd10', 'd12', 'd16', 'd20', 'd100']
 
 export default function SideNav({addPannel, pannels}) {
-    const windowWidth = window.innerWidth
+    const isDesktop = isDesktopWidth()
 
     let buttons = [
         {name: 'history', icon: <GiBookmarklet />},
@@ -20,6 +24,11 @@ export default function SideNav({addPannel, pannels}) {
     ]
 
     const navigate = useNavigate()  
+
+    async function signOut() {
+        await signOutUser()
+        navigate('/', { replace: true })
+    }
 
     const [showRoller, setShowRoller] = useState(false)
     const [rollingDice, setRollingDice] = useState({
@@ -87,51 +96,41 @@ export default function SideNav({addPannel, pannels}) {
         setResult(Math.round(Math.random()) === 1 ? 'Heads' : 'Tails')
     }, [clearRoller])
 
-    function makeStyles(which) {
-
-        if(pannels[0] === which) 
-            return {
-                backgroundColor: "#1e3b56",
-                color: 'white',
-                borderColor: "#1e3b56"
-            }
-        
-        else if(pannels[1] === which && windowWidth > 1099)
-            return {
-                backgroundColor: "#1d68ad",
-                color: 'white',
-                borderColor: "#1d68ad",
-            }
-    }       
+    // First panel is primary blue; on desktop the second panel gets the lighter blue
+    function selectedClass(which) {
+        if(pannels[0] === which) return ' selected'
+        if(pannels[1] === which && isDesktop) return ' selected-second'
+        return ''
+    }
 
     return (
         <div id='side-nav-container'>
-            <div style={{width: '100%'}} id="side-nav-buttons" >
-                {buttons.map(b => <button key={b.name} onClick={() => addPannel(b.name)} style={makeStyles(b.name)}>{b.icon}</button> )}
-                {windowWidth < 1099 && <button><GiDiceTwentyFacesTwenty /></button>}
-                {windowWidth < 1099 && <button id="sign-out-button" onClick={() => navigate('/characters')} > <FaSignOutAlt></FaSignOutAlt></button>}
+            <div id="side-nav-buttons" >
+                {buttons.map(b => <IconButton key={b.name} label={b.name} className={`side-nav-button${selectedClass(b.name)}`} onClick={() => addPannel(b.name)}>{b.icon}</IconButton> )}
+                {!isDesktop && <IconButton label="Dice roller" className="side-nav-button" onClick={() => setShowRoller(true)}><GiDiceTwentyFacesTwenty /></IconButton>}
+                {!isDesktop && <IconButton label="Sign out" className="side-nav-button" onClick={signOut}><FaSignOutAlt /></IconButton>}
             </div>
             <div>
-                {windowWidth > 1099 && <button><GiDiceTwentyFacesTwenty onClick={() => setShowRoller(true)}  /></button>}
-                {windowWidth > 1099 && <button id="sign-out-button" onClick={() => navigate('/characters')} > <FaSignOutAlt></FaSignOutAlt></button>}
+                {isDesktop && <IconButton label="Dice roller" className="side-nav-button" onClick={() => setShowRoller(true)}><GiDiceTwentyFacesTwenty /></IconButton>}
+                {isDesktop && <IconButton label="Sign out" className="side-nav-button" onClick={signOut}><FaSignOutAlt /></IconButton>}
             </div>
             <div id="roller-calc-container" className={showRoller ? 'show-dialog' : ''} >
                 <div id="roller-calc-body" className={showRoller ? 'show-dialog' : ''}>
                     <div id="roller-calc-readout">
-                        <h1 style={{paddingBottom: '12px', fontSize: '4em'}} >{result}</h1>
+                        <h1 className="roller-calc-result" >{result}</h1>
                         <div>{rollString}</div>
                     </div>
-                    <div id="roller-calc-dice-keypad">{diceValues.map(d => <button onClick={() => addRoll(d)} >{d}</button>)}</div>
+                    <div id="roller-calc-dice-keypad">{diceValues.map(d => <Button key={d} variant="flat" className="roller-key" onClick={() => addRoll(d)} >{d}</Button>)}</div>
                     <div id="roller-calc-value-keypad"> 
-                        <button onClick={() => setAddToRoll(addToRoll - 1)} >-1</button>
-                        <button onClick={() => setAddToRoll(addToRoll - 5)}>-5</button>
-                        <button onClick={() => setAddToRoll(addToRoll + 1)}>+1</button>
-                        <button onClick={() => setAddToRoll(addToRoll + 5)} >+5</button>
-                        <button style={{width: '132px'}} onClick={flipCoin} >Coin Flip</button>
-                        <button onClick={clearRoller}>Clear</button>
-                        <button onClick={rollResult} >Roll</button>
+                        <Button variant="flat" className="roller-key" onClick={() => setAddToRoll(addToRoll - 1)} >-1</Button>
+                        <Button variant="flat" className="roller-key" onClick={() => setAddToRoll(addToRoll - 5)}>-5</Button>
+                        <Button variant="flat" className="roller-key" onClick={() => setAddToRoll(addToRoll + 1)}>+1</Button>
+                        <Button variant="flat" className="roller-key" onClick={() => setAddToRoll(addToRoll + 5)} >+5</Button>
+                        <Button variant="flat" className="roller-key roller-key-wide" onClick={flipCoin} >Coin Flip</Button>
+                        <Button variant="flat" className="roller-key" onClick={clearRoller}>Clear</Button>
+                        <Button variant="flat" className="roller-key" onClick={rollResult} >Roll</Button>
                     </div>
-                    <button id="close-roller" onClick={() => setShowRoller(false)} > <MdClear /></button>
+                    <IconButton label="Close dice roller" className="roller-close" onClick={() => setShowRoller(false)}><MdClear /></IconButton>
                 </div>
             </div>
         </div>

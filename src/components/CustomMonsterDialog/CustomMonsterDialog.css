@@ -1,7 +1,7 @@
 .custom-monster-row {
   width: 100%;
-  flex-direction: row !important;
-  align-items: flex-start !important;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .custom-monster-row .styled-input {
@@ -16,9 +16,9 @@
 
 .custom-monster-stats {
   width: 100%;
-  flex-direction: row !important;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between !important;
+  justify-content: space-between;
 }
 
 .custom-monster-stats .styled-input {
@@ -28,56 +28,44 @@
 .custom-monster-error,
 .custom-monster-hint {
   width: 100%;
-  font-size: 12px;
   text-align: start;
-  align-items: flex-start !important;
-  padding: 0 4px 8px;
+  align-items: flex-start;
+  padding: 0 var(--space-1) var(--space-2);
 }
 
+/* .custom-monster-hint gets its size and colour from .hint-text */
 .custom-monster-error {
-  color: #ff6b6b;
-}
-
-.custom-monster-hint {
-  color: #ffffff66;
+  font-size: 12px;
+  color: var(--color-danger-text);
 }
 
 .custom-monster-section {
   width: 100%;
-  align-items: stretch !important;
+  align-items: stretch;
   padding-top: 8px;
 }
 
 .custom-monster-section-title {
-  color: #ffffffdf;
-  align-items: flex-start !important;
+  color: var(--color-text-strong);
+  align-items: flex-start;
   padding-bottom: 8px;
 }
 
 .custom-monster-entry {
   width: 100%;
-  align-items: stretch !important;
+  align-items: stretch;
   padding-bottom: 8px;
   margin-bottom: 8px;
-  border-bottom: 1px solid #454545;
+  border-bottom: 1px solid var(--color-surface-4);
 }
 
-.custom-monster-entry .text-button {
+button.custom-monster-entry-remove {
   align-self: flex-end;
-  margin: 0 !important;
 }
 
 button.custom-monster-add {
-  justify-content: center !important;
-  align-items: center !important;
-  margin: 0 !important;
-  background-color: #2a2a2a;
-  border-color: #2a2a2a;
-}
-
-.dialog-actions button:disabled {
-  opacity: .5;
-  cursor: default;
+  background-color: var(--color-surface-3);
+  border-color: var(--color-surface-3);
 }
 
 @media screen and (max-width: 480px) {

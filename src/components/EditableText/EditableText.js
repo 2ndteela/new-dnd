@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { MdEdit } from 'react-icons/md'
 import './EditableText.css'
+import IconButton from '../IconButton/IconButton'
 
 // Pencil-to-edit text. `multiline` switches to a textarea (Ctrl/Cmd+Enter or blur saves).
 export default function EditableText({ value, onSave, multiline, placeholder = '', label = 'Edit', allowEmpty }) {
@@ -42,9 +43,9 @@ export default function EditableText({ value, onSave, multiline, placeholder = '
   return (
     <span className={`editable-text${multiline ? ' multiline' : ''}`}>
       <span className={`editable-text-value${value ? '' : ' placeholder'}`}>{value || placeholder}</span>
-      <button className='editable-text-button' aria-label={label} onClick={startEditing}>
+      <IconButton label={label} size='sm' className='editable-text-button' onClick={startEditing}>
         <MdEdit />
-      </button>
+      </IconButton>
     </span>
   )
 }

@@ -1,46 +1,36 @@
 .guest-banner {
   width: 100vw;
-  flex-direction: row !important;
+  flex-direction: row;
   align-items: center;
   padding: 8px 8px 8px 16px;
-  background-color: #5c4a14;
-  color: #ffffffdf;
+  background-color: var(--color-warning-surface);
+  color: var(--color-text-strong);
   font-size: 14px;
 }
 
 .guest-banner-text {
-  display: block !important;
+  display: block;
   flex: 1;
   min-width: 0;
   text-align: start;
 }
 
 button.guest-banner-link {
-  display: inline !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  display: inline;
+  padding: 0;
   border: none;
-  background-color: transparent;
-  color: white;
+  color: var(--color-white);
   font-weight: bold;
   text-decoration: underline;
 }
 
-button.guest-banner-link:hover {
-  background-color: transparent;
+@media (hover: hover) {
+  button.guest-banner-link:hover,
+  button.guest-banner-link:active {
+    background-color: transparent;
+  }
 }
 
 button.guest-banner-close {
-  flex-shrink: 0;
-  padding: 4px !important;
-  margin: 0 0 0 8px !important;
-  border: none;
-  background-color: transparent;
-  color: #ffffffdf;
-  font-size: 18px;
-}
-
-button.guest-banner-close:hover {
-  background-color: #00000033;
-  border-color: transparent;
+  margin-left: var(--space-2);
 }

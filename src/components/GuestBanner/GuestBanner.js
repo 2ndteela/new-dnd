@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { MdClose } from 'react-icons/md'
 import { useLocalValue, writeLocal } from '../../assets/storage'
 import './GuestBanner.css'
+import Button from '../Button/Button'
+import IconButton from '../IconButton/IconButton'
 
 export default function GuestBanner() {
   const navigate = useNavigate()
@@ -16,11 +18,11 @@ export default function GuestBanner() {
     <div className='guest-banner' role='status'>
       <div className='guest-banner-text'>
         You're in guest mode. Changes are only saved on this device and won't be available on other devices unless you
-        {' '}<button className='guest-banner-link' onClick={() => navigate('/')}>sign in</button>.
+        {' '}<Button variant='text' className='guest-banner-link' onClick={() => navigate('/')}>sign in</Button>.
       </div>
-      <button className='guest-banner-close' aria-label='Dismiss' onClick={() => writeLocal('guestBannerDismissed', true)}>
+      <IconButton label='Dismiss' size='sm' tone='on-color' className='guest-banner-close' onClick={() => writeLocal('guestBannerDismissed', true)}>
         <MdClose />
-      </button>
+      </IconButton>
     </div>
   )
 }

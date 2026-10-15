@@ -8,18 +8,18 @@
 
 .multi-input .styled-input {
     flex: 1;
-    margin-bottom: 0 !important;
+    margin-bottom: 0;
 }
 
 .some-stat {
-    border-radius: 8px; 
+    border-radius: var(--radius); 
     position: relative;
     width: 100px;
     padding-top: 24px;
     padding-bottom: 8px;
     justify-content: center;
     align-items: center;
-    background-color: #333;
+    background-color: var(--color-surface-2);
 }
 
 .some-stat .stat-label {
@@ -29,7 +29,7 @@
     padding: 0 4px;
     font-size: 12px;
     font-weight: bold;
-    color: #ffffffdf;
+    color: var(--color-text-strong);
 }
 
 .read-only-stats {
@@ -46,11 +46,11 @@
 
 .weapon-container {
     width: 100%;
-    border-radius: 8px;
+    border-radius: var(--radius);
     margin-bottom: 16px;
     align-items: flex-start;
     padding: 16px;
-    background-color: #333;
+    background-color: var(--color-surface-2);
 }
 
 .weapon-header {
@@ -61,7 +61,7 @@
 }
 
 .weapon-header span {
-    color: grey;
+    color: var(--color-text-dim);
 }
 
 .weapon-stats {
@@ -79,13 +79,13 @@
 }
 
 .weapon-stat-box div {
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--color-text-dim);
     width: 100%;
 }
 
 .weapon-stat-box span {
     font-size: 12px;
-    color: gray;
+    color: var(--color-text-dim);
 }
 
 .custom-description {
@@ -97,20 +97,16 @@
 }
 
 .custom-stat-box div {
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--color-text-dim);
     width: 100%;
 }
 
 .custom-stat-box span {
-    color: gray;
+    color: var(--color-text-dim);
 }
 
 #all-weapons {
     width: 100%;
-}
-
-.full-width-box {
-    width: 100% !important;
 }
 
 .weapon-actions {
@@ -130,13 +126,13 @@
 #handbook-weapons-chips {
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: #333;
+    background-color: var(--color-surface-2);
     justify-content: center;
     margin-bottom: 8px;
     min-width: 100%;
     padding: 0px 8px;
     max-height: 0px;
-    transition: .2s;
+    transition: max-height .2s, padding .2s;
     overflow: hidden;
 }
 
@@ -147,8 +143,8 @@
 
 
 .weapon-chip {
-    background-color: #2f2f2f;
-    border: 1px solid #3f3f3f;
+    background-color: var(--color-surface-3);
+    border: 1px solid var(--color-surface-4);
     padding: 4px 8px;
     border-radius: 16px;
     margin-right: 8px;
@@ -156,11 +152,11 @@
 
 #selected-weapon-info {
     width: 100%;
-    background-color: #333;
+    background-color: var(--color-surface-2);
     margin-bottom: 8px;
     align-items: flex-start;
     padding: 0 8px;
-    transition: .2s;
+    transition: max-height .2s, padding .2s;
     max-height: 0px;
 }
 
@@ -175,7 +171,7 @@
 
 #selected-weapon-info strong {
     padding-right: 4px;
-    color: #ffffffd7;
+    color: var(--color-text-strong);
 }
 
 #selected-weapon-info .magical-description {
@@ -184,4 +180,85 @@
 
 #selected-weapon-info .magical-description span {
     padding-top: 8px;
+}
+
+.fight-health {
+    padding-bottom: var(--space-4);
+}
+
+.fight-section-header {
+    align-items: center;
+}
+
+.fight-header-actions {
+    flex-direction: row;
+}
+
+.fight-weapon-search {
+    width: 100%;
+}
+
+.fight-weapon-search-toggle {
+    padding-left: var(--space-2);
+}
+
+.fight-add-weapon-row {
+    padding-top: var(--space-2);
+    justify-content: flex-end;
+}
+
+button.fight-add-weapon {
+    margin-right: var(--space-2);
+}
+
+.fight-slot-row {
+    width: 100%;
+    padding-bottom: var(--space-2);
+}
+
+.fight-custom-field {
+    width: 100%;
+    padding-bottom: var(--space-4);
+}
+
+.fight-spacer {
+    width: var(--space-4);
+}
+
+/* Round "+" / toggle buttons beside section headings (24px, tap area still 40px) */
+.btn.icon-btn.fight-small-icon-button {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+}
+
+.btn.icon-btn.fight-small-icon-button-spaced {
+    margin-bottom: var(--space-2);
+}
+
+/* Remove icons next to editable weapons, slots and custom fields */
+.btn.icon-btn.fight-remove-button {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+}
+
+.btn.icon-btn.fight-remove-button::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+}
+
+.btn.icon-btn.fight-remove-weapon {
+    top: -28px;
+    margin-left: var(--space-2);
+}
+
+.btn.icon-btn.fight-remove-field {
+    top: -12px;
+    margin-left: var(--space-2);
+}
+
+.btn.icon-btn.fight-remove-slot {
+    margin-right: var(--space-2);
 }

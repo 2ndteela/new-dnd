@@ -6,6 +6,8 @@ import { useCharacterContext } from '../../components/MultiPannelViewer/Characte
 import './style.css'
 import { MdArrowDropDown, MdArrowDropUp, MdClose } from 'react-icons/md';
 import {searchForSpell} from '../../assets/services'
+import Button from '../../components/Button/Button';
+import IconButton from '../../components/IconButton/IconButton';
 
 export default function Spells({editMode}) {
 
@@ -179,7 +181,7 @@ export default function Spells({editMode}) {
                 <div id="spells-list-container">
                     {
                         (editMode || character.spellSave || character.spellAtk || character.spellMod) && 
-                        <div style={{width: '100%'}} >
+                        <div className='spell-casting-stats'>
                             <div className='full-width-row three-items'>
                                 { editMode && <Input label="Spell Save DC" add val={character.spellSave} field='spellSave' onUpdate={updateValue} /> }
                                 { editMode && <Input label="Spell Atk Bonus" add val={character.spellAtk} field='spellAtk' onUpdate={updateValue} /> }
@@ -220,28 +222,34 @@ export default function Spells({editMode}) {
                     {editMode && <div id="search-new-spell">
                         <div className='full-width-row'>
                             <Input label="Search Handbook Spells" val={handbookSpellSearch} onUpdate={setHandbookSpellSearch} />
-                            <button className='icon-button' style={{marginLeft: '8px'}} onClick={() => setShowSpellList(!showSpellList)} > { showSpellList ? <MdArrowDropUp /> : <MdArrowDropDown />} </button>
+                            <IconButton variant='filled' size='sm' label={showSpellList ? 'Hide handbook spells' : 'Show handbook spells'} className='spell-list-toggle' onClick={() => setShowSpellList(!showSpellList)}>
+                                {showSpellList ? <MdArrowDropUp /> : <MdArrowDropDown />}
+                            </IconButton>
                         </div>
                         <div id="handbook-spell-list">
                             <div id="current-spell-list" className={(handbookSpellSearch || showSpellList) ? 'show-handbook-spells' : ''} >
                                 {filteredHandbookSpells.map(s => (
                                     <div className='spell-in-list' onClick={() => getSpellDetails(s)} key={s.index} >
                                         {s?.name}
-                                        {s?.name === selectedSpell?.name && <MdClose style={{position: 'relative', left: '8px'}} onClick={handleChipClose} />}
+                                        {s?.name === selectedSpell?.name && (
+                                            <IconButton size='sm' label='Clear selected spell' className='spell-chip-close' onClick={handleChipClose}>
+                                                <MdClose />
+                                            </IconButton>
+                                        )}
                                     </div>
                                 ))}
                             </div>
                         {selectedSpell && 
                         <div id="selected-spell-data">
                             <div className='full-width-row'>
-                                <div style={{width: '100%', alignItems: 'flex-start', paddingBottom: '8px'}}>
+                                <div className='selected-spell-details'>
                                     <div className='full-width-row' ><b>Range:</b> <div>{selectedSpell?.range}</div></div>
                                     <div className='full-width-row'> <b>School:</b> <div>{selectedSpell?.school?.name}</div></div>
                                     <div className='full-width-row'> <b>Level:</b><div>{selectedSpell?.level === 0 ? 'Cantrip': `Level ${selectedSpell.level}`}</div></div>
                                     <div className='full-width-row'> <b>Casting Time:</b> <div>{selectedSpell?.casting_time}</div></div>
                                     <div className='full-width-row'> <b>Duration:</b> <div>{selectedSpell?.duration}</div></div>
                                 </div>
-                                <button onClick={() => addNewSpellToBook(selectedSpell)}>Add Spell</button>
+                                <Button onClick={() => addNewSpellToBook(selectedSpell)}>Add Spell</Button>
                                 </div>
                                 <div className='full-width-row spell-requirements'>
                                     {selectedSpell.concentration && <div className='spell-requirement'>Concentration</div>} 
@@ -250,7 +258,7 @@ export default function Spells({editMode}) {
                                 </div>
                                 <div>
                                     {selectedSpell.desc.map(d => (
-                                        <div key={d} style={{paddingBottom: '8px'}} >{d}</div>
+                                        <div key={d} className='selected-spell-paragraph'>{d}</div>
                                     ))}
                                 </div>
                             </div>}
@@ -259,10 +267,10 @@ export default function Spells({editMode}) {
                     {editMode && <div onClick={addBlankSpell} id="add-new-spell-box">New Blank Spell</div>}
                     { filteredSpells.map((s, i) => (
                         editMode ? 
-                        <div key={`${i}-edit-spell`} style={{alignItems: 'flex-end'}}>
-                            <button className='icon-button' onClick={() => removeSpell(i)}>
+                        <div key={`${i}-edit-spell`} className='edit-spell-item'>
+                            <IconButton variant='filled' size='sm' label='Remove spell' className='spell-remove' onClick={() => removeSpell(i)}>
                                 <MdClose />
-                            </button>
+                            </IconButton>
                             <div className='edit-spell-box'>
                                 <div className='full-width-row' >
                                     <Input label="Name" val={s.name} field="name" idx={i} arr="spells" onUpdate={updateArray} />
@@ -289,7 +297,7 @@ export default function Spells({editMode}) {
                                     <h3>{s.name}</h3>
                                     <span>{s.level === 'Cantrip' || s.level === 'cantrip' ? 'Cantrip' : 'Level ' + s.level}</span>
                                 </div>
-                                <div style={{paddingBottom: '8px'}}>
+                                <div className='spell-description'>
                                     {s.description}
                                 </div>
                                 <div className="spell-stats">
@@ -302,7 +310,7 @@ export default function Spells({editMode}) {
                                         <span>Damage</span>
                                     </div>}
                                 </div>
-                                <div style={{paddingTop: '12px', flexDirection: 'row', justifyContent: 'space-between', width: '100%'}}>
+                                <div className='spell-requirements-row'>
                                     <div className='full-width-row' >
                                         { s.con && <div className='spell-requirement'>Concentration</div>}
                                         { s.somatic && <div className='spell-requirement'>Somatic</div>}

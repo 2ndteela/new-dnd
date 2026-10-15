@@ -1,4 +1,4 @@
-// Conversion between in-app encounter state and the database shape (see database-schema.md)
+// Conversion between in-app encounter state and the database shape (see docs/database-schema.md)
 
 const STAT_KEYS = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma']
 const TYPE_ORDER = { character: 0, monster: 1, event: 2 }

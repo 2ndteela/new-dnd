@@ -3,6 +3,8 @@ import { MdMoreVert } from 'react-icons/md'
 import Slot from '../Slot/Slot'
 import Input from '../Input/Input'
 import './HealthSlot.css'
+import Button from '../Button/Button'
+import IconButton from '../IconButton/IconButton'
 
 export default function HealthSlot({ label = 'Health', current, max, presets = [], onCurrentChange, onMaxChange }) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -55,26 +57,23 @@ export default function HealthSlot({ label = 'Health', current, max, presets = [
   return (
     <div className="health-slot" ref={containerRef}>
       <Slot label={label} val={current} max={max} onUpdate={updateCurrent} />
-      <button
-        className="health-slot-menu-button"
-        aria-label="Health options"
-        onClick={toggleMenu}
-      >
+      <IconButton label="Health options" size="lg" className="health-slot-menu-button" onClick={toggleMenu}>
         <MdMoreVert />
-      </button>
+      </IconButton>
       {menuOpen && (
         <div className="health-slot-menu">
           <Input add label="Max Health" val={maxDraft} minValue="1" onUpdate={updateMax} />
           <div className="health-slot-presets">
             {presets.map((p) => (
-              <button
+              <Button
                 key={p.label}
-                className={`flat-button health-slot-preset${p.value === max ? ' active' : ''}`}
+                variant='flat'
+                className={`health-slot-preset${p.value === max ? ' active' : ''}`}
                 onClick={() => commitMax(p.value)}
               >
                 <span>{p.label}</span>
                 <span>{p.value}</span>
-              </button>
+              </Button>
             ))}
           </div>
         </div>

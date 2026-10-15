@@ -12,7 +12,7 @@ export default function ExpansionPannel({ header, children, bottomBorder }) {
 
 
     return (
-        <div style={{ width: '100%', borderBottom: bottomBorder ? '1px solid white' : null }} >
+        <div className={`expansion-pannel${bottomBorder ? ' bottom-border' : ''}`}>
             <div onClick={clickIt} className="expansion-pannel-header" >
                 <h2>{header}</h2>
                 <span className={open ? 'flipped-arrow' : ''}>

@@ -1,3 +1,11 @@
+.expansion-pannel {
+    width: 100%;
+}
+
+.expansion-pannel.bottom-border {
+    border-bottom: 1px solid var(--color-white);
+}
+
 .expansion-pannel-header {
     flex-direction: row;
     justify-content: space-between;

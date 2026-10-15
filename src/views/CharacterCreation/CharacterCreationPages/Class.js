@@ -65,7 +65,7 @@ export default function Class() {
   }, [classData])
 
   return (
-    <div className="page-content push-start" style={{alignItems: 'flex-start', minHeight:'unset' }} >
+    <div className="page-content push-start class-page" >
         <h2>What class do you want to be?</h2>
         <br />
         <div id="class-table">
@@ -111,7 +111,7 @@ export default function Class() {
                 </div>
               )}
             </div>
-          ) : <h3 style={{padding: '16px', fontWeight: 300}} >Select a class to begin</h3>}
+          ) : <h3 className='class-empty' >Select a class to begin</h3>}
         </div>
     </div>
   )

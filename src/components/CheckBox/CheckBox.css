@@ -1,18 +1,18 @@
 .outer-box {
-    border: 1px solid #1e3b56;
+    border: 1px solid var(--color-accent);
     justify-content: center;
     align-items: center ;
     height: 16px;
     width: 16px;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
 }
 
 .inner-box {
     height: 16px;
     width: 16px;
     opacity: 0;
-    background-color: #1e3b56;
-    border-radius: 4px;
+    background-color: var(--color-accent);
+    border-radius: var(--radius-sm);
 }
 
 .filled-box {
@@ -25,4 +25,8 @@
     align-items: center;
     padding-bottom: 8px;
     padding-right: 16px;
+}
+
+.box-label {
+    margin-left: var(--space-2);
 }

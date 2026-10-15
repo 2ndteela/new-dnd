@@ -14,7 +14,7 @@ export default function CheckBox({arr, onUpdate, field, idx, model, label}) {
             <div className="outer-box" onClick={handleClick}>
                 <div className={model === true ? 'inner-box filled-box' : 'inner-box'} ></div>
             </div>
-            <div style={{marginLeft: '8px'}}>{label}</div>
+            <div className='box-label'>{label}</div>
         </div>
     );
 }

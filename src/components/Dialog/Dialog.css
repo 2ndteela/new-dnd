@@ -4,20 +4,17 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  justify-content: center !important;
-  background-color: #000000aa;
-  z-index: 100;
+  justify-content: center;
+  background-color: var(--color-scrim);
+  z-index: var(--z-dialog);
 }
 
 .dialog {
   width: calc(100vw - 32px);
   max-width: 360px;
   max-height: calc(100vh - 32px);
-  padding: 16px;
-  border: 1px solid #565656;
-  border-radius: 8px;
-  background-color: #333;
-  align-items: stretch !important;
+  padding: var(--space-4);
+  align-items: stretch;
 }
 
 .dialog.wide {
@@ -25,9 +22,9 @@
 }
 
 .dialog-title {
-  color: #ffffffdf;
+  color: var(--color-text-strong);
   text-align: start;
-  align-items: flex-start !important;
+  align-items: flex-start;
   padding-bottom: 8px;
 }
 
@@ -35,33 +32,15 @@
   width: 100%;
   min-height: 0;
   overflow-y: auto;
-  align-items: stretch !important;
+  align-items: stretch;
   text-align: start;
 }
 
 .dialog-actions {
+  gap: var(--space-2);
   width: 100%;
-  flex-direction: row !important;
-  justify-content: flex-end !important;
+  flex-direction: row;
+  justify-content: flex-end;
   padding-top: 16px;
 }
 
-.dialog-actions button:last-child {
-  margin: 0 !important;
-}
-
-button.dialog-danger-button {
-  background-color: #8b1e1e;
-  border-color: #8b1e1e;
-  color: white;
-}
-
-button.dialog-danger-button:hover {
-  background-color: #a82727;
-  border-color: #a82727;
-}
-
-/* Inputs default to #333, same as the dialog surface; lift them a step */
-.dialog .styled-input {
-  background-color: #454545;
-}

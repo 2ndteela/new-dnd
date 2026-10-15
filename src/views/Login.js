@@ -4,6 +4,7 @@ import { createNewUser, sendForgotPasswordEmail, signInUser } from '../assets/se
 import { useNavigate } from 'react-router-dom';
 import { startGuestSession } from '../assets/storage.js';
 import './Login.css'
+import Button from '../components/Button/Button.js'
 
 export default function Login() {
     const [email, setEmail] = useState()
@@ -75,13 +76,13 @@ export default function Login() {
     }
 
     return (
-        <div className="page-content" style={{ justifyContent: 'center' }}>
+        <div className="page-content login-page">
             <div>
-                <div className='full-width-row push-end' style={{ paddingBottom: '8px' }}>
-                    <button className='text-button' onClick={() => setHidePassword(!hidePassword)} >{!hidePassword ? 'Forgot My Password' : 'Never mind'}</button>
-                    {!hidePassword && <button className="text-button no-margin-button" onClick={signUp} >Sign Up</button>}
+                <div className='full-width-row push-end login-links'>
+                    <Button variant='text' onClick={() => setHidePassword(!hidePassword)}>{!hidePassword ? 'Forgot My Password' : 'Never mind'}</Button>
+                    {!hidePassword && <Button variant="text" onClick={signUp}>Sign Up</Button>}
                 </div>
-                <form style={{ width: '680px' }} onSubmit={e => signIn(e)} >
+                <form className='login-form' onSubmit={e => signIn(e)} >
                     <Input label="Email" field="email" val={email} onUpdate={setEmail} />
                     {!hidePassword && <Input label="Password" field="password" val={password} hidden={true} onUpdate={setPassword} />}
                     <div className="button-box push-end full-width">
@@ -89,12 +90,12 @@ export default function Login() {
                     </div>
                 </form>
                 <div className="button-box push-end">
-                    {hidePassword && <button className="no-margin-button" onClick={sendForgotPassword} >Send Reset Email</button>}
+                    {hidePassword && <Button onClick={sendForgotPassword}>Send Reset Email</Button>}
                 </div>
                 <div className="guest-mode-container">
                     <div className="guest-mode-divider">or</div>
-                    <button className="flat-button full-button guest-mode-button" onClick={enterGuestMode}>Use in guest mode</button>
-                    <div className="guest-mode-hint">Everything is saved on this device only. Sign in any time to sync.</div>
+                    <Button variant="flat" fullWidth onClick={enterGuestMode}>Use in guest mode</Button>
+                    <div className="hint-text guest-mode-hint">Everything is saved on this device only. Sign in any time to sync.</div>
                 </div>
             </div>
         </div>

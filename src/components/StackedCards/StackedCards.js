@@ -20,7 +20,7 @@ export function StackedCardBody({ children }) {
 export function StackedCardHeader({ title, subtitle, detail }) {
   return (
     <div className="stacked-card-header">
-      <div style={{ alignItems: 'flex-start' }} >
+      <div className='stacked-card-title'>
         <h2>{title}</h2>
         {subtitle && <div>{subtitle}</div>}
       </div>
@@ -31,7 +31,7 @@ export function StackedCardHeader({ title, subtitle, detail }) {
 
 export function StackedCard({ children }) {
   return (
-    <div className="stacked-card">
+    <div className="surface-card stacked-card">
       {children}
     </div>
   )

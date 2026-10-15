@@ -88,6 +88,12 @@ export function startGuestSession() {
   writeLocal('guest', true)
 }
 
+// Signed out and not a guest: the app sends you to the login page
+export function endSession() {
+  removeLocal('uid')
+  removeLocal('guest')
+}
+
 export function startSignedInSession(uid) {
   removeLocal('guest')
   writeLocal('uid', uid)

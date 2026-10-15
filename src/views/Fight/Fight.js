@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Slot from '../../components/Slot/Slot'
 import Input from '../../components/Input/Input'
 
+import Button from '../../components/Button/Button'
+import IconButton from '../../components/IconButton/IconButton'
 import './Fight.css'
 import CheckBox from '../../components/CheckBox/CheckBox';
 import { AiFillCloseCircle, AiOutlineMinusCircle } from 'react-icons/ai';
@@ -186,7 +188,7 @@ export default function Fight({setFormula, editMode }) {
     return ( 
         <div>
             <div>
-                <div className="multi-input" style={{paddingBottom: '16px'}}>
+                <div className="multi-input fight-health">
                     <Slot label="Health" max={character.health} val={character.currentHealth} field="currentHealth" onUpdate={updateState} ></Slot>
                     <Input add label="Temporary Health" val={character.tempHealth} field="tempHealth" onUpdate={updateState} ></Input>
                 </div>
@@ -197,20 +199,28 @@ export default function Fight({setFormula, editMode }) {
                     <Input add label="Dice left" field="hitDiceNum" val={character.hitDiceNum} onUpdate={updateState} />
                 </div>
                 <Input label='Speed' val={character.speed} field="speed" onUpdate={updateState} disabled={!editMode} />
-                <div className='full-width-row' style={{alignItems: 'center'}}>
+                <div className='full-width-row fight-section-header'>
                     { (character.weapons || editMode) && <h2 className='sub-header grey-color' >Attacks and Weapons</h2>}
                     {editMode && (
-                    <div style={{flexDirection: 'row'}}>
-                        <button onClick={addNewWeapon} style={{marginBottom: '0px'}} className="icon-button">+</button>
+                    <div className='fight-header-actions'>
+                        <IconButton label='Add weapon' size='sm' variant='filled' className='fight-small-icon-button' onClick={addNewWeapon}>+</IconButton>
                     </div>)}
                 </div>
                 <div id="all-weapons">
                     { editMode && (
-                        <div style={{width: '100%'}} >
+                        <div className='fight-weapon-search'>
                             <div className='full-width-row'>
                                 <Input label="Search Handbook Weapons" val={weaponSearch} onUpdate={setWeaponSearch} />
-                                <div style={{paddingLeft: '8px'}} >
-                                    <button className='icon-button' onClick={() => setShowFilteredWeapons(!showFilteredWeapons)} > {showFilteredWeapons ?<MdArrowDropUp /> : <MdArrowDropDown />} </button>
+                                <div className='fight-weapon-search-toggle'>
+                                    <IconButton
+                                        label={showFilteredWeapons ? 'Hide handbook weapons' : 'Show handbook weapons'}
+                                        size='sm'
+                                        variant='filled'
+                                        className='fight-small-icon-button fight-small-icon-button-spaced'
+                                        onClick={() => setShowFilteredWeapons(!showFilteredWeapons)}
+                                    >
+                                        {showFilteredWeapons ? <MdArrowDropUp /> : <MdArrowDropDown />}
+                                    </IconButton>
                                 </div>
                             </div>
                             <div id='handbook-weapons-chips' className={showFilteredWeapons ? 'open-weapon-chips' : ''} >
@@ -239,11 +249,9 @@ export default function Fight({setFormula, editMode }) {
                                     </>
                                 )}
                                 {selectedWeapon && !selectedWeapon?.isMagic && 
-                                <div 
-                                    className='full-width-row' 
-                                    style={{paddingTop: '8px', justifyContent: 'flex-end'}}
-                                    onClick={addHandbookWeapon}
-                                ><button>Add Weapon</button></div>
+                                <div className='full-width-row fight-add-weapon-row'>
+                                    <Button className='fight-add-weapon' onClick={addHandbookWeapon}>Add Weapon</Button>
+                                </div>
                                 }
                                 {selectedWeapon?.isMagic && <div>This weapon can't be added automatically</div>}
                             </div>
@@ -267,7 +275,9 @@ export default function Fight({setFormula, editMode }) {
                                     <CheckBox label='Versitile' model={w.versitile} idx={i} arr="weapons" field="versitile" onUpdate={updateArrayValue} ></CheckBox>
                                 </div>
                             </div> 
-                            <AiFillCloseCircle onClick={() => removeWeapon(i)} style={{fontSize: '24px', marginLeft: '8px', position: 'relative', top: '-28px'}} />
+                            <IconButton label='Remove weapon' tone='danger' className='fight-remove-button fight-remove-weapon' onClick={() => removeWeapon(i)}>
+                                <AiFillCloseCircle />
+                            </IconButton>
                         </div>
                         : <div className="weapon-container" key={'wep-' + i} onClick={() => setFormula(`d20 + ${w.atkBns}`)} >
                             <div className="weapon-header">
@@ -293,36 +303,38 @@ export default function Fight({setFormula, editMode }) {
                     )}
                 </div>
 
-                <div className='full-width-row' style={{alignItems: 'center'}}>
+                <div className='full-width-row fight-section-header'>
                     { (character.spellSlots || editMode) && <h2 className='sub-header grey-color'>Spell Slots</h2>}
                     {editMode && 
-                        <div style={{flexDirection: 'row'}}>
-                            <AiOutlineMinusCircle onClick={() => removeSpellSlot()} style={{fontSize: '24px', marginRight: '8px', position: 'relative'}} />
-                            <button onClick={addNewSpellSlot} style={{marginBottom: '0px'}} className="icon-button">+</button>
+                        <div className='fight-header-actions'>
+                            <IconButton label='Remove spell slot level' tone='danger' className='fight-remove-button fight-remove-slot' onClick={() => removeSpellSlot()}>
+                                <AiOutlineMinusCircle />
+                            </IconButton>
+                            <IconButton label='Add spell slot level' size='sm' variant='filled' className='fight-small-icon-button' onClick={addNewSpellSlot}>+</IconButton>
                         </div>
                     }
                 </div>
                 {character?.spellSlots?.map((ss, i) => (
                         editMode ? 
-                        <div className='full-width-row' style={{paddingBottom: '8px'}}>
+                        <div className='full-width-row fight-slot-row'>
                             <Input label={`Level ${(parseInt(i, 10) + 1)}`} val={ss.maxSlots} idx={i} field="maxSlots" arr="spellSlots" onUpdate={updateArrayValue} add ></Input>
                         </div>
-                        : <div style={{width: '100%', paddingBottom: '8px'}}>
+                        : <div className='fight-slot-row'>
                             <Slot max={ss.maxSlots} val={ss.usedSlots} label={"Level " + (parseInt(i, 10) + 1)} idx={i} field="usedSlots" arr="spellSlots" reverse onUpdate={updateArrayValue} />
                         </div>
                     )
                 )}
 
-                <div className='full-width-row' style={{alignItems: 'center'}}>
+                <div className='full-width-row fight-section-header'>
                     { (character.customFields || editMode) && <h2 className='sub-header grey-color' >Custom Fields</h2>}
-                    {editMode && <button onClick={addCustomSlot} style={{marginBottom: '0px'}} className="icon-button">+</button>}
+                    {editMode && <IconButton label='Add custom field' size='sm' variant='filled' className='fight-small-icon-button' onClick={addCustomSlot}>+</IconButton>}
                 </div>
                 {character?.customFields?.map((cs, i) => {
 
                     if(editMode) 
                         return (
                             <div className='full-width-row'>
-                                <div style={{width: '100%', paddingBottom: '16px'}}>
+                                <div className='fight-custom-field'>
                                     <div className='full-width-row'> 
                                         <div className="styled-input">
                                             <select 
@@ -335,7 +347,7 @@ export default function Fight({setFormula, editMode }) {
                                             </select>
                                             <span>Input Type</span>
                                         </div>
-                                        {cs.type === 'slot' &&  <div style={{width: '16px'}} />}
+                                        {cs.type === 'slot' &&  <div className='fight-spacer' />}
                                         {cs.type === 'slot' && 
                                             <Input 
                                                 label="Max Value" 
@@ -349,13 +361,15 @@ export default function Fight({setFormula, editMode }) {
                                     </div>
                                     <Input label="Label" val={cs.label} onUpdate={updateArrayValue} idx={i} field="label" arr="customFields" />
                                 </div>
-                                <AiFillCloseCircle onClick={() => removeCustomSlot(i)} style={{fontSize: '24px', marginLeft: '8px', position: 'relative', top: '-12px'}} />
+                                <IconButton label='Remove custom field' tone='danger' className='fight-remove-button fight-remove-field' onClick={() => removeCustomSlot(i)}>
+                                    <AiFillCloseCircle />
+                                </IconButton>
                             </div>
                         )
 
                     if(cs.type === 'slot')
                     return ( 
-                        <div style={{width: '100%', paddingBottom: '16px'}} >
+                        <div className='fight-custom-field'>
                             <Slot 
                                 max={cs.maxValue} 
                                 label={cs.label} 
@@ -369,7 +383,7 @@ export default function Fight({setFormula, editMode }) {
                     )
 
                     return(
-                        <div style={{width: '100%', paddingBottom: '16px'}} >
+                        <div className='fight-custom-field'>
                             <Input 
                                 label={cs.label} 
                                 val={cs.value} 
@@ -383,7 +397,7 @@ export default function Fight({setFormula, editMode }) {
                         </div>
                     )
                 })}
-                <button className="full-button" onClick={longRest} >Long Rest</button>
+                <Button fullWidth onClick={longRest}>Long Rest</Button>
                 <br></br>
             </div>
         </div>

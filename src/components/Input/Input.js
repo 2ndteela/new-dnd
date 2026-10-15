@@ -1,5 +1,6 @@
 import React from 'react';
 import './Input.css'
+import Button from '../Button/Button'
 
 export default function Input(props) {
 
@@ -69,9 +70,9 @@ export default function Input(props) {
     if (add) {
         return (
             <div className="styled-input add" >
-                <button onClick={dec} >-</button>
+                <Button variant='ghost' aria-label={`Decrease ${label || ''}`.trim()} onClick={dec}>-</Button>
                 <input onChange={(e) => handleInput(e.target.value, field)} type="number" value={val} ></input>
-                <button onClick={inc}>+</button>
+                <Button variant='ghost' aria-label={`Increase ${label || ''}`.trim()} onClick={inc}>+</Button>
                 <span>{label}</span>
             </div>
         )

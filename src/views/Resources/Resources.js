@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import CharacterSelect from '../CharacterSelect/CharacterSelect'
 import './Resources.css'
 import { useNavigate } from 'react-router-dom';
+import Button from '../../components/Button/Button';
 
 export default function Resources() {
 
@@ -15,7 +16,7 @@ export default function Resources() {
     <div className='page-content'>
       <div className='resource-container'>
         <h2>DM Resources</h2>
-        <button onClick={goToMonsters} id="monster-tracker-button" className='flat-button'>Monster Database and Initiative Tracker</button>
+        <Button variant='flat' fullWidth className='monster-tracker-button' onClick={goToMonsters}>Monster Database and Initiative Tracker</Button>
       </div>
       <div className='resource-container'>
         <h2>Characters</h2>

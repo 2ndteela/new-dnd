@@ -11,11 +11,13 @@ import { FaEdit } from 'react-icons/fa'
 import {AiFillSave} from 'react-icons/ai'
 import CharacterContextProvider from "./CharacterContext"
 import CharacterHistory from "../../views/CharacterHistory/CharacterHistory.js"
+import IconButton from '../IconButton/IconButton'
+import { isDesktopWidth } from '../../assets/breakpoints'
 
 export default function MultiPannelViewer() {
-    const windowWidth = window.innerWidth
+    const isDesktop = isDesktopWidth()
     const [ pannelOne, setPannelOne ] = useState('skills')
-    const [ pannelTwo, setPannelTwo ] = useState(windowWidth > 1099 ? 'fight' : null)
+    const [ pannelTwo, setPannelTwo ] = useState(isDesktop ? 'fight' : null)
     const [ pannelOneEditMode, setPannelOneEditMode ] = useState(false)
     const [ pannelTwoEditMode, setPannelTwoEditMode ] = useState(false)
     const [ pannelToAdd, setPannelToAdd ] = useState(null)
@@ -79,11 +81,11 @@ export default function MultiPannelViewer() {
         }
 
         return (
-            <div style={{display: 'flex', alignItems: 'flex-start'}}>
+            <div className="pannel-frame">
                 <div className="pannel-header"> 
                     {isEditMode ? 
-                        <AiFillSave className="header-action" onClick={() => saveChanges(num === 0 ? 'one' : 'two')} /> 
-                        : <FaEdit onClick={() => setEditMode(true)} className="header-action" />
+                        <IconButton label="Save changes" size="sm" tone="on-color" className="header-action" onClick={() => saveChanges(num === 0 ? 'one' : 'two')}><AiFillSave /></IconButton>
+                        : <IconButton label="Edit" size="sm" tone="on-color" className="header-action" onClick={() => setEditMode(true)}><FaEdit /></IconButton>
                     }
                     <h2 >{header}</h2>
                 </div>
@@ -104,7 +106,7 @@ export default function MultiPannelViewer() {
 
         setTimeout(() => {
             if(pannelOne !== p && pannelTwo !== p) {
-                if(windowWidth > 1099)
+                if(isDesktop)
                     setPannelTwo(pannelOne + '')
                 
                 setPannelOne(p)
@@ -134,7 +136,7 @@ export default function MultiPannelViewer() {
                             {getPannel(0)}
                         </div>
                         {
-                        windowWidth > 1100 && 
+                        isDesktop && 
                         <div className={`pannel-in-viewer second-pannel ${pannelToAdd !== null ? 'move-right fade-out' : ''} ${transitionActive ? 'in-transition' : ''}`}> {getPannel(1)}</div>
                         }
                     </div>
