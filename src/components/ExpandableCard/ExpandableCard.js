@@ -1,13 +1,13 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './ExpandableCard.css'
 
-export default function ExpandableCard({title, children, width = '100%'}) {
+export default function ExpandableCard({ title, children, width = '100%' }) {
 
-    const [ expanded, setExpanded ] = useState(false)
+    const [expanded, setExpanded] = useState(false)
 
     const containerStyles = {
         border: '1px solid #333',
-        width:  expanded ? '100%' : `${width}`,
+        width: expanded ? '100%' : `${width}`,
         backgroundColor: '#1f1f1f',
         display: 'flex',
         padding: '0px !important',
@@ -33,10 +33,10 @@ export default function ExpandableCard({title, children, width = '100%'}) {
         width: '100%'
     }
 
-  return (
-    <button onClick={() => setExpanded(!expanded)} style={containerStyles} >
-        <h3 style={headerStyles}>{title}</h3>
-        <div style={bodyStyles}>{children}</div>
-    </button>
-  )
+    return (
+        <button onClick={() => setExpanded(!expanded)} style={containerStyles} >
+            <h3 style={headerStyles}>{title}</h3>
+            <div style={bodyStyles}>{children}</div>
+        </button>
+    )
 }

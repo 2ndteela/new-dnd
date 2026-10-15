@@ -8,9 +8,10 @@ export default function Header() {
     const location = useLocation()
 
     const titleText = useMemo(() => {
-        if(location.pathname === '/character-create') return 'New Character Creation'
-        if(location.pathname === '/characters') return 'My Characters'
-        if(location.pathname === '/multi') {
+        if (location.pathname === '/character-create') return 'New Character Creation'
+        if (location.pathname === '/resources') return 'Resources'
+        if (location.pathname === '/monsters') return 'Monsters and Initiative'
+        if (location.pathname === '/multi') {
             const character = loadCharacter()
             return character?.name ?? ''
         }
@@ -18,9 +19,9 @@ export default function Header() {
         return "Dee n' Dee"
     }, [location])
 
-    return ( 
+    return (
         <div className="header-container">
             <h1>{titleText}</h1>
         </div>
-        );
+    );
 }

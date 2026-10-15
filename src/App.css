@@ -1,7 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Amaranth|Open+Sans');
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: 'Amaranth' !important;
+    padding: 0;
+    margin: 0;
+    color: #ffffffdf;
+}
+
+h5 {
+    font-size: 16px;
 }
 
 body {
@@ -17,10 +28,11 @@ body {
 #app-container {
     display: flex;
     flex-direction: column;
+    width: 100vw;
 }
 
 #routes-container {
     display: flex;
     justify-content: center;
-    width: calc(100vw - 48px);
+    width: 100%;
 }

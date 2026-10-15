@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MdExpandMore } from 'react-icons/md'
 import './ExpansionPannel.css'
 
-export default function ExpansionPannel({ header, children}) {
+export default function ExpansionPannel({ header, children, bottomBorder }) {
 
     const [open, setOpen] = useState(false)
 
@@ -11,15 +11,15 @@ export default function ExpansionPannel({ header, children}) {
     }
 
 
-    return ( 
-        <div style={{width: '100%'}} >
+    return (
+        <div style={{ width: '100%', borderBottom: bottomBorder ? '1px solid white' : null }} >
             <div onClick={clickIt} className="expansion-pannel-header" >
                 <h2>{header}</h2>
                 <span className={open ? 'flipped-arrow' : ''}>
                     <MdExpandMore></MdExpandMore>
                 </span>
             </div>
-            <div className={open ? 'expansion-pannel-body open-pannel' : 'expansion-pannel-body' } >
+            <div className={open ? 'expansion-pannel-body open-pannel' : 'expansion-pannel-body'} >
                 {children}
             </div>
         </div>

@@ -8,13 +8,13 @@ export const getCharacters = async () => {
         const uid = getFromLocalStorage('uid')
         const chars = await get(child(dbRef, `users/${uid}`))
 
-        if(chars.exists()) {
+        if (chars.exists()) {
             return chars.val()
         }
 
         return null
     }
-    catch(err) {
+    catch (err) {
         console.error(err)
         return null
     }
@@ -23,12 +23,12 @@ export const getCharacters = async () => {
 export const writeCharacterToDb = async () => {
     try {
         const data = loadCharacter()
-        if(!data?.savedChar) {
+        if (!data?.savedChar) {
             const db = getDatabase()
             const userId = getFromLocalStorage('uid')
             data.savedChar = true
 
-            if(!data.key)
+            if (!data.key)
                 await push(ref(db, `users/${userId}/characters`), data)
             else
                 await set(ref(db, `users/${userId}/characters/${data.key}`), data)
@@ -36,7 +36,7 @@ export const writeCharacterToDb = async () => {
             writeCharacterWithoutFlag(data)
         }
     }
-    catch(err) {
+    catch (err) {
         throw err
     }
 }
@@ -45,13 +45,13 @@ export const signInUser = async (email, password) => {
     try {
         const auth = getAuth()
         const credentials = await signInWithEmailAndPassword(auth, email, password)
-        
+
         writeToLocalStorage('uid', credentials.user.uid)
         return credentials.user
     }
-    catch(err) {
-        if(err.message.includes('wrong-password') || err.message.includes('user-not-found'))
-            throw(new Error('Bad Login Credentials'))
+    catch (err) {
+        if (err.message.includes('wrong-password') || err.message.includes('user-not-found'))
+            throw (new Error('Bad Login Credentials'))
 
         else throw err
     }
@@ -65,7 +65,7 @@ export const createNewUser = async (email, password) => {
         writeToLocalStorage('uid', credentials.user.uid)
         return credentials.user
     }
-    catch(err) {
+    catch (err) {
         throw err
     }
 }
@@ -76,7 +76,7 @@ export const sendForgotPasswordEmail = async (email) => {
         await sendPasswordResetEmail(auth, email)
         return 200
     }
-    catch(error) {
+    catch (error) {
         throw error
     }
 }
@@ -99,7 +99,7 @@ export const getAllSpells = async () => {
         const data = await resp.json()
         return data
     }
-    catch(error) {
+    catch (error) {
         console.error(error)
     }
 }
@@ -109,19 +109,19 @@ export const searchForWeapon = async weapon => {
         const resp = await fetch(`https://www.dnd5eapi.co/api/equipment/${weapon}`)
         const data = await resp.json()
 
-        if(!data.error)
+        if (!data.error)
             return data
 
         const magicItem = await fetch(`https://www.dnd5eapi.co/api/magic-items/${weapon}`)
         const magicData = await magicItem.json()
         magicData.isMagic = true
 
-        if(!magicData.error)
+        if (!magicData.error)
             return magicData
 
         return null
     }
-    catch(error) {
+    catch (error) {
         console.error(error)
         return null
     }
@@ -133,7 +133,7 @@ export const getAllWeapons = async () => {
         const data = await resp.json()
         return data
     }
-    catch(error) {
+    catch (error) {
         console.error(error)
     }
 }
@@ -144,18 +144,29 @@ export const getAllClasses = async () => {
         const data = await resp.json()
         return data.results
     }
-    catch(error) {
+    catch (error) {
         console.error(error)
     }
 }
 
 export const getFromDnd5eApi = async (endpoint) => {
     try {
-        const resp = await fetch(`https://www.dnd5eapi.co${endpoint}`)
+        const resp = await fetch(`https://www.dnd5eapi.co/api/2014${endpoint}`)
         const data = await resp.json()
         return data
     }
-    catch(error) {
+    catch (error) {
+        console.error(error)
+    }
+}
+
+export const getMonsterFromIndex = async (index) => {
+    try {
+        const resp = await fetch(`https://www.dnd5eapi.co/api/2014/monsters/${index}`)
+        const data = await resp.json()
+        return data
+    }
+    catch (error) {
         console.error(error)
     }
 }

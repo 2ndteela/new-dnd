@@ -1,0 +1,99 @@
+.monster-section {
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.monsters-list {
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#monster-list-container {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.single-monster-text {
+  text-align: start;
+  align-items: flex-start;
+}
+
+.monster-card {
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.monster-stat-box {
+  position: relative;
+  flex-grow: 1;
+}
+
+.monster-box-base-stat {
+  background-color: #545454;
+  padding: 2px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.monster-box-stats-container {
+  width: 100%;
+  border: 1px solid #545454;
+  padding-bottom: 0px;
+  justify-content: flex-end;
+  border-inline-start: none;
+  padding-top: 4px;
+}
+
+.monster-box-title {
+  padding-bottom: 2px;
+}
+
+.monster-stats-table {
+  width: 100%;
+  flex-direction: row;
+}
+
+.monster-stats-table:first-child .monster-stat-box .monster-box-stats-container {
+  border-inline-start: 1px solid #545454;
+}
+
+.monster-box-bonus {
+  color: #FFFFFFa0;
+}
+
+.monster-box-bonus.has-save {
+  font-style: italic;
+  color: #FFF;
+}
+
+.other-monster-stats {
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.other-prof-row {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 4px;
+}
+
+#monster-list-container {
+  width: 100%;
+}
+
+#view-splitter {
+  width: 100%;
+}
+
+#monster-filter-results {
+  width: 100%;
+  align-items: flex-start;
+}

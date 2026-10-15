@@ -6,15 +6,15 @@ import './CharacterSelect.css'
 
 
 export default function CharacterSelect() {
-    const navigate = useNavigate()  
-    const [ characters, setCharacters ] = useState([])
-    const [ loading, setLoading ] = useState(false)
+    const navigate = useNavigate()
+    const [characters, setCharacters] = useState([])
+    const [loading, setLoading] = useState(false)
 
 
     useEffect(() => {
         setLoading(true)
         clearCurrentCharacter()
-        
+
         getCharacters().then(data => {
             const keys = Object.keys(data.characters)
             const charArray = []
@@ -54,23 +54,21 @@ export default function CharacterSelect() {
         navigate('/character-create')
     }
 
-    return ( 
-        <div>
-            <div className="page-content">
-                {loading && <h1>Fetching Characters...</h1>}
-                {characters.map((char, i) => {
-                    return (
-                        <div className="char-card" key={"char-" + i} onClick={() => goToCharacter(char)} >
-                            <h3>{char.name}</h3>
-                            <div>Level {char.level} {char.race} {char.class}</div>
-                        </div>
-                    )
-                })}
-                {!characters.length && !loading && <h2>Looks like you're new here. Click "New Character" to begin!</h2>}
-                {!loading && <div id='new-character-space' onClick={createNewCharacter}>
-                    +
-                </div>}
-            </div>
+    return (
+        <div id="character-selection-container" >
+            {loading && <h1>Fetching Characters...</h1>}
+            {characters.map((char, i) => {
+                return (
+                    <button className="flat-button char-card" key={"char-" + i} onClick={() => goToCharacter(char)} >
+                        <h3>{char.name}</h3>
+                        <div>Level {char.level} {char.race} {char.class}</div>
+                    </button>
+                )
+            })}
+            {!characters.length && !loading && <h2>Looks like you're new here. Click "New Character" to begin!</h2>}
+            {!loading && <button className='flat-button' id='new-character-space' onClick={createNewCharacter}>
+                +
+            </button>}
         </div>
     );
 }

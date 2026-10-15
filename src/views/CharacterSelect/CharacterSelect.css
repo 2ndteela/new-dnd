@@ -1,24 +1,5 @@
-#full-bottom-button {
-    width: 100vw;
-    position: fixed;
-    bottom: 0px;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 16px;
-}
-
-#full-bottom-button a {
-    width: 92vw;
-    padding: 8px;
-    background-color: #242424;
-    color: #ffffffdf;
-    border-radius: 8px;
-    text-decoration: none;
-    max-width: 680px;
-}
-
 .char-card {
-    width: 100%;
+    display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     padding: 16px;
@@ -26,23 +7,41 @@
     margin-bottom: 16px;
     transition: .3s;
     background-color: #242424;
+    width: 100%;
 }
 
-.char-card:hover {
-    background-color: #333;
-}
 
 #new-character-space {
-    width: 100%;
-    border: 4px dashed #333;
+    border: 2px dashed #242424;
     border-radius: 8px;
-    color: #333;
-    font-size: 48px;
+    color: #242424;
+    font-size: 2em;
     transition: .2s;
+    background-color: transparent;
+    height: 72.5px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
 }
 
 #new-character-space:hover {
-    border-color: #555;
-    color: #555;
-    cursor: pointer;
+    color: #333;
+    border-color: #333;
+}
+
+#character-selection-container {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+@media screen and (min-width: 1200px) {
+
+    .char-card,
+    #new-character-space {
+        width: calc(50% - 8px);
+    }
 }

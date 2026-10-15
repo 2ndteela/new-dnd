@@ -2,7 +2,7 @@
   width: 4px;
   height: 4px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #333;
@@ -14,18 +14,14 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
   -ms-user-select: none;
   user-select: none;
   background-color: #121212;
   color: #ffffff99;
-}
-
-h1, h2, h3, h4 {
-  padding: 0;
-  margin: 0;
-  color: #ffffffdf;
 }
 
 .App {
@@ -64,13 +60,11 @@ h1, h2, h3, h4 {
   width: 100vw;
   padding: 16px;
   overflow-x: hidden;
-  max-width: 680px;
 }
 
 .with-bottom-nav {
   padding-bottom: 54px !important;
 }
-
 
 .button-box {
   width: 100%;
@@ -80,8 +74,9 @@ h1, h2, h3, h4 {
   max-width: 680px;
 }
 
-.button-box button, .button-box input[type="submit"] {
-  margin-left: 8px !important; 
+.button-box button,
+.button-box input[type="submit"] {
+  margin-left: 8px !important;
   margin-right: 0px !important;
 }
 
@@ -101,34 +96,38 @@ h1, h2, h3, h4 {
   justify-content: flex-end !important;
 }
 
-button, input[type="submit"] {
+
+
+button,
+input[type="submit"] {
   display: inline-block;
-  padding: 8px 24px;
+  padding: 8px 24px !important;
   background-color: #1e3b56;
   color: #ffffff99;
   font-weight: bold;
   border: 2px solid #1e3b56;
   border-radius: 4px;
   margin-right: 8px;
-  transition: background-color .3s;
+  transition: background-color .3s, border-color .3s;
+  padding: 8px 12px;
 }
 
-button:hover, input[type="submit"]:hover {
+button:hover,
+input[type="submit"]:hover {
   background-color: #1d68ad;
   border-color: #1d68ad;
   cursor: pointer;
 }
 
-.flat-button {
-  background-color: #333;
+button.flat-button {
+  background-color: #242424;
   color: #ffffff99;
-  border-color: #333;
+  border-color: #242424;
 }
 
-.flat-button:hover {
-  color: white !important;
-  background-color: #1e3b56;
-  border-color: #1e3b56;
+button.flat-button:hover {
+  background-color: #111;
+  border-color: #111;
 }
 
 button.outline-button {
@@ -146,12 +145,18 @@ button.text-button {
   background-color: transparent;
   border-color: transparent;
   color: #ffffff99;
-  margin-right: 24px;
   padding: 4px 8px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: start;
 }
 
 button.text-button:hover {
-  background-color: #1e3b56;
+  background-color: #1e3b5655;
+}
+
+button.text-button:disabled {
+  color: #ffffff33;
 }
 
 select {
@@ -246,12 +251,14 @@ input[type=number] {
 }
 
 
-@media screen and (max-width: 680px) {
-
-}
+@media screen and (max-width: 680px) {}
 
 @media screen and (min-width: 1200px) {
   body {
     overflow-x: hidden;
+  }
+
+  .page-content {
+    max-width: 1200px;
   }
 }

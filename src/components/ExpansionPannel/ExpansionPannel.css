@@ -14,9 +14,7 @@
 
 .expansion-pannel-body {
     max-height: 0px;
-    transition: .3s;
     overflow: hidden;
-    margin-bottom: 8px;
     width: 100%;
     opacity: 0;
 }
@@ -30,4 +28,8 @@
     max-height: unset;
     overflow: auto;
     opacity: 1;
+}
+
+.open-pannel.expansion-pannel-body {
+    margin-bottom: 8px;
 }
