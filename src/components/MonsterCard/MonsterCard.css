@@ -1,0 +1,85 @@
+.monster-card {
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.monster-stat-box {
+  position: relative;
+  flex-grow: 1;
+}
+
+.monster-box-base-stat {
+  background-color: #545454;
+  padding: 2px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.monster-box-stats-container {
+  width: 100%;
+  border: 1px solid #545454;
+  padding-bottom: 0px;
+  justify-content: flex-end;
+  border-inline-start: none;
+  padding-top: 4px;
+}
+
+.monster-box-title {
+  padding-bottom: 2px;
+}
+
+.monster-stats-table {
+  width: 100%;
+  flex-direction: row;
+}
+
+.monster-stats-table:first-child .monster-stat-box .monster-box-stats-container {
+  border-inline-start: 1px solid #545454;
+}
+
+.monster-box-bonus {
+  color: #FFFFFFa0;
+}
+
+.monster-box-bonus.has-save {
+  font-style: italic;
+  color: #FFF;
+}
+
+.other-monster-stats {
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.other-prof-row {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 4px;
+}
+
+button.add-to-initiative {
+  flex-direction: row;
+  align-items: center;
+}
+
+.initiative-count {
+  min-width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  padding: 0 6px;
+  border-radius: 10px;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+  background-color: #376996;
+}
+
+button.add-to-initiative:disabled {
+  opacity: .5;
+  cursor: default;
+}

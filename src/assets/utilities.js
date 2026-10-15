@@ -1,37 +1,23 @@
+import { readLocal, writeLocal, removeLocal } from './storage'
+
 const characterString = 'character'
 
-export const writeToLocalStorage = (path, data) => {
-    localStorage[path] = JSON.stringify(data)
-}
-
-export const getFromLocalStorage = path => {
-    try {
-        return JSON.parse(localStorage[path])
-    }
-    catch (err) {
-        return null
-    }
-}
-
-export const removeFromLocalStorage = path => {
-    localStorage.removeItem(path)
-}
-
 export const clearCurrentCharacter = () => {
-    removeFromLocalStorage(characterString)
+    removeLocal(characterString)
 }
 
 export const writeCharacter = data => {
     data.savedChar = false
-    writeToLocalStorage(characterString, data)
+    writeLocal(characterString, data)
 }
 
 export const writeCharacterWithoutFlag = data => {
-    writeToLocalStorage(characterString, data)
+    writeLocal(characterString, data)
 }
 
 export const loadCharacter = () => {
-    const char = getFromLocalStorage(characterString)
+    const char = readLocal(characterString)
+    if(!char) return null
     if(!char.weapons) char.weapons = []
     if(!char.abilities) char.abilities = []
     return char

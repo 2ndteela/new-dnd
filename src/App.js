@@ -7,6 +7,7 @@ import MultiPannelViewer from './components/MultiPannelViewer/MutliPannelViewer'
 import './firebase'
 import CharacterCreation from './views/CharacterCreation/CharacterCreation';
 import Header from './components/Header/Header';
+import GuestBanner from './components/GuestBanner/GuestBanner';
 import Resources from './views/Resources/Resources';
 import MonstersAndInitiative from './views/MonstersAndInitiative/MonstersAndInitiative';
 
@@ -15,6 +16,7 @@ function App() {
     <div className="App">
       <Router>
         <div id='app-container' >
+          <GuestBanner />
           <Header />
           <Routes>
             <Route path='/' element={<Login />} />

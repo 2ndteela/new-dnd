@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Input from '../components/Input/Input.js'
 import { createNewUser, sendForgotPasswordEmail, signInUser } from '../assets/services.js';
 import { useNavigate } from 'react-router-dom';
+import { startGuestSession } from '../assets/storage.js';
+import './Login.css'
 
 export default function Login() {
     const [email, setEmail] = useState()
@@ -49,6 +51,11 @@ export default function Login() {
         }
     }
 
+    function enterGuestMode() {
+        startGuestSession()
+        navigate('/resources')
+    }
+
     async function sendForgotPassword() {
 
         if (!email) {
@@ -83,6 +90,11 @@ export default function Login() {
                 </form>
                 <div className="button-box push-end">
                     {hidePassword && <button className="no-margin-button" onClick={sendForgotPassword} >Send Reset Email</button>}
+                </div>
+                <div className="guest-mode-container">
+                    <div className="guest-mode-divider">or</div>
+                    <button className="flat-button full-button guest-mode-button" onClick={enterGuestMode}>Use in guest mode</button>
+                    <div className="guest-mode-hint">Everything is saved on this device only. Sign in any time to sync.</div>
                 </div>
             </div>
         </div>

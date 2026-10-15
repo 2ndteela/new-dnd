@@ -1,44 +1,122 @@
-import { getDatabase, child, ref, get, set, push } from "firebase/database";
-import { getFromLocalStorage, loadCharacter, writeCharacterWithoutFlag, writeToLocalStorage } from "./utilities";
+import { getDatabase, child, ref, get, set, push, remove, update } from "firebase/database";
+import { loadCharacter, writeCharacterWithoutFlag } from "./utilities";
+import { readLocal, writeLocal, removeLocal, isSignedIn, dataKey, startSignedInSession } from "./storage";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
-export const getCharacters = async () => {
+// Every write goes to local storage (IndexedDB). Signed-in users also write to Firebase,
+// and their reads come from Firebase, falling back to the local copy when offline.
+
+const userPath = (collection) => `users/${readLocal('uid')}/${collection}`
+
+const localId = () => `local-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`
+
+// Firebase generates push ids client-side, so this works offline too
+const newKey = (collection) => (isSignedIn() ? push(ref(getDatabase(), userPath(collection))).key : localId())
+
+function writeLocalItem(collection, key, value) {
+    const items = readLocal(dataKey(collection)) || {}
+    items[key] = value
+    writeLocal(dataKey(collection), items)
+}
+
+function removeLocalItem(collection, key) {
+    const items = readLocal(dataKey(collection)) || {}
+    delete items[key]
+    writeLocal(dataKey(collection), items)
+}
+
+// Returns { [key]: item }. A successful remote read refreshes the local copy.
+async function readCollection(collection) {
+    const local = () => readLocal(dataKey(collection)) || {}
+    if (!isSignedIn()) return local()
+
     try {
-        const dbRef = ref(getDatabase())
-        const uid = getFromLocalStorage('uid')
-        const chars = await get(child(dbRef, `users/${uid}`))
-
-        if (chars.exists()) {
-            return chars.val()
-        }
-
-        return null
+        const snapshot = await get(child(ref(getDatabase()), userPath(collection)))
+        const items = snapshot.exists() ? snapshot.val() : {}
+        writeLocal(dataKey(collection), items)
+        return items
     }
     catch (err) {
-        console.error(err)
-        return null
+        console.error(`Could not reach the database, using the local copy of ${collection}`, err)
+        return local()
     }
 }
 
+// Remote writes don't block: offline, Firebase holds them until it reconnects
+const logRemoteError = (err) => console.error('Database write failed', err)
+
+export const getCharacters = async () => {
+    return { characters: await readCollection('characters') }
+}
+
 export const writeCharacterToDb = async () => {
+    const data = loadCharacter()
+    if (!data || data.savedChar) return
+
+    // Keep the key on the character so later saves update it instead of adding a copy
+    if (!data.key) data.key = newKey('characters')
+    data.savedChar = true
+
+    writeLocalItem('characters', data.key, data)
+    if (isSignedIn()) set(ref(getDatabase(), `${userPath('characters')}/${data.key}`), data).catch(logRemoteError)
+
+    writeCharacterWithoutFlag(data)
+}
+
+export const getEncounters = async () => readCollection('encounters')
+
+export const createEncounter = async (encounter) => {
+    const key = newKey('encounters')
+    writeLocalItem('encounters', key, encounter)
+    if (isSignedIn()) set(ref(getDatabase(), `${userPath('encounters')}/${key}`), encounter).catch(logRemoteError)
+    return key
+}
+
+// Resolves once the remote write lands (callers don't wait on it) so failures can be reported
+export const saveEncounter = async (key, encounter) => {
+    writeLocalItem('encounters', key, encounter)
+    if (isSignedIn()) await set(ref(getDatabase(), `${userPath('encounters')}/${key}`), encounter)
+}
+
+export const deleteEncounter = async (key) => {
+    removeLocalItem('encounters', key)
+    if (isSignedIn()) remove(ref(getDatabase(), `${userPath('encounters')}/${key}`)).catch(logRemoteError)
+}
+
+const SYNCED_COLLECTIONS = ['characters', 'encounters']
+
+// Copies anything made in guest mode into the account that just signed in.
+// One multi-path update adds the items without touching existing account data.
+// Guest data is only cleared once the upload succeeds, so a failure retries next sign-in.
+async function moveGuestDataToAccount(uid) {
+    const updates = {}
+    SYNCED_COLLECTIONS.forEach((collection) => {
+        const items = readLocal(`data/guest/${collection}`) || {}
+        Object.entries(items).forEach(([key, item]) => {
+            updates[`${collection}/${key}`] = item
+        })
+    })
+
+    if (Object.keys(updates).length < 1) return
+
     try {
-        const data = loadCharacter()
-        if (!data?.savedChar) {
-            const db = getDatabase()
-            const userId = getFromLocalStorage('uid')
-            data.savedChar = true
+        await update(ref(getDatabase(), `users/${uid}`), updates)
 
-            if (!data.key)
-                await push(ref(db, `users/${userId}/characters`), data)
-            else
-                await set(ref(db, `users/${userId}/characters/${data.key}`), data)
-
-            writeCharacterWithoutFlag(data)
-        }
+        SYNCED_COLLECTIONS.forEach((collection) => {
+            const guestItems = readLocal(`data/guest/${collection}`) || {}
+            const accountItems = readLocal(`data/${uid}/${collection}`) || {}
+            writeLocal(`data/${uid}/${collection}`, { ...accountItems, ...guestItems })
+            removeLocal(`data/guest/${collection}`)
+        })
     }
     catch (err) {
-        throw err
+        console.error('Could not move guest data to the account; it stays on this device', err)
     }
+}
+
+async function startAccountSession(uid) {
+    startSignedInSession(uid)
+    await moveGuestDataToAccount(uid)
 }
 
 export const signInUser = async (email, password) => {
@@ -46,7 +124,7 @@ export const signInUser = async (email, password) => {
         const auth = getAuth()
         const credentials = await signInWithEmailAndPassword(auth, email, password)
 
-        writeToLocalStorage('uid', credentials.user.uid)
+        await startAccountSession(credentials.user.uid)
         return credentials.user
     }
     catch (err) {
@@ -62,7 +140,7 @@ export const createNewUser = async (email, password) => {
         const auth = getAuth()
         const credentials = await createUserWithEmailAndPassword(auth, email, password)
 
-        writeToLocalStorage('uid', credentials.user.uid)
+        await startAccountSession(credentials.user.uid)
         return credentials.user
     }
     catch (err) {

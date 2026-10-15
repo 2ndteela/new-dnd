@@ -1,115 +1,50 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import { MdSearch, MdFormatListNumbered } from 'react-icons/md'
+import { Navigate } from 'react-router-dom'
+import { hasSession } from '../../assets/storage'
 import { getFromDnd5eApi, getMonsterFromIndex } from '../../assets/services'
 import Input from '../../components/Input/Input'
 import "./MonstersAndInitiative.css"
 import BottomDrawer from '../../components/BottomDrawer/BottomDrawer'
+import CustomMonsterDialog from '../../components/CustomMonsterDialog/CustomMonsterDialog'
 import ExpansionPannel from '../../components/ExpansionPannel/ExpansionPannel'
-import StackedCards, { StackedCard, StackedCardActions, StackedCardBody, StackedCardHeader } from '../../components/StackedCards/StackedCards'
+import InitiativeTracker from '../../components/InitiativeTracker/InitiativeTracker'
+import useInitiative from '../../components/InitiativeTracker/useInitiative'
+import MonsterCard from '../../components/MonsterCard/MonsterCard'
+import StackedCards from '../../components/StackedCards/StackedCards'
 
-function MonsterStatBox({ name, value, save }) {
-  const bonus = save ? save : Math.floor((value - 10) / 2)
+function useMediaQuery(query) {
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches)
 
-  return (
-    <div className='monster-stat-box'>
-      <div className='monster-box-title'>
-        {name}
-      </div>
-      <div className='monster-box-stats-container'>
-        <h2 className={`monster-box-bonus${save ? ' has-save' : ''}`}>{bonus > 0 ? `+${bonus}` : bonus}</h2>
-        <div className='monster-box-base-stat'>{value}</div>
-      </div>
-    </div>
-  )
+  useEffect(() => {
+    const mql = window.matchMedia(query)
+    const handleChange = (e) => setMatches(e.matches)
+    mql.addEventListener('change', handleChange)
+    return () => mql.removeEventListener('change', handleChange)
+  }, [query])
+
+  return matches
 }
 
-function MonsterStats({ monster }) {
-  const stats = useMemo(() => [
-    {
-      name: 'Charisma',
-      abbreviation: 'Cha'
-    },
-    {
-      name: 'Constitution',
-      abbreviation: 'Con'
-    },
-    {
-      name: 'Dexterity',
-      abbreviation: 'Dex'
-    },
-    {
-      name: 'Intelligence',
-      abbreviation: 'Int'
-    },
-    {
-      name: 'Strength',
-      abbreviation: 'Str'
-    },
-    {
-      name: 'Wisdom',
-      abbreviation: 'Wis'
-    },
-  ], [])
-
-  const baseStats = useMemo(() => {
-    return stats.map((s) => {
-      const LCStatName = s.name.toLocaleLowerCase()
-      const LCStatAbbr = s.abbreviation.toLocaleLowerCase()
-      const proficiencyCheck = monster.proficiencies.find((p) => p.proficiency.index === `saving-throw-${LCStatAbbr}`)
-
-      const base = {
-        name: s.abbreviation,
-        value: monster[LCStatName]
-      }
-
-      if (proficiencyCheck) base.save = proficiencyCheck.value
-      return base
-    })
-  }, [monster, stats])
-
-
-  return (
-    <div className="monster-stats-table" style={{ flexDirection: 'row', width: '100%' }}>
-      {baseStats.map((s) => <MonsterStatBox key={`${monster.index}-${s.name}`} {...s} />)}
-    </div>
-  )
-}
-
-function MonsterProficiencies({ monster }) {
-  const proficienciesCheck = monster.proficiencies.filter((p) => p?.proficiency?.name?.includes('Skill:'))
-
-  return proficienciesCheck.length < 1 ? null : (
-    <ExpansionPannel header="More Stats" bottomBorder>
-      <div style={{ width: '100%' }} >
-        {proficienciesCheck.map((p) => (
-          <div className='other-prof-row'>
-            <h4>{p.proficiency.name.split(':')[1]}</h4>
-            <div>+{p.value}</div>
-          </div>
-        ))}
-        <div className='other-prof-row'>
-          <h4>AC</h4>
-          <div>{monster.armor_class[0].value}</div>
-        </div>
-        <div className='other-prof-row'>
-          <h4>Size</h4>
-          <div>{monster.size}</div>
-        </div>
-        <div className='other-prof-row'>
-          <h4>Speed</h4>
-          <div>
-            {Object.keys(monster.speed).map((k) => <div>{k}: {monster.speed[k]}</div>)}
-          </div>
-        </div>
-      </div>
-    </ExpansionPannel>
-  )
-}
-
+// Encounters are stored per user (or per device in guest mode), so this page needs a session
 export default function MonstersAndInitiative() {
+  if (!hasSession()) return <Navigate to='/' replace />
+  return <MonstersAndInitiativePage />
+}
+
+function MonstersAndInitiativePage() {
   const [loading, setLoading] = useState(false)
   const [fullList, setFullList] = useState([])
   const [savedMonsters, setSavedMonsters] = useState([])
   const [filterTerm, setFilterTerm] = useState(null)
+  const [activeTab, setActiveTab] = useState('search')
+  const [customDialogOpen, setCustomDialogOpen] = useState(false)
+  const initiative = useInitiative()
+  const isDesktop = useMediaQuery('(min-width: 1024px)')
+
+  const addCustomMonster = useCallback((monster) => {
+    setSavedMonsters((v) => [...v, monster])
+  }, [])
 
   const removeFromStack = useCallback((key) => {
     setSavedMonsters((val) => val.filter((m) => m.index !== key))
@@ -167,10 +102,14 @@ export default function MonstersAndInitiative() {
   }, [savedMonsters])
 
   return (
-    <div className="page-content">
+    <div className={`page-content${activeTab === 'tracker' ? ' tracker-active' : ''}`} id="monsters-page">
       <div id="view-splitter">
-        <div id='monster-list-container' >
+        <div id="search-pane" className={`initiative-pane${activeTab === 'search' ? ' active' : ''}`}>
+        <div id='monster-search-column'>
           <Input className="full-width" label="Search All Monsters" value={filterTerm} onUpdate={setFilterTerm} />
+          <button className='flat-button full-button add-custom-monster' onClick={() => setCustomDialogOpen(true)}>
+            Add Custom Monster
+          </button>
           <div id="monster-list-container">
             {filterTerm?.length < 1 || filterTerm === null ? alphabetizedData.map((section) => (
               <div key={section?.sectionHeader} className="monster-section">
@@ -205,55 +144,40 @@ export default function MonstersAndInitiative() {
             )}
           </div>
         </div>
-        <BottomDrawer>
+        {/* Unmounted on the mobile tracker tab so an open drawer can't keep body scroll locked */}
+        {(isDesktop || activeTab === 'search') && <BottomDrawer>
+          {savedMonsters.length > 0 && !initiative.encounter && (
+            <div className='saved-monsters-hint'>Open an encounter in the tracker to add monsters to it.</div>
+          )}
+          {savedMonsters.length < 1 && <div className='saved-monsters-empty'>Pick a monster from the list to see its stats.</div>}
           <StackedCards>
             {savedMonsters.map((m) => (
-              <StackedCard key={m.index} >
-                <StackedCardHeader title={m.name} subtitle={m.type} detail={
-                  <div style={{ alignItems: 'flex-end' }} >
-                    <h4>Health</h4>
-                    <div style={{ textAlign: 'right' }} >{m.hit_points_roll} ({m.hit_points})</div>
-                  </div>
-                } />
-                <StackedCardBody>
-                  <MonsterStats monster={m} />
-                  <div className='full-width' style={{ marginTop: '16px' }} >
-                    <MonsterProficiencies monster={m} />
-                  </div>
-                  <div className="full-width" style={{ paddingTop: '16px' }}>
-                    {m.special_abilities.length > 0 &&
-                      <ExpansionPannel header="Abilities" bottomBorder>
-                        {m.special_abilities.map((ability) => (
-                          <div style={{ width: '100%', alignItems: 'flex-start', paddingBottom: '8px' }} >
-                            <h5>{ability.name}</h5>
-                            <div>{ability.desc}</div>
-                          </div>
-                        ))}
-                      </ExpansionPannel>}
-                  </div>
-                  <div className='full-width' style={{ paddingTop: '16px' }} >
-                    {m.actions.length > 0 && (
-                      <ExpansionPannel header="Actions" bottomBorder>
-                        {m.actions.map((a) => (
-                          <div style={{ width: '100%', alignItems: 'flex-start', paddingBottom: '8px' }}>
-                            <h5>{a.name}</h5>
-                            <div>{a.desc}</div>
-                          </div>
-                        ))}
-                      </ExpansionPannel>
-                    )}
-                  </div>
-                </StackedCardBody>
-                <StackedCardActions>
-                  <div style={{ paddingInlineEnd: '8px' }}>
-                    <button className='text-button' onClick={() => removeFromStack(m.index)} >Remove</button>
-                  </div>
-                  <button className='flat-button'>Add To Initiative</button>
-                </StackedCardActions>
-              </StackedCard>
+              <MonsterCard
+                key={m.index}
+                monster={m}
+                onRemove={removeFromStack}
+                onAddToInitiative={initiative.addMonster}
+                canAddToInitiative={!!initiative.encounter}
+                initiativeCount={(initiative.encounter?.entries || []).filter((e) => e.type === 'monster' && e.monster.index === m.index).length}
+              />
             ))}
           </StackedCards>
-        </BottomDrawer>
+        </BottomDrawer>}
+        </div>
+        <div id="tracker-pane" className={`initiative-pane${activeTab === 'tracker' ? ' active' : ''}`}>
+          <InitiativeTracker initiative={initiative} />
+        </div>
+      </div>
+      {customDialogOpen && <CustomMonsterDialog onClose={() => setCustomDialogOpen(false)} onCreate={addCustomMonster} />}
+      <div className="initiative-tabs">
+        <button className={activeTab === 'search' ? 'active' : ''} onClick={() => setActiveTab('search')}>
+          <MdSearch />
+          <span>Search</span>
+        </button>
+        <button className={activeTab === 'tracker' ? 'active' : ''} onClick={() => setActiveTab('tracker')}>
+          <MdFormatListNumbered />
+          <span>Tracker{initiative.encounter?.entries.length > 0 ? ` (${initiative.encounter.entries.length})` : ''}</span>
+        </button>
       </div>
     </div >
   )

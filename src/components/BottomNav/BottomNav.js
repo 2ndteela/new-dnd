@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import { getFromLocalStorage } from '../../assets/utilities.js';
+import { readLocal } from '../../assets/storage.js';
 import './BottomNav.css'
 
 export default function BottomNav() {
     const route = window.location.pathname
-    const character = getFromLocalStorage('tempCharacter')
+    const character = readLocal('tempCharacter')
     const links = [
         {
             name: 'Spells',

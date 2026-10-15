@@ -63,8 +63,13 @@
   left: 0;
   width: 100%;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  transition: .2s;
+  transition: box-shadow .2s;
   z-index: 1;
+}
+
+/* Top card stays in flow so the container gets real height */
+.stacked-card-child.top-card {
+  position: relative;
 }
 
 .stacked-card-child.selected {

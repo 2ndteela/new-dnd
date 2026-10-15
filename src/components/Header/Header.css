@@ -73,3 +73,54 @@
 .make-ex #go-away-bar {
     opacity: 0;
 }
+button.header-back-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 58px;
+    width: 58px;
+    padding: 0 !important;
+    margin: 0 !important;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    color: white;
+    font-size: 24px;
+}
+
+button.header-back-button:hover {
+    background-color: #ffffff1a;
+}
+
+.header-account-status {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 58px;
+    width: 58px;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #8fd19e;
+}
+
+button.header-sign-in-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    height: 34px;
+    padding: 0 12px !important;
+    margin: 0 !important;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ffffff99;
+    background-color: transparent;
+    color: white;
+}
+
+button.header-sign-in-button:hover {
+    background-color: #ffffff1a;
+    border-color: white;
+}

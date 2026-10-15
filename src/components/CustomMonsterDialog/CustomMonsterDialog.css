@@ -1,0 +1,87 @@
+.custom-monster-row {
+  width: 100%;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+}
+
+.custom-monster-row .styled-input {
+  flex: 1;
+  min-width: 0;
+  margin-right: 8px;
+}
+
+.custom-monster-row .styled-input:last-child {
+  margin-right: 0;
+}
+
+.custom-monster-stats {
+  width: 100%;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  justify-content: space-between !important;
+}
+
+.custom-monster-stats .styled-input {
+  width: calc((100% - 16px) / 3);
+}
+
+.custom-monster-error,
+.custom-monster-hint {
+  width: 100%;
+  font-size: 12px;
+  text-align: start;
+  align-items: flex-start !important;
+  padding: 0 4px 8px;
+}
+
+.custom-monster-error {
+  color: #ff6b6b;
+}
+
+.custom-monster-hint {
+  color: #ffffff66;
+}
+
+.custom-monster-section {
+  width: 100%;
+  align-items: stretch !important;
+  padding-top: 8px;
+}
+
+.custom-monster-section-title {
+  color: #ffffffdf;
+  align-items: flex-start !important;
+  padding-bottom: 8px;
+}
+
+.custom-monster-entry {
+  width: 100%;
+  align-items: stretch !important;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #454545;
+}
+
+.custom-monster-entry .text-button {
+  align-self: flex-end;
+  margin: 0 !important;
+}
+
+button.custom-monster-add {
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 0 !important;
+  background-color: #2a2a2a;
+  border-color: #2a2a2a;
+}
+
+.dialog-actions button:disabled {
+  opacity: .5;
+  cursor: default;
+}
+
+@media screen and (max-width: 480px) {
+  .custom-monster-stats .styled-input {
+    width: calc((100% - 8px) / 2);
+  }
+}

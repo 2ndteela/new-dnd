@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './StackedCards.css'
 
 export function StackedCardActions({ children }) {
@@ -38,41 +38,46 @@ export function StackedCard({ children }) {
 }
 
 export default function StackedCards({ children }) {
-  const [orderedChildren, setOrderedChildren] = useState(children)
+  const [order, setOrder] = useState([])
   const [selectedIndex, setSelectedIndex] = useState(null)
-  useEffect(() => {
-    if (orderedChildren.length !== children.length) setOrderedChildren(children)
-  }, [children, orderedChildren.length])
 
-  const moveToTop = useCallback((idx, child) => {
-    if (idx === orderedChildren.length - 1) return
+  // Order is tracked by key so children re-render with fresh props instead of stale cached elements
+  const childArray = React.Children.toArray(children)
+  const childMap = Object.fromEntries(childArray.map((c) => [c.key, c]))
+  const orderedKeys = [
+    ...order.filter((k) => childMap[k]),
+    ...childArray.map((c) => c.key).filter((k) => !order.includes(k))
+  ]
+
+  function moveToTop(idx) {
+    if (idx === orderedKeys.length - 1) return
 
     setSelectedIndex(idx)
 
     setTimeout(() => {
-      const newOrder = orderedChildren.reduce((acc, c, itr) => {
-        if (idx !== itr) return [...acc, c]
-        else return acc
-      }, [])
-
-      setOrderedChildren([...newOrder, child])
+      const movedKey = orderedKeys[idx]
+      setOrder([...orderedKeys.filter((k) => k !== movedKey), movedKey])
       setSelectedIndex(null)
     }, 550)
-  }, [orderedChildren])
-
+  }
 
   return (
     <div className="stacked-card-container">
-      {orderedChildren.map((child, idx) => (
-        <div
-          key={idx}
-          onClick={() => moveToTop(idx, child)}
-          className={`stacked-card-child ${idx === orderedChildren.length - 1 ? 'top-card' : ''} ${selectedIndex === idx ? 'selected' : ''} ${selectedIndex !== null && idx > selectedIndex ? 'shift-up' : ''}`}
-          style={{ top: `${idx * 40}px`, '--index': idx, '--card-count': orderedChildren.length }}
-        >
-          {child}
-        </div>
-      ))}
+      {orderedKeys.map((key, idx) => {
+        const isTop = idx === orderedKeys.length - 1
+        return (
+          <div
+            key={key}
+            onClick={() => moveToTop(idx)}
+            className={`stacked-card-child ${isTop ? 'top-card' : ''} ${selectedIndex === idx ? 'selected' : ''} ${selectedIndex !== null && idx > selectedIndex ? 'shift-up' : ''}`}
+            style={isTop
+              ? { marginTop: `${idx * 40}px`, '--index': idx, '--card-count': orderedKeys.length }
+              : { top: `${idx * 40}px`, '--index': idx, '--card-count': orderedKeys.length }}
+          >
+            {childMap[key]}
+          </div>
+        )
+      })}
     </div>
   )
 }

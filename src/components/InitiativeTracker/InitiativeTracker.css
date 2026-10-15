@@ -1,0 +1,326 @@
+.empty-tracker {
+  width: 100%;
+  padding: 32px 16px;
+  text-align: center;
+  color: #ffffff66;
+}
+
+.tracker-card-subtitle {
+  display: block !important;
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.initiative-tracker {
+  width: 100%;
+  align-items: stretch;
+}
+
+.tracker-top-bar {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 4px;
+}
+
+.tracker-top-bar h3 {
+  color: #ffffffdf;
+}
+
+.tracker-top-bar-actions {
+  flex-direction: row;
+}
+
+.tracker-top-bar .flat-button {
+  margin: 0 0 0 8px !important;
+  padding: 6px 12px !important;
+}
+
+.editing-banner {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #1e3b56;
+  color: #ffffffdf;
+  font-size: 12px;
+  text-align: start;
+  align-items: flex-start;
+}
+
+.initiative-list {
+  flex-direction: row;
+  width: 100%;
+  overflow-x: auto;
+  padding: 4px 2px 12px;
+}
+
+.initiative-square-wrapper {
+  flex-shrink: 0;
+  margin-right: 8px;
+}
+
+/* Space is always reserved so squares don't shift when the turn changes */
+.current-turn-indicator {
+  width: 0;
+  height: 0;
+  margin-bottom: 4px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 8px solid transparent;
+}
+
+.current-turn-indicator.visible {
+  border-top-color: #ffffffdf;
+}
+
+button.initiative-square {
+  position: relative;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  margin: 0 !important;
+  padding: 4px !important;
+  border-radius: 8px;
+  border: 2px solid #565656;
+  background-color: #333;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+button.initiative-square:hover {
+  background-color: #3d3d3d;
+  border-color: #676767;
+}
+
+button.initiative-square.defeated {
+  filter: grayscale(1);
+  opacity: .4;
+}
+
+button.initiative-square.selected {
+  border-color: #ffffffdf;
+}
+
+.initiative-square-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: .3;
+  transition: height .2s;
+}
+
+.initiative-square-fill.green {
+  background-color: rgb(0, 199, 0);
+}
+
+.initiative-square-fill.yellow {
+  background-color: yellow;
+}
+
+.initiative-square-fill.red {
+  background-color: red;
+}
+
+.initiative-square-name {
+  display: block !important;
+  width: 100%;
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1;
+}
+
+.initiative-square-icon {
+  font-size: 24px;
+  color: #ffffffdf;
+  z-index: 1;
+}
+
+.initiative-square-hp {
+  font-size: 18px;
+  color: #ffffffdf;
+  z-index: 1;
+}
+
+.tracker-card {
+  width: 100%;
+  border: 1px solid #565656;
+  border-radius: 8px;
+  background-color: #333;
+}
+
+.tracker-card-header {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 8px;
+  background-color: #545454;
+  border-radius: 8px 8px 0 0;
+}
+
+.tracker-card-title {
+  flex: 1;
+  min-width: 0;
+  align-items: flex-start;
+}
+
+.tracker-card-title h2 {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.tracker-card-body {
+  width: 100%;
+  align-items: flex-start;
+  padding: 8px;
+}
+
+.tracker-card-actions {
+  width: 100%;
+  padding: 8px;
+}
+
+.tracker-card-actions .full-button {
+  justify-content: center;
+  align-items: center;
+}
+
+.turn-controls {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 8px 0;
+  background-color: #121212;
+  z-index: 15;
+}
+
+.turn-controls .flat-button {
+  font-size: 24px;
+  padding: 4px 16px !important;
+  margin: 0 !important;
+}
+
+.turn-controls button.back-to-current {
+  align-self: stretch;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  padding: 0 12px !important;
+  margin: 0 8px !important;
+}
+
+.turn-controls-label {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 8px;
+}
+
+/* Pinned above the tab footer on mobile */
+@media screen and (max-width: 1023px) {
+  .initiative-tracker {
+    padding-bottom: 64px;
+  }
+
+  .turn-controls {
+    position: fixed;
+    left: 0;
+    bottom: 48px;
+    margin-top: 0;
+    padding: 8px 16px;
+    border-top: 1px solid #333;
+    z-index: 21;
+  }
+}
+.encounter-header {
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #333;
+}
+
+button.encounter-back-button {
+  flex-shrink: 0;
+  background-color: transparent;
+  border: none;
+  color: #ffffff99;
+  font-size: 22px;
+  padding: 4px !important;
+  margin: 0 8px 0 0 !important;
+}
+
+button.encounter-back-button:hover {
+  background-color: #1e3b5655;
+}
+
+.encounter-header-name {
+  flex: 1;
+  min-width: 0;
+  align-items: flex-start;
+  color: #ffffffdf;
+}
+
+button.encounter-list-item {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 8px !important;
+  padding: 12px !important;
+  background-color: #333;
+  border-color: #333;
+  font-size: 20px;
+}
+
+button.encounter-list-item:hover {
+  background-color: #3d3d3d;
+  border-color: #3d3d3d;
+}
+
+.encounter-list-text {
+  min-width: 0;
+  align-items: flex-start;
+}
+
+.encounter-list-name,
+.encounter-list-detail {
+  display: block !important;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
+}
+
+.encounter-list-name {
+  font-size: 16px;
+  color: #ffffffdf;
+}
+
+.encounter-list-detail {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+button.tracker-error {
+  width: 100%;
+  margin: 0 0 8px !important;
+  padding: 8px !important;
+  justify-content: center;
+  align-items: center;
+  background-color: #5a1a1a;
+  border-color: #5a1a1a;
+  color: white;
+}

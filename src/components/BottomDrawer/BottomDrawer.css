@@ -14,7 +14,7 @@
 
 #drawer-container {
   position: fixed;
-  bottom: calc(-80vh + 44px);
+  bottom: calc(-80vh + 44px + var(--drawer-offset, 0px));
   left: 0px;
   height: 80vh;
   transition: .3s;
@@ -23,7 +23,7 @@
 }
 
 #drawer-container.open {
-  bottom: 0vh;
+  bottom: var(--drawer-offset, 0px);
 }
 
 #drawer-spacer {
