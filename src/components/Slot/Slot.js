@@ -1,5 +1,6 @@
 import React from 'react';
 import './Slot.css'
+import Button from '../Button/Button'
 
 export default function Slot(props) {
     const {val, field, idx, arr, max, reverse, label, onUpdate} = props
@@ -48,12 +49,12 @@ export default function Slot(props) {
         <div className="slot-box">
             <span>{label}</span>
             <div className="slot-container">
-                <button onClick={dec} >-</button>
+                <Button variant='ghost' aria-label={`Decrease ${label || ''}`.trim()} onClick={dec}>-</Button>
                 <div className="main-slot-container">
                     <input value={val} onChange={(e) => handleUpdate(e.target.value) } type="number"></input>
                     <div className="slot-max-number" >/ {max}</div>
                 </div>
-                <button onClick={inc} >+</button>
+                <Button variant='ghost' aria-label={`Increase ${label || ''}`.trim()} onClick={inc}>+</Button>
                 {makeBackground()}
             </div>
         </div>

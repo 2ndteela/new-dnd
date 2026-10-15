@@ -15,24 +15,24 @@
 #roller-body {
     width: 180px;
     height: 180px;
-    background-color: #333;
-    border-radius: 8px;
+    background-color: var(--color-surface-2);
+    border-radius: var(--radius);
     z-index: 50;
     display: flex;
     justify-content: center;
     position: relative;
     top: -48px;
     transition: .3s;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: var(--shadow-1);
 }
 
 #roller-body h1 {
     font-size: 84px;
-    color: #ffffff80;
+    color: var(--color-text);
 }
 
-.final-color {
-    color: #ffffffdf !important;
+#roller-body h1.final-color {
+    color: var(--color-text-strong);
 }
 
 #roller-screen {
@@ -40,7 +40,7 @@
     width: 100vw;
     top: 0px;
     position: fixed;
-    background-color: #000;
+    background-color: var(--color-black);
     opacity: .3;
     z-index: 10;
 }
@@ -59,7 +59,7 @@
 }
 
 #roll-formula {
-    color: grey;
+    color: var(--color-text-dim);
 }
 
 #roller-container.show-the-roller {
@@ -73,7 +73,7 @@
 }
 
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1023px) {
     #roller-body {
         width: 92vw;
     }

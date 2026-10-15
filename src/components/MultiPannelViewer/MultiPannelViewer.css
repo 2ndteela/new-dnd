@@ -3,6 +3,11 @@
     flex-direction: row;
 }
 
+.pannel-frame {
+    display: flex;
+    align-items: flex-start;
+}
+
 .pannel-in-viewer {
     width: 500px;
     margin: 8px;
@@ -12,9 +17,9 @@
 
 .pannel-header {
     width: 100%;
-    background-color: #1e3b56;
+    background-color: var(--color-brand);
     padding: 16px;
-    color: white;
+    color: var(--color-white);
     transition: .5s;
     position: relative;
 }
@@ -26,7 +31,7 @@
     height: 84vh;
     max-height: 84vh;
     min-width: 500px;
-    background-color: #1f1f1f;
+    background-color: var(--color-surface-1);
 }
 
 #all-the-pannels {
@@ -38,11 +43,11 @@
 }
 
 .second-pannel .pannel-header {
-    background-color: #1d68ad;
+    background-color: var(--color-brand-secondary);
 }
 
 .second-pannel .pannel-body-container {
-    border-color: #1d68ad;
+    border-color: var(--color-brand-secondary);
 }
 
 .move-right {
@@ -81,22 +86,23 @@
 }
 
 .looks-like-second .pannel-header {
-    background-color: #1d68ad;
+    background-color: var(--color-brand-secondary);
 }
 
 .looks-like-second .pannel-body-container {
-    border-color: #1d68ad;
+    border-color: var(--color-brand-secondary);
 }
 
-.header-action {
+/* Same spot and icon size as the old bare icon, now in a 28px tap target */
+.pannel-header .btn.header-action {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 15px;
+    top: 15px;
     font-size: 18px;
 }
 
 
-@media screen and (max-width: 1099px) {
+@media screen and (max-width: 1023px) {
     #pannels-container {
         flex-direction: column-reverse;
     }

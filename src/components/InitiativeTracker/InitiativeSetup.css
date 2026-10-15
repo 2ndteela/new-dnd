@@ -5,16 +5,16 @@
 }
 
 .setup-section-title {
-  color: #ffffffdf;
+  color: var(--color-accent-text);
   text-align: start;
   padding-bottom: 4px;
   margin-bottom: 4px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--color-surface-2);
 }
 
 .setup-empty {
   font-style: italic;
-  color: #ffffff66;
+  color: var(--color-text-muted);
   text-align: start;
   align-items: flex-start;
   padding: 4px 0 8px;
@@ -35,7 +35,7 @@
 
 .setup-row-dex {
   font-size: 12px;
-  color: #ffffff66;
+  color: var(--color-text-muted);
 }
 
 .setup-roll-input {
@@ -43,26 +43,15 @@
   flex-shrink: 0;
   padding: 8px;
   border: none;
-  border-radius: 8px;
-  background-color: #333;
-  color: #ffffffdf;
+  border-radius: var(--radius);
+  background-color: var(--color-surface-3);
+  color: var(--color-text-strong);
   font-size: 16px;
   text-align: center;
 }
 
 button.setup-remove-button {
-  flex-shrink: 0;
-  background-color: transparent;
-  border: none;
-  color: #ffffff99;
-  font-size: 18px;
-  padding: 6px !important;
-  margin: 0 0 0 4px !important;
-}
-
-button.setup-remove-button:hover {
-  background-color: #00000055;
-  color: #ff6b6b;
+  margin-left: var(--space-1);
 }
 
 .setup-add-form {
@@ -71,27 +60,13 @@ button.setup-remove-button:hover {
   padding-top: 8px;
 }
 
-button.setup-add-button {
-  justify-content: center;
-  align-items: center;
-  margin: 0 !important;
-}
 
-button.setup-add-button:disabled,
-.setup-controls button:disabled {
-  opacity: .5;
-  cursor: default;
+.setup-controls {
+  gap: var(--space-2);
 }
 
 .setup-controls button {
   flex: 1;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px !important;
-  padding: 10px !important;
-  margin: 0 !important;
-}
-
-.setup-controls button:first-child {
-  margin-right: 8px !important;
+  font-size: 14px;
+  padding: 10px;
 }

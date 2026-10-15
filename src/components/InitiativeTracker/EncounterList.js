@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { MdChevronRight } from 'react-icons/md'
 import Input from '../Input/Input'
+import Button from '../Button/Button'
 
 function describeEncounter({ turnNumber, round, counts }) {
   const status = turnNumber > 0 ? `Round ${round}` : 'Not started'
@@ -31,9 +32,11 @@ export default function EncounterList({ encounters, loadingKey, onOpen, onCreate
       {encounters === null && <div className='setup-empty'>Loading encounters...</div>}
       {encounters?.length === 0 && <div className='setup-empty'>No encounters yet. Create one to get started.</div>}
       {encounters?.map((enc) => (
-        <button
+        <Button
           key={enc.key}
-          className='flat-button encounter-list-item'
+          variant='flat'
+          fullWidth
+          className='encounter-list-item'
           disabled={loadingKey !== null}
           onClick={() => onOpen(enc.key)}
         >
@@ -44,13 +47,13 @@ export default function EncounterList({ encounters, loadingKey, onOpen, onCreate
             </span>
           </div>
           <MdChevronRight />
-        </button>
+        </Button>
       ))}
       <div className='setup-add-form'>
         <Input label='Encounter Name' val={name} onUpdate={setName} />
-        <button className='flat-button setup-add-button' disabled={!name.trim() || creating} onClick={create}>
+        <Button variant='flat' fullWidth disabled={!name.trim() || creating} onClick={create}>
           {creating ? 'Creating...' : 'New Encounter'}
-        </button>
+        </Button>
       </div>
     </div>
   )

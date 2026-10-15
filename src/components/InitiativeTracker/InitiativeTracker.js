@@ -9,6 +9,8 @@ import EncounterList from './EncounterList'
 import { isDefeated } from './encounterData'
 import InitiativeSetup from './InitiativeSetup'
 import './InitiativeTracker.css'
+import Button from '../Button/Button'
+import IconButton from '../IconButton/IconButton'
 
 const SUBTITLES = {
   character: 'Player Character',
@@ -58,15 +60,16 @@ function InitiativeSquare({ entry, isCurrent, isSelected, onSelect }) {
   return (
     <div className='initiative-square-wrapper'>
       <div className={`current-turn-indicator${isCurrent ? ' visible' : ''}`} aria-label={isCurrent ? 'Current turn' : undefined} />
-      <button
+      <Button
         ref={squareRef}
+        variant='flat'
         className={`initiative-square ${entry.type}${isCurrent ? ' current' : ''}${isSelected ? ' selected' : ''}${isDefeated(entry) ? ' defeated' : ''}`}
         onClick={() => onSelect(entry.id)}
       >
         {fill && <div className={`initiative-square-fill ${fill.color}`} style={{ height: `${fill.percent}%` }} />}
         <span className='initiative-square-name'>{entry.name}</span>
         <SquareContent entry={entry} />
-      </button>
+      </Button>
     </div>
   )
 }
@@ -76,7 +79,7 @@ function MonsterCardBody({ entry, onUpdate }) {
 
   return (
     <>
-      <div className='full-width' style={{ paddingBottom: '16px' }}>
+      <div className='full-width tracker-card-health'>
         <HealthSlot
           current={entry.currentHp}
           max={entry.maxHp}
@@ -98,7 +101,7 @@ function TrackerCard({ entry, onUpdate, onRemove }) {
   const [confirmingRemove, setConfirmingRemove] = useState(false)
 
   return (
-    <div className='tracker-card'>
+    <div className='surface-card tracker-card'>
       <div className='tracker-card-header'>
         <div className='tracker-card-title'>
           <h2><EditableText value={entry.name} label='Edit name' onSave={(name) => onUpdate(entry.id, { name })} /></h2>
@@ -123,7 +126,7 @@ function TrackerCard({ entry, onUpdate, onRemove }) {
         </div>
       )}
       <div className='tracker-card-actions'>
-        <button className='flat-button full-button' onClick={() => setConfirmingRemove(true)}>Remove</button>
+        <Button variant='flat' fullWidth onClick={() => setConfirmingRemove(true)}>Remove</Button>
       </div>
       {confirmingRemove && (
         <ConfirmDialog
@@ -145,11 +148,11 @@ function EndEncounterDialog({ onCancel, onEnd }) {
       onClose={onCancel}
       actions={(
         <>
-          <button className='flat-button' onClick={onCancel}>Cancel</button>
-          <div style={{ padding: '0 12px' }} >
-            <button className='flat-button' onClick={() => onEnd(false)}>Keep</button>
+          <Button variant='flat' onClick={onCancel}>Cancel</Button>
+          <div className='end-dialog-keep'>
+            <Button variant='flat' onClick={() => onEnd(false)}>Keep</Button>
           </div>
-          <button className='dialog-danger-button' onClick={() => onEnd(true)}>Delete</button>
+          <Button variant='danger' onClick={() => onEnd(true)}>Delete</Button>
         </>
       )}
     >
@@ -161,9 +164,9 @@ function EndEncounterDialog({ onCancel, onEnd }) {
 function EncounterHeader({ name, onBack, onRename }) {
   return (
     <div className='encounter-header'>
-      <button className='encounter-back-button' aria-label='Back to encounters' onClick={onBack}>
+      <IconButton label='Back to encounters' className='encounter-back-button' onClick={onBack}>
         <MdArrowBack />
-      </button>
+      </IconButton>
       <h3 className='encounter-header-name'>
         <EditableText value={name} label='Edit encounter name' onSave={onRename} />
       </h3>
@@ -200,12 +203,12 @@ function ActiveInitiative({ entries, currentId, round, onChangeTurn, onUpdate, o
       <div className='tracker-top-bar'>
         <h3>Round {round}</h3>
         <div className='tracker-top-bar-actions'>
-          <button className='flat-button' onClick={onEdit}>Edit</button>
-          <button className='flat-button' onClick={() => setConfirmingEnd(true)}>End Initiative</button>
+          <Button variant='flat' size='sm' onClick={onEdit}>Edit</Button>
+          <Button variant='flat' size='sm' onClick={() => setConfirmingEnd(true)}>End Initiative</Button>
         </div>
       </div>
       {entries.length < 1 ? (
-        <div className='empty-tracker'>Everyone has been removed. End initiative or add more from the monster search.</div>
+        <div className='empty-state'>Everyone has been removed. End initiative or add more from the monster search.</div>
       ) : (
         <>
           <div className='initiative-list'>
@@ -226,17 +229,17 @@ function ActiveInitiative({ entries, currentId, round, onChangeTurn, onUpdate, o
             onRemove={handleRemove}
           />
           <div className='turn-controls'>
-            <button className='flat-button' aria-label='Previous turn' onClick={() => changeTurn(-1)}>
+            <Button variant='flat' className='turn-arrow' aria-label='Previous turn' onClick={() => changeTurn(-1)}>
               <MdChevronLeft />
-            </button>
+            </Button>
             {selected.id !== current.id ? (
-              <button className='flat-button back-to-current' onClick={() => setSelectedId(current.id)}>
+              <Button variant='flat' className='back-to-current' onClick={() => setSelectedId(current.id)}>
                 Go back to current turn
-              </button>
+              </Button>
             ) : <div className='turn-controls-label'>{current.name}'s turn</div>}
-            <button className='flat-button' aria-label='Next turn' onClick={() => changeTurn(1)}>
+            <Button variant='flat' className='turn-arrow' aria-label='Next turn' onClick={() => changeTurn(1)}>
               <MdChevronRight />
-            </button>
+            </Button>
           </div>
         </>
       )}
@@ -249,7 +252,7 @@ export default function InitiativeTracker({ initiative }) {
   const { encounter, encounters, loadingKey, error, clearError } = initiative
 
   const errorBanner = error && (
-    <button className='tracker-error' onClick={clearError}>{error} (dismiss)</button>
+    <Button variant='danger' fullWidth className='tracker-error' onClick={clearError}>{error} (dismiss)</Button>
   )
 
   if (!encounter) {

@@ -10,19 +10,8 @@
 }
 
 button.health-slot-menu-button {
-  background-color: transparent;
-  border: none;
-  color: #ffffff99;
-  font-size: 24px;
-  padding: 0 !important;
-  margin: 0 0 0 4px !important;
-  width: 32px;
-  justify-content: center;
-  align-items: center;
-}
-
-button.health-slot-menu-button:hover {
-  background-color: #1e3b5655;
+  align-self: center;
+  margin-left: var(--space-1);
 }
 
 .health-slot-menu {
@@ -31,36 +20,34 @@ button.health-slot-menu-button:hover {
   right: 0;
   width: 240px;
   padding: 8px;
-  background-color: #242424;
-  border: 1px solid #565656;
-  border-radius: 8px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.4);
+  background-color: var(--color-surface-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-2);
   align-items: stretch;
-  z-index: 60;
+  z-index: var(--z-popover);
 }
 
 .health-slot-presets {
   flex-direction: row;
+  gap: var(--space-1);
   width: 100%;
 }
 
 button.health-slot-preset {
   flex: 1;
-  padding: 4px !important;
-  margin-right: 4px !important;
-  background-color: #333;
-  border-color: #333;
-}
-
-button.health-slot-preset:last-child {
-  margin-right: 0 !important;
+  flex-direction: column;
+  gap: 0;
+  padding: var(--space-1);
+  background-color: var(--color-surface-4);
+  border-color: var(--color-surface-4);
 }
 
 button.health-slot-preset.active {
-  border-color: #376996;
+  border-color: var(--color-accent);
 }
 
 .health-slot-preset span:first-child {
   font-size: 12px;
-  color: #ffffffdf;
+  color: var(--color-text-strong);
 }

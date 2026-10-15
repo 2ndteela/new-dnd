@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import { MdClose } from 'react-icons/md'
 import { searchForSpell } from '../../assets/services'
 import Input from '../Input/Input'
+import Button from '../Button/Button'
+import IconButton from '../IconButton/IconButton'
 import './AllSpellsBottomSheet.css'
 
 export default function AllSpellsBottomSheet({addSpell, spells}) {
@@ -33,11 +35,11 @@ export default function AllSpellsBottomSheet({addSpell, spells}) {
 
     return (
         <div id="all-spells-side-sheet-container">
-            <button onClick={() => setShow(true)} >Search Spells</button>
+            <Button onClick={() => setShow(true)} >Search Spells</Button>
             <div id="all-spells-skrim" className={show ? 'opened' : ''}>
                 <div id="sliding-side-sheet" className={show ? 'opened' : ''}>
-                    <div className='full-width-row' style={{justifyContent: 'flex-end', paddingBottom: '16px'}}>
-                        <MdClose style={{fontSize: '24px'}} onClick={() => setShow(false)} />
+                    <div className='full-width-row all-spells-close-row'>
+                        <IconButton label="Close" size="sm" className="all-spells-close" onClick={() => setShow(false)}><MdClose /></IconButton>
                     </div>
                     <div className='full-width-row' >
                         <Input label="Search" val={spellSearch} onUpdate={setSpellSearch} />

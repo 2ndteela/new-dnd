@@ -7,6 +7,9 @@ import Input from '../../components/Input/Input';
 import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext'
 import { IoMdCloseCircle } from 'react-icons/io'
 import ExpandableCard from '../../components/ExpandableCard/ExpandableCard';
+import Button from '../../components/Button/Button';
+import IconButton from '../../components/IconButton/IconButton';
+import { MdAdd } from 'react-icons/md'
 
 export default function Skills({ setFormula, editMode }) {
     const [skills] = useState(skillList())
@@ -191,10 +194,10 @@ export default function Skills({ setFormula, editMode }) {
     }
 
     return (
-        <div style={{ width: '100%' }}>
+        <div className='skills-view'>
             {
                 statRows.map((row, rowNum) => (
-                    <div className="stats-box" style={(rowNum === 0 && !editMode) ? { paddingBottom: '24px' } : {}}>
+                    <div className={`stats-box${(rowNum === 0 && !editMode) ? ' stats-box-spaced' : ''}`}>
                         {row.map(s => {
                             const props = {
                                 name: s.name,
@@ -223,16 +226,16 @@ export default function Skills({ setFormula, editMode }) {
                 ))
             }
 
-            {editMode && <button onClick={fillSkills} >Fill Skills</button>}
+            {editMode && <Button onClick={fillSkills}>Fill Skills</Button>}
             <div id='skill-header-and-buttons' >
-                <h2 className="sub-header grey-color" style={{ paddingBottom: '4px' }} >Skill Checks</h2>
-                <div style={{ flexDirection: 'row' }}>
-                    <div style={{ backgroundColor: '#333', padding: '4px', width: '120px', marginRight: '8px', borderRadius: '4px' }} >
+                <h2 className="sub-header grey-color skills-heading">Skill Checks</h2>
+                <div className='skill-filters'>
+                    <div className='skill-select skill-select-filter'>
                         <select value={skillFilter} onChange={e => setSkillFilter(e.target.value)} >
                             {skillBases.map(s => <option value={s.value}>{s.label}</option>)}
                         </select>
                     </div>
-                    <div style={{ backgroundColor: '#333', padding: '4px', width: '60px', borderRadius: '4px' }} >
+                    <div className='skill-select skill-select-order'>
                         <select value={skillOrder} onChange={e => setSkillOrder(e.target.value)} >
                             <option value="a-z">A - Z</option>
                             <option value="h-l">H - L</option>
@@ -251,8 +254,16 @@ export default function Skills({ setFormula, editMode }) {
                         onUpdate={updateField} />)
                         : (
                             <div className={selectedSkill === i ? "solo-skill selected-skill" : 'solo-skill'} onClick={() => setSelectedSkill(i)} key={`skillz-${i}`}>
-                                <div style={{ display: 'flex', flexDirection: 'row', height: '24px' }}>
-                                    <div className='roll-dice-for-skill' onClick={() => setFormula(`d20 + ${character[s.field]}`)}> <GiDiceTwentyFacesTwenty /> </div>
+                                <div className='solo-skill-name'>
+                                    <IconButton
+                                        size='sm'
+                                        label={`Roll ${s.name}`}
+                                        className='roll-dice-for-skill'
+                                        tabIndex={selectedSkill === i ? 0 : -1}
+                                        onClick={() => setFormula(`d20 + ${character[s.field]}`)}
+                                    >
+                                        <GiDiceTwentyFacesTwenty />
+                                    </IconButton>
                                     <div>{s.name}</div>
                                 </div>
                                 <span>{character[s.field]}</span>
@@ -263,19 +274,21 @@ export default function Skills({ setFormula, editMode }) {
             {(character.abilities.length > 0 || editMode) &&
                 <div className='full-width-row'>
                     <h2 className="sub-header grey-color">Abilities</h2>
-                    {editMode && <button className='icon-button' onClick={addAbility}>+</button>}
+                    {editMode && <IconButton variant='filled' size='sm' label='Add ability' className='skills-add-ability' onClick={addAbility}><MdAdd /></IconButton>}
                 </div>}
-            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div className='skills-abilities'>
                 {character.abilities.map((a, i) => (
                     editMode ?
-                        <div style={{ width: '100%', paddingBottom: '16px' }}>
+                        <div className='skills-ability-edit'>
                             <div className='full-width-row'>
-                                <div style={{ width: '100%', marginRight: '8px' }}>
+                                <div className='skills-ability-fields'>
                                     <Input label="Name" val={a.header} field='header' idx={i} arr='abilities' onUpdate={updateIndex} />
                                     <Input label="Description" textarea val={a.description} field="description" idx={i} arr='abilities' onUpdate={updateIndex} />
                                 </div>
                                 <div>
-                                    <IoMdCloseCircle style={{ fontSize: '24px' }} onClick={() => removeAbility(i)} />
+                                    <IconButton tone='danger' label='Remove ability' className='skills-remove-ability' onClick={() => removeAbility(i)}>
+                                        <IoMdCloseCircle />
+                                    </IconButton>
                                 </div>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
 }
 
 .editable-text-value {
-  display: block !important;
+  display: block;
   min-width: 0;
   max-width: 100%;
   white-space: nowrap;
@@ -27,30 +27,20 @@
 
 .editable-text-value.placeholder {
   font-style: italic;
-  color: #ffffff66;
+  color: var(--color-text-muted);
 }
 
 button.editable-text-button {
-  flex-shrink: 0;
-  background-color: transparent;
-  border: none;
-  color: #ffffff99;
-  font-size: 18px;
-  padding: 4px !important;
-  margin: 0 0 0 4px !important;
-}
-
-button.editable-text-button:hover {
-  background-color: #1e3b5655;
+  margin-left: var(--space-1);
 }
 
 .editable-text-input {
   font-size: inherit;
   font-weight: inherit;
-  background-color: #242424;
-  border: 1px solid #565656;
-  border-radius: 4px;
-  color: #ffffffdf;
+  background-color: var(--color-surface-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-strong);
   padding: 2px 6px;
   width: 100%;
 }

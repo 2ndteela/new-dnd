@@ -1,23 +1,30 @@
 .guest-mode-container {
   width: 680px;
   max-width: 100%;
-  align-items: stretch !important;
+  align-items: stretch;
   padding-top: 24px;
 }
 
 .guest-mode-divider {
   padding-bottom: 12px;
-  color: #ffffff66;
-}
-
-button.guest-mode-button {
-  justify-content: center;
-  align-items: center;
+  color: var(--color-text-muted);
 }
 
 .guest-mode-hint {
-  padding-top: 8px;
-  font-size: 12px;
-  color: #ffffff66;
+  padding-top: var(--space-2);
   text-align: center;
+}
+
+.login-page {
+  justify-content: center;
+}
+
+.login-links {
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+.login-form {
+  width: 680px;
+  max-width: 100%;
 }

@@ -1,0 +1,154 @@
+/*
+  Button variants. Override from a component with `.btn.your-class` or `button.your-class`
+  (one class alone ties with these and depends on load order).
+  Hover styles only apply on devices that can hover; :active gives touch feedback without sticking.
+*/
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-2) var(--space-6);
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color .2s, border-color .2s, color .2s;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-sm {
+  padding: 6px var(--space-3);
+}
+
+.btn:disabled {
+  opacity: .5;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Primary: solid blue, the main action */
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-primary:active {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+/* Flat: solid dark grey, secondary actions */
+.btn-flat {
+  background-color: var(--color-surface-3);
+  border-color: var(--color-surface-3);
+}
+
+.btn-flat:active {
+  background-color: var(--color-surface-4);
+  border-color: var(--color-surface-4);
+}
+
+/* Outline: low emphasis, works on coloured backgrounds */
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--color-text);
+}
+
+.btn-outline:active {
+  background-color: var(--color-text);
+  border-color: var(--color-text);
+  color: var(--color-surface-2);
+}
+
+/* Text: no background, tertiary actions and list rows */
+.btn-text {
+  justify-content: flex-start;
+  text-align: start;
+  background-color: transparent;
+}
+
+.btn-text:active {
+  background-color: var(--color-accent-tint);
+}
+
+.btn-text:disabled {
+  opacity: 1;
+  color: var(--color-text-disabled);
+}
+
+/* Ghost: icon only */
+.btn-ghost {
+  flex-shrink: 0;
+  padding: var(--space-1);
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+}
+
+/* Translucent white works on any surface (cards, slots, the blue header) */
+.btn-ghost:active {
+  background-color: var(--color-overlay-light);
+}
+
+.btn-ghost.btn-tone-danger:active {
+  color: var(--color-danger-text);
+}
+
+.btn-ghost.btn-tone-on-color {
+  color: var(--color-white);
+}
+
+/* Danger: solid red, destructive confirms */
+.btn-danger {
+  background-color: var(--color-danger);
+  border-color: var(--color-danger);
+  color: var(--color-white);
+}
+
+.btn-danger:active {
+  background-color: var(--color-danger-hover);
+  border-color: var(--color-danger-hover);
+}
+
+@media (hover: hover) {
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+  }
+
+  .btn-flat:hover {
+    background-color: var(--color-surface-4);
+    border-color: var(--color-surface-4);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-text);
+    border-color: var(--color-text);
+    color: var(--color-surface-2);
+  }
+
+  .btn-text:hover {
+    background-color: var(--color-accent-tint);
+  }
+
+  .btn-ghost:hover {
+    background-color: var(--color-overlay-light);
+  }
+
+  .btn-ghost.btn-tone-danger:hover {
+    color: var(--color-danger-text);
+  }
+
+  .btn-danger:hover {
+    background-color: var(--color-danger-hover);
+    border-color: var(--color-danger-hover);
+  }
+}

@@ -12,19 +12,8 @@ import InitiativeTracker from '../../components/InitiativeTracker/InitiativeTrac
 import useInitiative from '../../components/InitiativeTracker/useInitiative'
 import MonsterCard from '../../components/MonsterCard/MonsterCard'
 import StackedCards from '../../components/StackedCards/StackedCards'
-
-function useMediaQuery(query) {
-  const [matches, setMatches] = useState(() => window.matchMedia(query).matches)
-
-  useEffect(() => {
-    const mql = window.matchMedia(query)
-    const handleChange = (e) => setMatches(e.matches)
-    mql.addEventListener('change', handleChange)
-    return () => mql.removeEventListener('change', handleChange)
-  }, [query])
-
-  return matches
-}
+import Button from '../../components/Button/Button'
+import { useIsDesktop } from '../../assets/breakpoints'
 
 // Encounters are stored per user (or per device in guest mode), so this page needs a session
 export default function MonstersAndInitiative() {
@@ -40,7 +29,7 @@ function MonstersAndInitiativePage() {
   const [activeTab, setActiveTab] = useState('search')
   const [customDialogOpen, setCustomDialogOpen] = useState(false)
   const initiative = useInitiative()
-  const isDesktop = useMediaQuery('(min-width: 1024px)')
+  const isDesktop = useIsDesktop()
 
   const addCustomMonster = useCallback((monster) => {
     setSavedMonsters((v) => [...v, monster])
@@ -107,23 +96,23 @@ function MonstersAndInitiativePage() {
         <div id="search-pane" className={`initiative-pane${activeTab === 'search' ? ' active' : ''}`}>
         <div id='monster-search-column'>
           <Input className="full-width" label="Search All Monsters" value={filterTerm} onUpdate={setFilterTerm} />
-          <button className='flat-button full-button add-custom-monster' onClick={() => setCustomDialogOpen(true)}>
+          <Button variant='flat' fullWidth className='add-custom-monster' onClick={() => setCustomDialogOpen(true)}>
             Add Custom Monster
-          </button>
+          </Button>
           <div id="monster-list-container">
             {filterTerm?.length < 1 || filterTerm === null ? alphabetizedData.map((section) => (
               <div key={section?.sectionHeader} className="monster-section">
                 <ExpansionPannel header={section.sectionHeader} width='100%'>
                   <div className="monsters-list">
                     {section.monsters.map((m) => (
-                      <button
+                      <Button
+                        variant='text'
                         disabled={savedMonsters.some((i) => i.index === m.index)}
-                        className='text-button'
                         key={m.index}
                         onClick={() => getMonster(m.index)}
                       >
                         <div className='single-monster-text'>{m.name}</div>
-                      </button>
+                      </Button>
                     )
                     )}
                   </div>
@@ -132,13 +121,14 @@ function MonstersAndInitiativePage() {
             )) : (
               <div id="monster-filter-results">
                 {alphabetizedData.map((monster) => (
-                  <button
+                  <Button
+                    variant='text'
                     disabled={savedMonsters.some((i) => i.index === monster.index)}
-                    className='text-button' key={monster.index}
+                    key={monster.index}
                     onClick={() => getMonster(monster.index)}
                   >
                     <div className='single-monster-text'>{monster.name}</div>
-                  </button>
+                  </Button>
                 ))}
               </div>
             )}
@@ -147,9 +137,9 @@ function MonstersAndInitiativePage() {
         {/* Unmounted on the mobile tracker tab so an open drawer can't keep body scroll locked */}
         {(isDesktop || activeTab === 'search') && <BottomDrawer>
           {savedMonsters.length > 0 && !initiative.encounter && (
-            <div className='saved-monsters-hint'>Open an encounter in the tracker to add monsters to it.</div>
+            <div className='hint-text saved-monsters-hint'>Open an encounter in the tracker to add monsters to it.</div>
           )}
-          {savedMonsters.length < 1 && <div className='saved-monsters-empty'>Pick a monster from the list to see its stats.</div>}
+          {savedMonsters.length < 1 && <div className='empty-state'>Pick a monster from the list to see its stats.</div>}
           <StackedCards>
             {savedMonsters.map((m) => (
               <MonsterCard
@@ -170,14 +160,14 @@ function MonstersAndInitiativePage() {
       </div>
       {customDialogOpen && <CustomMonsterDialog onClose={() => setCustomDialogOpen(false)} onCreate={addCustomMonster} />}
       <div className="initiative-tabs">
-        <button className={activeTab === 'search' ? 'active' : ''} onClick={() => setActiveTab('search')}>
+        <Button variant='text' className={`initiative-tab${activeTab === 'search' ? ' active' : ''}`} onClick={() => setActiveTab('search')}>
           <MdSearch />
           <span>Search</span>
-        </button>
-        <button className={activeTab === 'tracker' ? 'active' : ''} onClick={() => setActiveTab('tracker')}>
+        </Button>
+        <Button variant='text' className={`initiative-tab${activeTab === 'tracker' ? ' active' : ''}`} onClick={() => setActiveTab('tracker')}>
           <MdFormatListNumbered />
           <span>Tracker{initiative.encounter?.entries.length > 0 ? ` (${initiative.encounter.entries.length})` : ''}</span>
-        </button>
+        </Button>
       </div>
     </div >
   )

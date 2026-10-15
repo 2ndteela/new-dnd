@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import './Dialog.css'
+import Button from '../Button/Button'
 
 export default function Dialog({ title, children, actions, onClose, wide }) {
   useEffect(() => {
@@ -13,7 +14,7 @@ export default function Dialog({ title, children, actions, onClose, wide }) {
 
   return (
     <div className='dialog-overlay' onClick={onClose}>
-      <div className={`dialog${wide ? ' wide' : ''}`} role='dialog' aria-label={title} onClick={(e) => e.stopPropagation()}>
+      <div className={`surface-card dialog${wide ? ' wide' : ''}`} role='dialog' aria-label={title} onClick={(e) => e.stopPropagation()}>
         <h3 className='dialog-title'>{title}</h3>
         <div className='dialog-body'>{children}</div>
         {actions && <div className='dialog-actions'>{actions}</div>}
@@ -29,8 +30,8 @@ export function ConfirmDialog({ title, message, confirmLabel, onCancel, onConfir
       onClose={onCancel}
       actions={(
         <>
-          <button className='text-button' onClick={onCancel}>Cancel</button>
-          <button className='dialog-danger-button' onClick={onConfirm}>{confirmLabel}</button>
+          <Button variant='text' onClick={onCancel}>Cancel</Button>
+          <Button variant='danger' onClick={onConfirm}>{confirmLabel}</Button>
         </>
       )}
     >

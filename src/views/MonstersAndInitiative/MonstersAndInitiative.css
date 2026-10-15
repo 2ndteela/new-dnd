@@ -32,24 +32,13 @@
 }
 
 button.add-custom-monster {
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 8px !important;
+  margin-bottom: var(--space-2);
 }
 
 .saved-monsters-hint {
   width: 100%;
-  padding-bottom: 8px;
-  font-size: 12px;
+  padding-bottom: var(--space-2);
   font-style: italic;
-  color: #ffffff66;
-}
-
-.saved-monsters-empty {
-  width: 100%;
-  padding: 32px 16px;
-  text-align: center;
-  color: #ffffff66;
 }
 
 #view-splitter {
@@ -103,29 +92,29 @@ button.add-custom-monster {
     width: 100vw;
     height: 48px;
     flex-direction: row;
-    background-color: #1e3b56;
-    z-index: 21;
+    background-color: var(--color-brand);
+    z-index: var(--z-footer);
   }
 
-  .initiative-tabs button {
+  button.initiative-tab {
     flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
     height: 100%;
-    margin: 0 !important;
-    padding: 0 !important;
+    padding: 0;
     border: none;
     border-radius: 0;
-    background-color: transparent;
-    justify-content: center;
     font-size: 12px;
   }
 
-  .initiative-tabs button svg {
+  button.initiative-tab svg {
     font-size: 20px;
   }
 
-  .initiative-tabs button.active {
-    background-color: #376996;
-    color: white;
+  button.initiative-tab.active {
+    background-color: var(--color-accent);
+    color: var(--color-white);
   }
 }
 
@@ -146,9 +135,9 @@ button.add-custom-monster {
   #view-splitter .initiative-pane {
     height: 100%;
     min-width: 0;
-    border-radius: 8px;
-    background-color: #1e1e1e;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: var(--radius);
+    background-color: var(--color-surface-1);
+    box-shadow: var(--shadow-1);
   }
 
   #search-pane {
@@ -165,7 +154,7 @@ button.add-custom-monster {
     flex-shrink: 0;
     padding: 16px;
     overflow-y: auto;
-    border-right: 1px solid #333;
+    border-right: 1px solid var(--color-surface-2);
   }
 
   #search-pane #drawer-container {
@@ -206,6 +195,6 @@ button.add-custom-monster {
     bottom: 0;
     margin-top: auto;
     padding: 16px 0;
-    background-color: #1e1e1e;
+    background-color: var(--color-surface-1);
   }
 }

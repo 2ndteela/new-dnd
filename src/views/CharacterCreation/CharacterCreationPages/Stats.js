@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Button from '../../../components/Button/Button'
 export default function Stats() {
   // const standardSet = [15, 14, 13, 12, 10, 8]
   // const [stats, setStats] = useState(standardSet)
@@ -6,9 +7,9 @@ export default function Stats() {
 
   return (
     <div>
-      <div className='full-width-row' >
-        <button className={statLine === 'standard' ? '' : 'outline-button'} onClick={() => setStatLine('standard')} >Standard Set</button>
-        <button className={statLine !== 'standard' ? '' : 'outline-button'} onClick={() => setStatLine('rolls')} >Roll New Stats</button>
+      <div className='full-width-row stat-line-options' >
+        <Button variant={statLine === 'standard' ? 'primary' : 'outline'} onClick={() => setStatLine('standard')} >Standard Set</Button>
+        <Button variant={statLine !== 'standard' ? 'primary' : 'outline'} onClick={() => setStatLine('rolls')} >Roll New Stats</Button>
       </div>
     </div>
   )

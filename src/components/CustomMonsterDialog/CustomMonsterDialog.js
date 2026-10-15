@@ -3,6 +3,7 @@ import Dialog from '../Dialog/Dialog'
 import Input from '../Input/Input'
 import { buildMonster } from '../InitiativeTracker/encounterData'
 import './CustomMonsterDialog.css'
+import Button from '../Button/Button'
 
 const STATS = [
   { key: 'strength', label: 'Str' },
@@ -76,14 +77,14 @@ function EntryListEditor({ title, itemLabel, entries, onChange }) {
         <div key={idx} className='custom-monster-entry'>
           <Input label={`${itemLabel} Name`} val={entry.name} onUpdate={(name) => updateEntry(idx, { name })} />
           <Input textarea label='Description' val={entry.desc} onUpdate={(desc) => updateEntry(idx, { desc })} />
-          <button className='text-button' onClick={() => onChange(entries.filter((_, i) => i !== idx))}>
+          <Button variant='text' className='custom-monster-entry-remove' onClick={() => onChange(entries.filter((_, i) => i !== idx))}>
             Remove {itemLabel}
-          </button>
+          </Button>
         </div>
       ))}
-      <button className='flat-button custom-monster-add' onClick={() => onChange([...entries, { name: '', desc: '' }])}>
+      <Button variant='flat' fullWidth className='custom-monster-add' onClick={() => onChange([...entries, { name: '', desc: '' }])}>
         Add {itemLabel}
-      </button>
+      </Button>
     </div>
   )
 }
@@ -109,8 +110,8 @@ export default function CustomMonsterDialog({ onClose, onCreate }) {
       onClose={onClose}
       actions={(
         <>
-          <button className='text-button' onClick={onClose}>Cancel</button>
-          <button disabled={!canCreate} onClick={create}>Add Monster</button>
+          <Button variant='text' onClick={onClose}>Cancel</Button>
+          <Button disabled={!canCreate} onClick={create}>Add Monster</Button>
         </>
       )}
     >
@@ -123,7 +124,7 @@ export default function CustomMonsterDialog({ onClose, onCreate }) {
         <Input label='Hit Dice (e.g. 2d8+2)' val={form.hitDice} onUpdate={set('hitDice')} />
       </div>
       {hitDiceInvalid && <div className='custom-monster-error'>Hit dice should look like 2d8+2.</div>}
-      {!hasHealth && !hitDiceInvalid && <div className='custom-monster-hint'>Enter hit points, hit dice, or both.</div>}
+      {!hasHealth && !hitDiceInvalid && <div className='hint-text custom-monster-hint'>Enter hit points, hit dice, or both.</div>}
       <div className='custom-monster-row'>
         <Input label='AC' val={form.ac} onUpdate={set('ac')} />
         <Input label='Speed' val={form.speed} onUpdate={set('speed')} />

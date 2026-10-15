@@ -3,8 +3,14 @@
     align-items: flex-end;
 }
 
-#all-spells-side-sheet-container button {
-    margin-right: 0px;
+.all-spells-close-row {
+    justify-content: flex-end;
+    padding-bottom: 16px;
+}
+
+/* Keep the old 24px icon inside the small icon button */
+#sliding-side-sheet .all-spells-close {
+    font-size: 24px;
 }
 
 #sliding-side-sheet {
@@ -14,7 +20,7 @@
     opacity: 0;
     transition: .3s;
     top: 30px;
-    background-color: #1f1f1f;
+    background-color: var(--color-surface-1);
     box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.438);
     z-index: -2;
     padding: 16px;
@@ -59,17 +65,19 @@
     text-align: left;
     margin: 4px 4px;
     border-radius: 16px;
-    background-color: #2f2f2f;
-    border: 1px solid #3f3f3f;
+    background-color: var(--color-surface-3);
+    border: 1px solid var(--color-surface-4);
     flex-direction: row;
 }
 
-.spell-in-list:hover {
-    background-color: #2f2f2f;
+@media (hover: hover) {
+  .spell-in-list:hover {
+    background-color: var(--color-surface-3);
+  }
 }
 
 #selected-spell-data {
-    background-color: #2f2f2f;
+    background-color: var(--color-surface-3);
     width: 100%;
     height: 100%;
     padding: 8px;
@@ -78,16 +86,16 @@
 }
 
 #selected-spell-data b {
-    color: #ffffffd7;
+    color: var(--color-text-strong);
     padding-right: 4px;
 }
 
 .spell-requirement {
     font-weight: bold;
-    color: #ffffffd7;
+    color: var(--color-text-strong);
 }
 
 .spell-requirements {
     margin-bottom: 8px;
-    border-bottom: 1px  solid #ffffffd7;
+    border-bottom: 1px  solid var(--color-text-strong);
 }

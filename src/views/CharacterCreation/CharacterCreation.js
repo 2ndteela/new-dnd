@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import './CharacterCreation.css'
 import Stats from './CharacterCreationPages/Stats'
 import Class from './CharacterCreationPages/Class'
+import Button from '../../components/Button/Button'
 
 export default function CharacterCreation() {
   const [ step, setStep ] = useState(0)
@@ -16,10 +17,10 @@ export default function CharacterCreation() {
     <div>
       {step === 0 && <Class />}
       {step === 1 && <Stats />}
-      <div style={{flexDirection: 'row', justifyContent: 'space-between', width: '100%', padding: '0px 16px', paddingBottom: '16px'}} >
-        {step > 0 && <button onClick={() => changePage(-1)} >Back</button>}
+      <div className='creation-nav' >
+        {step > 0 && <Button onClick={() => changePage(-1)} >Back</Button>}
         <div/>
-        <button className='no-margin-button' onClick={() => changePage(1)} >Next</button>
+        <Button onClick={() => changePage(1)} >Next</Button>
       </div>
     </div>
   )

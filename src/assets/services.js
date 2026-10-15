@@ -1,7 +1,7 @@
 import { getDatabase, child, ref, get, set, push, remove, update } from "firebase/database";
-import { loadCharacter, writeCharacterWithoutFlag } from "./utilities";
-import { readLocal, writeLocal, removeLocal, isSignedIn, dataKey, startSignedInSession } from "./storage";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { loadCharacter, writeCharacterWithoutFlag, clearCurrentCharacter } from "./utilities";
+import { readLocal, writeLocal, removeLocal, isSignedIn, dataKey, startSignedInSession, endSession } from "./storage";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
 
 // Every write goes to local storage (IndexedDB). Signed-in users also write to Firebase,
 // and their reads come from Firebase, falling back to the local copy when offline.
@@ -146,6 +146,22 @@ export const createNewUser = async (email, password) => {
     catch (err) {
         throw err
     }
+}
+
+// Signs out of Firebase (if signed in) and ends the session. Locally stored data is kept,
+// so signing back in on this device starts from the cached copy.
+export const signOutUser = async () => {
+    if (readLocal('uid')) {
+        try {
+            await signOut(getAuth())
+        }
+        catch (err) {
+            console.error('Firebase sign out failed; ending the local session anyway', err)
+        }
+    }
+
+    clearCurrentCharacter()
+    endSession()
 }
 
 export const sendForgotPasswordEmail = async (email) => {

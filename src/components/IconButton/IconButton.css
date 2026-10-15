@@ -1,0 +1,48 @@
+/* Builds on .btn.btn-ghost (hover, press, tone, disabled come from Button) */
+
+.btn.icon-btn {
+  position: relative;
+  flex-shrink: 0;
+  padding: 0;
+  border-radius: 50%;
+  line-height: 0;
+}
+
+.btn.icon-btn-sm {
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+}
+
+/* Visual 28px, but the tap target reaches 44px */
+.btn.icon-btn-sm::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+}
+
+.btn.icon-btn-md {
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+}
+
+.btn.icon-btn-lg {
+  width: 44px;
+  height: 44px;
+  font-size: 24px;
+}
+
+.btn.icon-btn-filled {
+  background-color: var(--color-surface-3);
+}
+
+.btn.icon-btn-filled:active {
+  background-color: var(--color-surface-4);
+}
+
+@media (hover: hover) {
+  .btn.icon-btn-filled:hover {
+    background-color: var(--color-surface-4);
+  }
+}

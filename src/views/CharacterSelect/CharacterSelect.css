@@ -1,20 +1,20 @@
-.char-card {
-    display: flex;
+/* .btn + class so these beat the Button variant styles */
+.btn.char-card {
+    flex-direction: column;
+    gap: 0;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 16px;
-    border-radius: 8px;
+    border-radius: var(--radius);
     margin-bottom: 16px;
     transition: .3s;
-    background-color: #242424;
     width: 100%;
 }
 
 
-#new-character-space {
-    border: 2px dashed #242424;
-    border-radius: 8px;
-    color: #242424;
+.btn.new-character-space {
+    border: 2px dashed var(--color-surface-3);
+    border-radius: var(--radius);
+    color: var(--color-surface-3);
     font-size: 2em;
     transition: .2s;
     background-color: transparent;
@@ -25,9 +25,11 @@
     font-weight: bold;
 }
 
-#new-character-space:hover {
-    color: #333;
-    border-color: #333;
+@media (hover: hover) {
+  .btn.new-character-space:hover {
+    color: var(--color-surface-2);
+    border-color: var(--color-surface-2);
+  }
 }
 
 #character-selection-container {
@@ -40,8 +42,9 @@
 
 @media screen and (min-width: 1200px) {
 
-    .char-card,
-    #new-character-space {
-        width: calc(50% - 8px);
+    /* Two columns with an 8px gap (the old buttons' right margin made the gap) */
+    .btn.char-card,
+    .btn.new-character-space {
+        width: calc(50% - 4px);
     }
 }

@@ -4,11 +4,11 @@
 
 .spell-box {
     width: 100%;
-    border-radius: 8px;
+    border-radius: var(--radius);
     padding: 16px;
     align-items: flex-start;
     margin-bottom: 8px;
-    background-color: #333;
+    background-color: var(--color-surface-2);
 }
 
 .spell-header {
@@ -29,7 +29,7 @@
 
 .spell-stat-container span {
     font-size: 12px;
-    border-top: 1px solid grey;
+    border-top: 1px solid var(--color-text-dim);
     width: 100%;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .spell-requirement {
-    color: white;
+    color: var(--color-white);
     padding-right: 16px;
 }
 
@@ -51,8 +51,8 @@
     padding: 16px;
     margin-bottom: 16px;
     margin-top: 16px;
-    border: 4px dashed #333;
-    border-radius: 8px;
+    border: 4px dashed var(--color-surface-2);
+    border-radius: var(--radius);
 }
 
 #search-new-spell {
@@ -62,7 +62,7 @@
 
 #handbook-spell-list {
     width: 100%;
-    background-color: #2f2f2f;
+    background-color: var(--color-surface-3);
 }
 
 #current-spell-list {
@@ -90,17 +90,19 @@
     text-align: left;
     margin: 4px 4px;
     border-radius: 16px;
-    background-color: #2f2f2f;
-    border: 1px solid #3f3f3f;
+    background-color: var(--color-surface-3);
+    border: 1px solid var(--color-surface-4);
     flex-direction: row;
 }
 
-.spell-in-list:hover {
-    background-color: #2f2f2f;
+@media (hover: hover) {
+  .spell-in-list:hover {
+      background-color: var(--color-surface-3);
+  }
 }
 
 #selected-spell-data {
-    background-color: #2f2f2f;
+    background-color: var(--color-surface-3);
     width: 100%;
     height: 100%;
     padding: 8px;
@@ -109,22 +111,22 @@
 }
 
 #selected-spell-data b {
-    color: #ffffffd7;
+    color: var(--color-text-strong);
     padding-right: 4px;
 }
 
 .spell-requirement {
     font-weight: bold;
-    color: #ffffffd7;
+    color: var(--color-text-strong);
 }
 
 .spell-requirements {
     margin-bottom: 8px;
-    border-bottom: 1px  solid #ffffffd7;
+    border-bottom: 1px  solid var(--color-text-strong);
 }
 
 .spell-stat-container.full-width-range {
-    width: 100% !important;
+    width: 100%;
 }
 
 .full-width-row.three-items :first-child {
@@ -141,7 +143,7 @@
     flex: 1;
 }
 
-@media screen and (max-width: 1009px) {
+@media screen and (max-width: 1023px) {
     #spells-container {
         width: 100vw;
     }
@@ -150,4 +152,49 @@
         padding: 16px;
         padding-top: 0px;
     }
+}
+
+.spell-casting-stats {
+    width: 100%;
+}
+
+.btn.icon-btn.spell-list-toggle {
+    margin-left: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+/* Sized to sit inside a chip without making it taller */
+.btn.icon-btn.spell-chip-close {
+    width: 20px;
+    height: 20px;
+    margin-left: var(--space-2);
+}
+
+.selected-spell-details {
+    width: 100%;
+    align-items: flex-start;
+    padding-bottom: var(--space-2);
+}
+
+.selected-spell-paragraph {
+    padding-bottom: var(--space-2);
+}
+
+.edit-spell-item {
+    align-items: flex-end;
+}
+
+.btn.icon-btn.spell-remove {
+    margin-bottom: var(--space-2);
+}
+
+.spell-description {
+    padding-bottom: var(--space-2);
+}
+
+.spell-requirements-row {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: var(--space-3);
 }
