@@ -137,7 +137,7 @@ Small local values (1, 5) are fine for ordering things inside one component.
 ## Layout
 
 - **Header:** 58px, blue, page title centred. A back-to-Resources ghost button sits on the left. The sign-in state sits on the right: a "Sign in" outline button for guests, a cloud icon when signed in.
-- **Bottom bars:** 48px, fixed (bottom nav, mobile tabs). Fixed action bars, like the turn controls, sit directly above them.
+- **Bottom bars:** on mobile, the character sheet's `BottomNav` (64px) is the last item in a flex column that fills the window, so it sits at the bottom without fixed positioning. The monsters page tabs (48px) are still fixed. Fixed action bars, like the turn controls, sit directly above them. On desktop the character sheet uses `SideNav` instead; `MultiPanelViewer` picks one with `useIsDesktop()`.
 - **Banners:** full-width strips above the header (guest mode). They're dismissible.
 - **Breakpoints:** use only these three:
   - `max-width: 480px`: small phones (tighter grids)
@@ -226,6 +226,21 @@ Any icon that does something when tapped goes in an `IconButton` (`src/component
 - Use `Dialog` (or `ConfirmDialog` for yes/no). A scrim covers the page; the panel is a `.surface-card`, 360px wide (560px with `wide`).
 - Title top-left, actions bottom-right. Esc and clicking the scrim close it.
 - Anything destructive (remove, end, delete) asks first.
+
+### Dice roller
+
+One dice roller serves the whole app. `DiceRollerProvider` wraps the app in `App.js` and renders the dialog; components use the hook:
+
+```jsx
+const { rollDice, openDiceRoller } = useDiceRoller()
+rollDice(`d20 + ${modifier}`, { label: 'Stealth' })   // opens it with 1d20 + modifier and rolls straight away
+openDiceRoller()                                     // opens it with whatever was set up last
+```
+
+- `rollDice` accepts `NdS + M` formulas and treats a missing or blank modifier as +0, so you can pass stored values straight in. Always give a `label` (the skill, save or attack); it becomes the dialog title.
+- The dice set up are kept between opens. Changing them after a roll turns the result into "Last roll" and drops the label.
+- Dice tumble in their real shapes and land on the result; a single d20 showing 20 or 1 is marked as a natural 20 or 1. With reduced motion turned on, results appear immediately.
+- Dice helpers (`rollDie`, `parseFormula`, `formatFormula`, `formatModifier`, `KEYPAD_DICE`) live in `src/assets/dice.js`. Use `rollDie` rather than `Math.random()` so no roll can come out as 0.
 
 ### Feedback text
 

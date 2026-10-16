@@ -1,7 +1,8 @@
+/* Desktop only (BottomNav is the mobile version). Stretches to the height of the character sheet (see .side-nav-slot) */
 #side-nav-container {
+    flex: 1;
     display: flex;
     width: 64px;
-    height: 100vh;
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--color-surface-2);
@@ -34,103 +35,4 @@
 #side-nav-container .side-nav-button.selected-second {
     background-color: var(--color-brand-secondary);
     color: var(--color-white);
-}
-
-#roller-calc-container {
-    transition: .5s;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    background-color: var(--color-scrim);
-    z-index: -200;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-}
-
-#roller-calc-container.show-dialog {
-    opacity: 1;
-    z-index: 200;
-}
-
-#roller-calc-body {
-    transition: .5s;
-    position: relative;
-    background-color: var(--color-bg);
-    box-shadow: 2px 4px 20px var(--color-scrim);
-    top: 36px;
-}
-
-#roller-calc-body.show-dialog {
-    top: 0px;
-}
-
-#roller-calc-dice-keypad, #roller-calc-value-keypad {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-#roller-calc-readout {
-    height: 128px;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-#roller-calc-body .roller-calc-result {
-    padding-bottom: 12px;
-    font-size: 4em;
-}
-
-#roller-calc-body .roller-key {
-    width: 64px;
-    height: 64px;
-    margin: 2px;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    background-color: var(--color-surface-3);
-    font-size: 1em;
-}
-
-#roller-calc-body .roller-key:active {
-    background-color: var(--color-surface-4);
-}
-
-#roller-calc-body .roller-key-wide {
-    width: 132px;
-}
-
-#roller-calc-body .roller-close {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 24px;
-    height: 24px;
-    background-color: var(--color-overlay-dark);
-    font-size: 28px;
-}
-
-
-@media screen and (max-width: 1023px) {
-    #side-nav-container {
-        flex-direction: row;
-        height: 64px;
-        width: 100vw;
-    }
-
-    #side-nav-buttons {
-        display: flex;
-        flex-direction: row;
-    }
-
-    #side-nav-container .side-nav-button {
-        flex: 1 1;
-    }
 }

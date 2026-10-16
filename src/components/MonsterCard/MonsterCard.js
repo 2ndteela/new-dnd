@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import ExpansionPannel from '../ExpansionPannel/ExpansionPannel'
+import ExpansionPanel from '../ExpansionPanel/ExpansionPanel'
 import { StackedCard, StackedCardActions, StackedCardBody, StackedCardHeader } from '../StackedCards/StackedCards'
 import './MonsterCard.css'
 import Button from '../Button/Button'
@@ -77,7 +77,7 @@ function MonsterProficiencies({ monster }) {
 
   // Always shown: AC/size/speed matter even without skill proficiencies
   return (
-    <ExpansionPannel header="More Stats" bottomBorder>
+    <ExpansionPanel header="More Stats" bottomBorder>
       <div className='full-width'>
         {proficienciesCheck.map((p) => (
           <div key={p.proficiency.index} className='other-prof-row'>
@@ -100,7 +100,7 @@ function MonsterProficiencies({ monster }) {
           </div>
         </div>
       </div>
-    </ExpansionPannel>
+    </ExpansionPanel>
   )
 }
 export function MonsterDetails({ monster }) {
@@ -112,25 +112,25 @@ export function MonsterDetails({ monster }) {
       </div>
       <div className='full-width monster-details-section'>
         {monster.special_abilities.length > 0 &&
-          <ExpansionPannel header="Abilities" bottomBorder>
+          <ExpansionPanel header="Abilities" bottomBorder>
             {monster.special_abilities.map((ability) => (
               <div key={ability.name} className='monster-detail-entry'>
                 <h5>{ability.name}</h5>
                 <div>{ability.desc}</div>
               </div>
             ))}
-          </ExpansionPannel>}
+          </ExpansionPanel>}
       </div>
       <div className='full-width monster-details-section'>
         {monster.actions.length > 0 && (
-          <ExpansionPannel header="Actions" bottomBorder>
+          <ExpansionPanel header="Actions" bottomBorder>
             {monster.actions.map((a) => (
               <div key={a.name} className='monster-detail-entry'>
                 <h5>{a.name}</h5>
                 <div>{a.desc}</div>
               </div>
             ))}
-          </ExpansionPannel>
+          </ExpansionPanel>
         )}
       </div>
     </>

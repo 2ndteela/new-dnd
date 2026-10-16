@@ -7,7 +7,7 @@ import Input from '../../components/Input/Input'
 import "./MonstersAndInitiative.css"
 import BottomDrawer from '../../components/BottomDrawer/BottomDrawer'
 import CustomMonsterDialog from '../../components/CustomMonsterDialog/CustomMonsterDialog'
-import ExpansionPannel from '../../components/ExpansionPannel/ExpansionPannel'
+import ExpansionPanel from '../../components/ExpansionPanel/ExpansionPanel'
 import InitiativeTracker from '../../components/InitiativeTracker/InitiativeTracker'
 import useInitiative from '../../components/InitiativeTracker/useInitiative'
 import MonsterCard from '../../components/MonsterCard/MonsterCard'
@@ -102,7 +102,7 @@ function MonstersAndInitiativePage() {
           <div id="monster-list-container">
             {filterTerm?.length < 1 || filterTerm === null ? alphabetizedData.map((section) => (
               <div key={section?.sectionHeader} className="monster-section">
-                <ExpansionPannel header={section.sectionHeader} width='100%'>
+                <ExpansionPanel header={section.sectionHeader} width='100%'>
                   <div className="monsters-list">
                     {section.monsters.map((m) => (
                       <Button
@@ -116,7 +116,7 @@ function MonstersAndInitiativePage() {
                     )
                     )}
                   </div>
-                </ExpansionPannel>
+                </ExpansionPanel>
               </div>
             )) : (
               <div id="monster-filter-results">

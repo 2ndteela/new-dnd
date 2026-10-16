@@ -31,7 +31,7 @@ Characters are edited locally and synced in one piece:
 
 1. `CharacterSelect` copies the chosen character into the local `character` key (`writeCharacter`, which sets `savedChar: false`).
 2. Views edit it through `CharacterContext.updateCharacter`, which rewrites `character` on every change (again `savedChar: false`).
-3. `MultiPannelViewer` calls `writeCharacterToDb()` when a panel is saved or switched. It only writes if `savedChar` is false:
+3. `MultiPanelViewer` calls `writeCharacterToDb()` when a panel is saved or switched. It only writes if `savedChar` is false:
    - no `key` yet → a new key is generated (Firebase push id when signed in, `local-…` id in guest mode) and stored on the character
    - the character is written to the local `characters` collection, and to `users/{uid}/characters/{key}` when signed in (full overwrite)
 4. After writing it sets `savedChar: true` locally.
@@ -272,7 +272,7 @@ Just a name in the order. Not linked to the saved `Character` sheets.
 | `character` | The character currently being viewed/edited |
 | `data/{uid or "guest"}/characters` | `{ [characterKey]: Character }`, local copy of the collection |
 | `data/{uid or "guest"}/encounters` | `{ [encounterKey]: Encounter }`, local copy of the collection |
-| `tempCharacter` | Legacy. Still read by `BottomNav` to decide whether to show the Spells tab. Nothing in this codebase writes it. |
+| `tempCharacter` | Legacy. Migrated from old localStorage but no longer read or written by anything. |
 
 Collections are namespaced by account, so guest data and each account's data stay separate. On sign-in or sign-up, any guest characters and encounters are added to the account with one multi-path `update` on `users/{uid}`, which leaves existing account data alone. They're then merged into the account's local copy and the guest copy is cleared. If the upload fails, the guest data stays on the device and is tried again on the next sign-in.
 

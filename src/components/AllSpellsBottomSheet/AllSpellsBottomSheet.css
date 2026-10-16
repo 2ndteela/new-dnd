@@ -28,7 +28,7 @@
     left: 5vw;
 }
 
-#all-spells-skrim {
+#all-spells-scrim {
     width: 100%;
     position: absolute;
     z-index: -2;
@@ -43,7 +43,7 @@
     top: 0px;
 }
 
-#all-spells-skrim.opened {
+#all-spells-scrim.opened {
     opacity: 1;
     z-index: 20;
 }

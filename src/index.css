@@ -40,6 +40,8 @@
   --color-overlay-light: #ffffff1a;
   --color-overlay-dark: #00000055;
   --color-scrim: #000000aa;
+  --color-sheen: rgba(255, 255, 255, .3);
+  --color-shade: rgba(0, 0, 0, .35);
 
   /* Status */
   --color-health-good: #3fb970;

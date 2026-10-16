@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../../components/Input/Input'
-import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext';
+import { useCharacterContext } from '../../components/MultiPanelViewer/CharacterContext';
 
 import './Pack.css'
 

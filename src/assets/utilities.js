@@ -61,7 +61,7 @@ export const skillList = () => {
             base: 'Wis'
         },
         {
-            name: 'Initimidation',
+            name: 'Intimidation',
             field: 'intim',
             base: 'Chr'
         },
@@ -101,12 +101,12 @@ export const skillList = () => {
             base: 'Int'
         },
         {
-            name: 'Slight of Hand',
+            name: 'Sleight of Hand',
             field: 'soh',
             base: 'Dex'
         },
         {
-            name: 'Sealth',
+            name: 'Stealth',
             field: 'stealth',
             base: 'Dex'
         },

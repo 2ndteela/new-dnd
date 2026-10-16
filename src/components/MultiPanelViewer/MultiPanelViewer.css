@@ -1,21 +1,39 @@
-#pannels-container {
-    display: flex;
-    flex-direction: row;
+/* The character sheet fills exactly the window below the header (and banner, if shown);
+   only the panel bodies scroll. MultiPanelViewer adds .fill-window while it's mounted. */
+#app-container.fill-window {
+    height: 100vh;
+    height: 100dvh;
 }
 
-.pannel-frame {
+#panels-container {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.side-nav-slot {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-frame {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
     display: flex;
     align-items: flex-start;
 }
 
-.pannel-in-viewer {
+.panel-in-viewer {
     width: 500px;
     margin: 8px;
     position: relative;
     left: 0px;
 }
 
-.pannel-header {
+.panel-header {
     width: 100%;
     background-color: var(--color-brand);
     padding: 16px;
@@ -24,29 +42,31 @@
     position: relative;
 }
 
-.pannel-body-container {
+.panel-body-container {
     padding: 16px;
-    overflow: scroll;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
     border-top: none;
-    height: 84vh;
-    max-height: 84vh;
     min-width: 500px;
     background-color: var(--color-surface-1);
 }
 
-#all-the-pannels {
+#all-the-panels {
+    flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
     width: calc(100vw - 48px);
     justify-content: center;
 }
 
-.second-pannel .pannel-header {
+.second-panel .panel-header {
     background-color: var(--color-brand-secondary);
 }
 
-.second-pannel .pannel-body-container {
+.second-panel .panel-body-container {
     border-color: var(--color-brand-secondary);
 }
 
@@ -58,10 +78,11 @@
     opacity: 0;
 }
 
-#pannel-window {
+#panel-window {
     width: 1032px;
     display: flex;
     flex-direction: row;
+    align-items: stretch;
     overflow: hidden;
     position: relative;
 }
@@ -73,9 +94,9 @@
 #area-to-add-new-window {
     min-width: 500px;
     max-width: 500px;
-    min-height: 100%;
     left: -516px;
     top: 8px;
+    bottom: 8px;
     position: absolute;
     opacity: 0;
 }
@@ -85,16 +106,16 @@
     opacity: 1;
 }
 
-.looks-like-second .pannel-header {
+.looks-like-second .panel-header {
     background-color: var(--color-brand-secondary);
 }
 
-.looks-like-second .pannel-body-container {
+.looks-like-second .panel-body-container {
     border-color: var(--color-brand-secondary);
 }
 
 /* Same spot and icon size as the old bare icon, now in a 28px tap target */
-.pannel-header .btn.header-action {
+.panel-header .btn.header-action {
     position: absolute;
     right: 15px;
     top: 15px;
@@ -103,38 +124,60 @@
 
 
 @media screen and (max-width: 1023px) {
-    #pannels-container {
-        flex-direction: column-reverse;
+    #panels-container {
+        flex-direction: column;
     }
 
-    .pannel-body-container, .pannel-in-viewer {
+    .panel-body-container, .panel-in-viewer {
         min-width: 0px;
         margin: 0px;
         border: none;
     }
 
-    .pannel-in-viewer {
-        height: calc(100vh - 64px);
+    .panel-in-viewer {
         width: 100%;
     }
 
-    .pannel-body-container {
-        padding: 16px;
-        padding-bottom: 0px;
-        max-height: calc(100vh - 106px);
-        height: 100vh;
+    /* One panel at a time on mobile, so its header is a slim toolbar rather than a second blue bar */
+    .panel-header,
+    .second-panel .panel-header,
+    .looks-like-second .panel-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 40px;
+        padding: var(--space-1) var(--space-2) var(--space-1) var(--space-4);
+        background-color: var(--color-surface-2);
+        border-bottom: 1px solid var(--color-surface-3);
+        color: var(--color-text);
     }
 
-    #all-the-pannels {
+    .panel-header h2 {
+        font-size: 18px;
+        color: var(--color-accent-text);
+    }
+
+    .panel-header .btn.header-action {
+        position: static;
+        order: 1;
+        color: var(--color-text);
+    }
+
+    .panel-body-container {
+        padding: 16px;
+        padding-bottom: 0px;
+    }
+
+    #all-the-panels {
         width: 100vw;
     }
 
     #area-to-add-new-window {
         min-width: 100vw;
         max-width: 100vw;
-        min-height: 100vh;
         left: -100vw;
         top: 0px;
+        bottom: 0px;
         position: absolute;
         opacity: 1;
     }

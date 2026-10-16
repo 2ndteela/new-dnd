@@ -44,3 +44,8 @@
   padding-top: 16px;
 }
 
+
+/* The panel takes focus on open; the ring is only for keyboard users */
+.dialog:focus:not(:focus-visible) {
+  outline: none;
+}
