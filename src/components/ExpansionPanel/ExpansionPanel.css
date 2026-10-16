@@ -1,26 +1,26 @@
-.expansion-pannel {
+.expansion-panel {
     width: 100%;
 }
 
-.expansion-pannel.bottom-border {
+.expansion-panel.bottom-border {
     border-bottom: 1px solid var(--color-white);
 }
 
-.expansion-pannel-header {
+.expansion-panel-header {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
 }
 
-.expansion-pannel-header h2 {
+.expansion-panel-header h2 {
     margin-bottom: 8px;
 }
 
-.expansion-pannel-header span {
+.expansion-panel-header span {
     position: relative;
 }
 
-.expansion-pannel-body {
+.expansion-panel-body {
     max-height: 0px;
     overflow: hidden;
     width: 100%;
@@ -32,12 +32,12 @@
     top: -4px;
 }
 
-.open-pannel {
+.open-panel {
     max-height: unset;
     overflow: auto;
     opacity: 1;
 }
 
-.open-pannel.expansion-pannel-body {
+.open-panel.expansion-panel-body {
     margin-bottom: 8px;
 }

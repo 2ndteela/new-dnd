@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import './WeaponSearchDialog.css'
-import {useCharacterContext} from '../MultiPannelViewer/CharacterContext'
+import {useCharacterContext} from '../MultiPanelViewer/CharacterContext'
 
 export default function WeaponSearchDialog() {
     const {character, allWeapons, updateCharacter} = useCharacterContext()

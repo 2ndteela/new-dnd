@@ -36,7 +36,7 @@ export default function AllSpellsBottomSheet({addSpell, spells}) {
     return (
         <div id="all-spells-side-sheet-container">
             <Button onClick={() => setShow(true)} >Search Spells</Button>
-            <div id="all-spells-skrim" className={show ? 'opened' : ''}>
+            <div id="all-spells-scrim" className={show ? 'opened' : ''}>
                 <div id="sliding-side-sheet" className={show ? 'opened' : ''}>
                     <div className='full-width-row all-spells-close-row'>
                         <IconButton label="Close" size="sm" className="all-spells-close" onClick={() => setShow(false)}><MdClose /></IconButton>

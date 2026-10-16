@@ -7,11 +7,13 @@ import IconButton from '../../components/IconButton/IconButton'
 import './Fight.css'
 import CheckBox from '../../components/CheckBox/CheckBox';
 import { AiFillCloseCircle, AiOutlineMinusCircle } from 'react-icons/ai';
-import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext';
+import { useCharacterContext } from '../../components/MultiPanelViewer/CharacterContext';
 import { searchForWeapon } from '../../assets/services';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
+import { useDiceRoller } from '../../components/DiceRollerDialog/DiceRollerProvider';
 
-export default function Fight({setFormula, editMode }) {
+export default function Fight({ editMode }) {
+    const { rollDice } = useDiceRoller()
 
     const {character, updateCharacter, allWeapons} = useCharacterContext()
     const [ filteredWeapons, setFilteredWeapons ] = useState([])
@@ -270,16 +272,16 @@ export default function Fight({setFormula, editMode }) {
                                     <Input label="Attack Bonus" val={w.atkBns} field="atkBns" arr="weapons" idx={i} onUpdate={updateArrayValue} />
                                     <Input label="Damage" val={w.damage} field="damage" arr="weapons" idx={i} onUpdate={updateArrayValue} />
                                 </div>
-                                { w.versitile && <Input label="Versitile Damage" val={w.versitileDamage} field='versitileDamage' arr="weapons" idx={i} onUpdate={updateArrayValue} />}
+                                { w.versitile && <Input label="Versatile Damage" val={w.versitileDamage} field='versitileDamage' arr="weapons" idx={i} onUpdate={updateArrayValue} />}
                                 <div className='full-width-row'>
-                                    <CheckBox label='Versitile' model={w.versitile} idx={i} arr="weapons" field="versitile" onUpdate={updateArrayValue} ></CheckBox>
+                                    <CheckBox label='Versatile' model={w.versitile} idx={i} arr="weapons" field="versitile" onUpdate={updateArrayValue} ></CheckBox>
                                 </div>
                             </div> 
                             <IconButton label='Remove weapon' tone='danger' className='fight-remove-button fight-remove-weapon' onClick={() => removeWeapon(i)}>
                                 <AiFillCloseCircle />
                             </IconButton>
                         </div>
-                        : <div className="weapon-container" key={'wep-' + i} onClick={() => setFormula(`d20 + ${w.atkBns}`)} >
+                        : <div className="weapon-container" key={'wep-' + i} onClick={() => rollDice(`d20 + ${w.atkBns}`, { label: `${w.name || 'Weapon'} attack` })} >
                             <div className="weapon-header">
                                 <h3>{w.name}</h3>
                                 <span>{w.damType}</span>

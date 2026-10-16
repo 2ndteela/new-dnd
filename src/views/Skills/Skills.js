@@ -4,14 +4,16 @@ import './Skills.css'
 import { skillList } from '../../assets/utilities';
 import { GiDiceTwentyFacesTwenty } from 'react-icons/gi'
 import Input from '../../components/Input/Input';
-import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext'
+import { useCharacterContext } from '../../components/MultiPanelViewer/CharacterContext'
 import { IoMdCloseCircle } from 'react-icons/io'
 import ExpandableCard from '../../components/ExpandableCard/ExpandableCard';
 import Button from '../../components/Button/Button';
 import IconButton from '../../components/IconButton/IconButton';
 import { MdAdd } from 'react-icons/md'
+import { useDiceRoller } from '../../components/DiceRollerDialog/DiceRollerProvider'
 
-export default function Skills({ setFormula, editMode }) {
+export default function Skills({ editMode }) {
+    const { rollDice } = useDiceRoller()
     const [skills] = useState(skillList())
     const [selectedSkill, setSelectedSkill] = useState()
     const [skillFilter, setSkillFilter] = useState('All')
@@ -203,10 +205,9 @@ export default function Skills({ setFormula, editMode }) {
                                 name: s.name,
                                 save: character[s.save],
                                 main: character[s.main],
-                                setFormula,
                             }
                             return editMode ?
-                                <div className='editible-stat'>
+                                <div className='editable-stat'>
                                     <Input
                                         label={s.name}
                                         val={props.main}
@@ -260,7 +261,7 @@ export default function Skills({ setFormula, editMode }) {
                                         label={`Roll ${s.name}`}
                                         className='roll-dice-for-skill'
                                         tabIndex={selectedSkill === i ? 0 : -1}
-                                        onClick={() => setFormula(`d20 + ${character[s.field]}`)}
+                                        onClick={() => rollDice(`d20 + ${character[s.field]}`, { label: s.name })}
                                     >
                                         <GiDiceTwentyFacesTwenty />
                                     </IconButton>

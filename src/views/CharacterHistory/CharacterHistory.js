@@ -1,6 +1,6 @@
 import React from 'react'
 import './CharacterHistory.css'
-import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext';
+import { useCharacterContext } from '../../components/MultiPanelViewer/CharacterContext';
 import Input from '../../components/Input/Input';
 
 export default function CharacterHistory({editMode}) {

@@ -97,7 +97,7 @@
     color: var(--color-surface-2);
 }
 
-.editible-stat {
+.editable-stat {
     padding: 8px;
     border: 2px solid var(--color-surface-2);
     border-radius: var(--radius);

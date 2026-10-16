@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Input from '../../components/Input/Input'
 import CheckBox from '../../components/CheckBox/CheckBox';
-import { useCharacterContext } from '../../components/MultiPannelViewer/CharacterContext';
+import { useCharacterContext } from '../../components/MultiPanelViewer/CharacterContext';
 
 import './style.css'
 import { MdArrowDropDown, MdArrowDropUp, MdClose } from 'react-icons/md';

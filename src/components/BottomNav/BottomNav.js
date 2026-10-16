@@ -1,51 +1,31 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
-import { readLocal } from '../../assets/storage.js';
+import React from 'react'
+import { GiDiceTwentyFacesTwenty } from 'react-icons/gi'
+import { FaSignOutAlt } from 'react-icons/fa'
+import IconButton from '../IconButton/IconButton'
+import { PANEL_BUTTONS, useSignOut } from '../../assets/characterNav'
+import { useDiceRoller } from '../DiceRollerDialog/DiceRollerProvider'
 import './BottomNav.css'
 
-export default function BottomNav() {
-    const route = window.location.pathname
-    const character = readLocal('tempCharacter')
-    const links = [
-        {
-            name: 'Spells',
-            link: '/spells'
-        },
-        {
-            name: 'Fight',
-            link: '/fight'
-        },
-        {
-            name: 'Skills',
-            link: '/skills'
-        },
-        {
-            name: 'Pack',
-            link: '/pack'
-        },
-        {
-            name: 'Edit',
-            link: '/edit'
-        }
-    ]
+// Mobile character sheet nav along the bottom of the screen. One panel shows at a time.
+export default function BottomNav({ addPanel, panels }) {
+  const signOut = useSignOut()
+  const { openDiceRoller } = useDiceRoller()
 
-    function makeRoutes() {
-        let newLinks = [...links]
-        if(!character?.spells) 
-            newLinks = newLinks.splice(1)
-
-        return (
-            newLinks.map(l => {
-                return <Link to={l.link} className={route === l.link ? 'match' : ''} key={l.name} >{l.name}</Link>
-            })
-        )
-    }
-
-    return (
-        <div className="bottom-nav">
-            <div className="nav-container">
-                {makeRoutes()}
-            </div>
-        </div>
-    )
+  return (
+    <nav className='bottom-nav' aria-label='Character sheet'>
+      {PANEL_BUTTONS.map(({ name, label, Icon }) => (
+        <IconButton
+          key={name}
+          label={label}
+          className={`bottom-nav-button${panels[0] === name ? ' selected' : ''}`}
+          aria-current={panels[0] === name ? 'page' : undefined}
+          onClick={() => addPanel(name)}
+        >
+          <Icon />
+        </IconButton>
+      ))}
+      <IconButton label='Dice roller' className='bottom-nav-button' onClick={openDiceRoller}><GiDiceTwentyFacesTwenty /></IconButton>
+      <IconButton label='Sign out' className='bottom-nav-button' onClick={signOut}><FaSignOutAlt /></IconButton>
+    </nav>
+  )
 }
